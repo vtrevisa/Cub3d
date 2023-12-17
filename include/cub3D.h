@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/17 14:50:08 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2023/12/17 18:12:53 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_data
 	int		endian;
 	void	*mlx;
 	void	*win;
+	int		max_x;
+	int		max_y;
 }	t_data;
 
 //--FIGURES--

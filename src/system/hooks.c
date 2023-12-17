@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/17 17:04:42 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2023/12/17 18:20:13 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ static int	movement(int key, t_data *data)
 		data->initial_y += factor/2;
 		data->size_x -= factor;
 		data->size_y -= factor;
+	}
+	else if (key == 100)
+	{
+		data->initial_x += factor/2;
+	}
+	else if (key = 97)
+	{
+		data->initial_x -= factor/2;
 	}
 	draw_square(data->initial_x, data->initial_y, data->size_x, data->size_y, data);
 	refresh(data);

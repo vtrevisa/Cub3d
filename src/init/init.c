@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/17 14:50:37 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2023/12/17 18:13:44 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 int	init_mlx(t_data *data)
 {
+	data->max_x = 800;
+	data->max_y = 600;
 	data->mlx = NULL;
 	data->mlx = mlx_init();
 	if (!data->mlx)
@@ -22,13 +24,13 @@ int	init_mlx(t_data *data)
 	mlx_initialized();
 
 	data->win = NULL;
-	data->win = mlx_new_window(data->mlx, 800, 600, "CUB3D");
+	data->win = mlx_new_window(data->mlx, data->max_x, data->max_y, "CUB3D");
 	if (!data->win)
 		return (0);
 	screen_initialized();
 
 	data->img = NULL;
-	data->img = mlx_new_image(data->mlx, 800, 600);
+	data->img = mlx_new_image(data->mlx, data->max_x, data->max_y);
 	if (!data->img)
 		return (0);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_lenght, &data->endian);

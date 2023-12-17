@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:50:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/17 14:38:02 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2023/12/17 18:17:56 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,25 @@
 	img_x and y -> initial poition of the pixels to be painted
 */
 
+static void	draw_background(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while(x < data->max_x)
+	{
+		y = 0;
+		while (y < data->max_y)
+		{
+			if ((y < data->initial_y || y > data->initial_y + data->size_y) || (x < data->initial_x || x > data->initial_x + data->size_x))
+				my_mlx_pixel_put(data, x, y, 0x00110000);
+			y++;
+		}
+		x++;
+	}
+}
+
 
 void	draw_square(int initial_x, int initial_y, int size_x, int size_y, t_data *data)
 {
@@ -25,6 +44,7 @@ void	draw_square(int initial_x, int initial_y, int size_x, int size_y, t_data *d
 	
 	img_x = initial_x;
 	img_y = initial_y;
+	draw_background(data);
 	while (initial_y <= size_y + img_y)
 	{
 		initial_x = img_x;
