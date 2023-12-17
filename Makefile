@@ -9,15 +9,16 @@ LPATH	= ./Libft
 
 #--DIRS--
 SRC_D		= ./src
-DIRS		= . init system utils msg
+DIRS		= . figures init system utils msg
 OBJ_D		= ./objects
 INCLUDE_D	= ./include
 LIB_INC_D	= $(LPATH)/Include
 
 #--FILES--
-SRC 		= $(INI) $(SYS) $(UTI) $(MSG)
+SRC 		= $(FIG) $(INI) $(SYS) $(UTI) $(MSG)
+FIG			= square.c
 INI			= init.c
-SYS			= main.c
+SYS			= hooks.c main.c
 UTI			= utils.c
 MSG			= msg.c
 HEADERS		= ./include/cub3D.h #./mlx_linux/mlx.h ./mlx_linux/mlx_int.h
@@ -38,6 +39,9 @@ NUMBER_OF_SRC_FILES	=	$(words $(SRC))
 PROGRESS			=	0
 
 all: $(NAME)
+
+r: $(NAME)
+	./$(NAME)
 
 $(NAME): $(LIB) $(OBJ) $(OBJ_D) $(HEADERS)
 	@echo "$(BLUE)Compiling $(WHITE)cub3D"
