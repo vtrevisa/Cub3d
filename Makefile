@@ -1,25 +1,28 @@
 #--STARNDARD--
 NAME		= cub3D
-CFLAGS		= -I/mlx_linux -Imlx_linux -O3 -Lmlx_linux -lmlx_Linux -L/mlx_linux -Imlx_linux -lXext -lX11 -lm -lz
+CFLAGS		= -I/mlx_linux -Imlx_linux -O3 -Lmlx_linux -lmlx_Linux -L/mlx_linux -Imlx_linux -lXext -lX11 -lm -lz -g
 VPATH		= $(addprefix $(SRC_D)/, $(DIRS))
 
+#--CONFIG--
+MAP			= map_test_right.txt
+
 #--LIBFT--
-LIB		= $(addprefix $(LPATH)/, libft.a)
-LPATH	= ./Libft
+LIB			= $(addprefix $(LPATH)/, libft.a)
+LPATH		= ./Libft
 
 #--DIRS--
 SRC_D		= ./src
-DIRS		= . figures init system utils msg
+DIRS		= . map init system utils msg
 OBJ_D		= ./objects
 INCLUDE_D	= ./include
 LIB_INC_D	= $(LPATH)/Include
 
 #--FILES--
-SRC 		= $(FIG) $(INI) $(SYS) $(UTI) $(MSG)
-FIG			= square.c
+SRC 		= $(INI) $(MAP) $(SYS) $(UTI) $(MSG)
 INI			= init.c
+MAP			= draw_map.c square.c
 SYS			= hooks.c main.c
-UTI			= utils.c
+UTI			= utils.c map_reader.c
 MSG			= msg.c
 HEADERS		= ./include/cub3D.h #./mlx_linux/mlx.h ./mlx_linux/mlx_int.h
 INCLUDE		= -I $(INCLUDE_D) -I $(LIB_INC_D)
@@ -41,7 +44,7 @@ PROGRESS			=	0
 all: $(NAME)
 
 r: $(NAME)
-	./$(NAME)
+	./$(NAME) $(MAP)
 
 $(NAME): $(LIB) $(OBJ) $(OBJ_D) $(HEADERS)
 	@echo "$(BLUE)Compiling $(WHITE)cub3D"

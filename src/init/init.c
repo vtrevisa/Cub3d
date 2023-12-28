@@ -6,15 +6,16 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/17 18:13:44 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:50:51 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-
-int	init_mlx(t_data *data)
+int	init_mlx(t_data *data, int argc, char **argv)
 {
+	
+	
 	data->max_x = 800;
 	data->max_y = 600;
 	data->mlx = NULL;
@@ -36,13 +37,15 @@ int	init_mlx(t_data *data)
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_lenght, &data->endian);
 	img_initialized();
 
-	data->initial_x=350;
-	data->initial_y=250;
-	data->size_x=100;
-	data->size_y=100;
+	data->initial_x=0;
+	data->initial_y=0;
+	data->size_x=0;
+	data->size_y=0;
 	data->x=0;
 	data->y=0;
 	show_dataxy(data);
-	
+
+	if (map_reader(data) < 0)
+		exit (-1);
 	return (1);
 }
