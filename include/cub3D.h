@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/28 20:54:41 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2023/12/28 21:14:39 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data
 	int		max_x;
 	int		max_y;
 	
+	char	*map_name;
 	char	*map;
 	int		map_size[2];
 	int		blocks_nbr;
@@ -62,6 +63,7 @@ int	init_mlx(t_data *data, int argc, char **argv);
 
 //--MSG--
 void	config_loaded(void);
+int	invalid_config(void);
 void	mlx_initialized(void);
 void	screen_initialized(void);
 void	img_initialized(void);
@@ -72,7 +74,7 @@ void	show_dataxy(t_data *data);
 int		open_error(int fd);
 void	show_map(char *map);
 int		map_error(void);
-void	map_loaded(void);
+void	map_loaded(char *str);
 void	show_map_nbrs(t_data *data);
 
 //--SYSTEM--

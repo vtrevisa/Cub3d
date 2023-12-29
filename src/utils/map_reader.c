@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:07:31 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/28 20:40:21 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2023/12/28 21:11:36 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,6 @@ int	map_reader(t_data *data)
 		free(tmp);
 		tmp = get_next_line(fd);
 	}
-		map_loaded();
+		map_loaded(data->map_name);
 		show_map(data->map);
 }

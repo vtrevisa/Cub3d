@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/28 20:54:31 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2023/12/28 21:14:30 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@ void	config_loaded(void)
 	ft_printf(GREEN);
 	ft_printf("\nConfigurations Loaded Succesfully!\n");
 	ft_printf(WHITE);
+}
+
+int	invalid_config(void)
+{
+	ft_printf(RED);
+	ft_printf("\nWrong parameters! Configurations not loaded. Terminating program...\n");
+	ft_printf(WHITE);
+	return (-1);
 }
 
 void	mlx_initialized(void)
@@ -95,10 +103,10 @@ int	map_error(void)
 	return (-1);
 }
 
-void	map_loaded(void)
+void	map_loaded(char *str)
 {
 	ft_printf(GREEN);
-	ft_printf("\nMap Loaded!\n");
+	ft_printf("\nMap \e[033m %s \e[00m Loaded!\n", str);
 	ft_printf(WHITE);
 }
 

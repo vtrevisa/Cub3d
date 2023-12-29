@@ -4,7 +4,7 @@ CFLAGS		= -I/mlx_linux -Imlx_linux -O3 -Lmlx_linux -lmlx_Linux -L/mlx_linux -Iml
 VPATH		= $(addprefix $(SRC_D)/, $(DIRS))
 
 #--CONFIG--
-MAP			= map_test_right.txt
+MAP			= ./src/maps/map_test_right.txt
 
 #--LIBFT--
 LIB			= $(addprefix $(LPATH)/, libft.a)
@@ -44,7 +44,7 @@ PROGRESS			=	0
 all: $(NAME)
 
 r: $(NAME)
-	./$(NAME) $(MAP)
+	./$(NAME) map_test_right.txt
 
 $(NAME): $(LIB) $(OBJ) $(OBJ_D) $(HEADERS)
 	@echo "$(BLUE)Compiling $(WHITE)cub3D"
