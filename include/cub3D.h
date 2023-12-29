@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/28 21:14:39 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2023/12/29 15:39:20 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	show_map_nbrs(t_data *data);
 void	get_hook(t_data *data);
 
 //--UTILS--
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	refresh(t_data *data);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int	ft_strlen_spaceless(const char *s);
 int		map_reader(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:07:31 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/29 15:27:07 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2023/12/29 15:40:28 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	get_quantity_blocks(int *x, int *y, char *map_name)
 
 	fd = open(map_name, O_RDONLY);
 	tmp = get_next_line(fd);
-	x[0] = ft_strlen(tmp);
+	x[0] = ft_strlen_spaceless(tmp);
 	y[0] = 0;
 	blocks_nbr = x[0];
 	while (tmp)
@@ -30,7 +30,7 @@ static int	get_quantity_blocks(int *x, int *y, char *map_name)
 		tmp = get_next_line(fd);
 		if (tmp)
 		{
-			x_tmp = ft_strlen(tmp);
+			x_tmp = ft_strlen_spaceless(tmp);
 			blocks_nbr += x_tmp;
 			if (x_tmp > x[0])
 				x[0] = x_tmp;
