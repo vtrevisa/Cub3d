@@ -6,20 +6,20 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:07:31 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/28 21:11:36 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2023/12/29 15:27:07 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static int	get_quantity_blocks(int *x, int *y)
+static int	get_quantity_blocks(int *x, int *y, char *map_name)
 {
 	char	*tmp;
 	int		x_tmp;
 	int		blocks_nbr;
 	int		fd;
 
-	fd = open("./src/maps/map_test_right.txt", O_RDONLY);
+	fd = open(map_name, O_RDONLY);
 	tmp = get_next_line(fd);
 	x[0] = ft_strlen(tmp);
 	y[0] = 0;
@@ -70,11 +70,13 @@ int	map_reader(t_data *data)
 {
 	int		fd;
 	char	*tmp;
+	char	*map_name;
 	int	l = 1;
 
-	fd = open("./src/maps/map_test_right.txt", O_RDONLY);
+	map_name = ft_strjoin("./src/maps/", data->map_name);
+	fd = open(map_name, O_RDONLY);
 	//GET_MAP_PARAMS
-	data->blocks_nbr = get_quantity_blocks(&data->map_size[0],& data->map_size[1]);
+	data->blocks_nbr = get_quantity_blocks(&data->map_size[0],& data->map_size[1], map_name);
 	show_map_nbrs(data);
 	tmp = get_next_line(fd);
 	data->map = malloc(sizeof(char) * data->blocks_nbr);
