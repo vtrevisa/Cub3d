@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/29 15:23:45 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/01/05 15:16:42 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	init_mlx(t_data *data, int argc, char **argv)
 
 	data->initial_x=0;
 	data->initial_y=0;
-	data->size_x=0;
-	data->size_y=0;
+	data->size_x=20;
+	data->size_y=20;
 	data->x=0;
 	data->y=0;
 	show_dataxy(data);

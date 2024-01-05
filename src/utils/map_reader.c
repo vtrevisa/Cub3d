@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:07:31 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/01/05 14:40:15 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/01/05 14:51:52 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ int	check_map(char *str)
 		else if (c == 'W' || c == 'E' || c == ' ')
 			i++;
 		else if (c == '\n' || c == '\0')
-		{
 			return (1);
-		}
 		else
 			return (map_error());
 	}

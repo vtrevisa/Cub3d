@@ -4,8 +4,8 @@ CFLAGS		= -I/mlx_linux -Imlx_linux -O3 -Lmlx_linux -lmlx_Linux -L/mlx_linux -Iml
 VPATH		= $(addprefix $(SRC_D)/, $(DIRS))
 
 #--CONFIG--
-MAPA			= map_simple_R.txt
-
+#MAPA			= map_simple_R.txt
+MAPA			= map_test_right.txt
 #--LIBFT--
 LIB			= $(addprefix $(LPATH)/, libft.a)
 LPATH		= ./Libft

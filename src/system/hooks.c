@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/28 17:24:45 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:06:02 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	movement(int key, t_data *data)
 	{
 		data->initial_x -= factor/2;
 	}
-	draw_square(data->initial_x, data->initial_y, data->size_x, data->size_y, data, 0x00FF0000);
+	draw_quadrilaters(data->initial_x, data->initial_y, data->size_x, data->size_y, data, 0x00FF0000);
 	refresh(data);
 }
 

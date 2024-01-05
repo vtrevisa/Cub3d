@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/29 15:39:20 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:11:43 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ typedef struct s_data
 
 //--MAP--
 void	draw_map(t_data *data);
-void	draw_square(int initial_x, int initial_y, int size_x, int size_y, t_data *data, int color);
+void	draw_quadrilaters(int initial_x, int initial_y, int size_x, int size_y, t_data *data, int color);
 
 //--INIT--
 int	init_mlx(t_data *data, int argc, char **argv);
 
 //--MSG--
 void	config_loaded(void);
-int	invalid_config(void);
+int		invalid_config(void);
 void	mlx_initialized(void);
 void	screen_initialized(void);
 void	img_initialized(void);
@@ -83,5 +83,5 @@ void	get_hook(t_data *data);
 //--UTILS--
 void	refresh(t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int	ft_strlen_spaceless(const char *s);
+int		ft_strlen_spaceless(const char *s);
 int		map_reader(t_data *data);
