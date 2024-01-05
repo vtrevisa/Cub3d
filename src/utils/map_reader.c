@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:07:31 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/29 15:40:28 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/01/05 14:40:15 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	map_reader(t_data *data)
 	show_map_nbrs(data);
 	tmp = get_next_line(fd);
 	data->map = malloc(sizeof(char) * data->blocks_nbr);
+	ft_bzero(data->map, data->blocks_nbr);
 	while(tmp)
 	{
 	//LOAD_MAP
