@@ -1,6 +1,7 @@
 #--STARNDARD--
 NAME		= cub3D
-CFLAGS		= -I/mlx_linux -Imlx_linux -O3 -Lmlx_linux -lmlx_Linux -L/mlx_linux -Imlx_linux -lXext -lX11 -lm -lz -g
+#CFLAGS		= -I/mlx_linux -Imlx_linux -O3 -Lmlx_linux -lmlx_Linux -L/mlx_linux -Imlx_linux -lXext -lX11 -lm -lz -g
+CFLAGS		= -lmlx -lXext -lX11 -lm -lz -g
 VPATH		= $(addprefix $(SRC_D)/, $(DIRS))
 
 #--CONFIG--

@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/29 16:06:02 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/01/16 02:36:05 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	movement(int key, t_data *data)
 	{
 		data->initial_x += factor/2;
 	}
-	else if (key = 97)
+	else if (key == 97)
 	{
 		data->initial_x -= factor/2;
 	}
