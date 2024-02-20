@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:07:31 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/01/05 14:51:52 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:50:33 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,65 @@ static int	get_quantity_blocks(int *x, int *y, char *map_name)
 	return (blocks_nbr);
 }
 
-int	check_map(char *str)
+int	check_map(char *str, t_data *data, int l)
 {
 	int		i;
 	char	c;
+	int		j;
 	
+	j = 0;
 	i = 0;
-	while(str[i])
+	while(str[i + j])
 	{
-		c = str[i];
+		c = str[i + j];
 		if (c == '1' || c == '0')
+		{
 			i++;
-		else if (c == 'N' || c == 'S')
+		}
+		else if (c == 'N')
+		{
+			if (data->flag)
+				return (map_error());
 			i++;
-		else if (c == 'W' || c == 'E' || c == ' ')
+			data->player_x = i;
+			data->player_y = l;
+			data->player_dir = 'N';
+			data->flag = 1;
+		}
+		else if (c == 'S')
+		{
+			if (data->flag)
+				return (map_error());
 			i++;
+			data->player_x = i;
+			data->player_y = l;
+			data->player_dir = 'S';
+			data->flag = 1;
+		}
+		else if (c == 'W')
+		{
+			if (data->flag)
+				return (map_error());
+			i++;
+			data->player_x = i;
+			data->player_y = l;
+			data->player_dir = 'W';
+			data->flag = 1;
+		}
+		else if (c == 'E')
+		{
+			if (data->flag)
+				return (map_error());
+			i++;
+			data->player_x = i;
+			data->player_y = l;
+			data->player_dir = 'E';
+			data->flag = 1;
+		}
+		else if (c == ' ')
+		{
+			j++;
+		}
 		else if (c == '\n' || c == '\0')
 			return (1);
 		else
@@ -84,11 +128,20 @@ int	map_reader(t_data *data)
 	//LOAD_MAP
 		data->map = ft_strjoin(data->map, tmp);
 	//CHECK_MAP
-		if (check_map(tmp) < 0)
+		if (check_map(tmp, data, l) < 0)
 			return (-1);
 		free(tmp);
 		tmp = get_next_line(fd);
+		l++;
 	}
 		map_loaded(data->map_name);
 		show_map(data->map);
+	ft_printf("FACING ");
+	ft_printf(RED);
+	ft_printf("%c ", data->player_dir);
+	ft_printf(WHITE);
+	ft_printf("AT ");
+	ft_printf(RED);
+	ft_printf("%d, %d\n", data->player_x, data->player_y);
+	ft_printf(WHITE);
 }

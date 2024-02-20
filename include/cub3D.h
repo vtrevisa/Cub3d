@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2023/12/29 16:11:43 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:42:50 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@
 
 typedef struct s_data
 {
+	//MAP CREATION
 	int	initial_x;
 	int	initial_y;
 	int	size_x;
 	int	size_y;
 	int	x;
 	int	y;
-
+	//MLX PARAMETERS
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -44,14 +45,23 @@ typedef struct s_data
 	int		endian;
 	void	*mlx;
 	void	*win;
-
+	//DONT REMMEBER WHAT IT IS
 	int		max_x;
 	int		max_y;
-	
+	//MAP INFO
 	char	*map_name;
 	char	*map;
 	int		map_size[2];
 	int		blocks_nbr;
+	int		flag; //char if 1 plaer pos
+	//RAY_CAST INFO
+	char	player_dir;
+	int		player_x;
+	int		player_y;
+	/* float	plane_x;
+	float	plane_y;
+	int		dir_x;
+	int		dir_y; */
 }	t_data;
 
 //--MAP--

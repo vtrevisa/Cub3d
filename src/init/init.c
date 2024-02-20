@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/01/05 15:16:42 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:48:10 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,8 @@ int	init_mlx(t_data *data, int argc, char **argv)
 
 	if (map_reader(data) < 0)
 		exit (-1);
+	data->player_x = 1;
+	data->player_y = 1;
+	data->flag = 0;
 	return (1);
 }
