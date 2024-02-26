@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/01/05 15:16:31 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:08:58 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 
 void	draw_background (t_data *data)
 {
-	draw_quadrilaters(0, 0, 800, 300, data, 0x00CCFFFF);
-	draw_quadrilaters(0, 300, 800, 300, data, 0x00999999);
+	draw_quadrilaters(0, 0, 800, 600, data, 0x0);
+	/* draw_quadrilaters(0, 0, 800, 300, data, 0x00CCFFFF);
+	draw_quadrilaters(0, 300, 800, 300, data, 0x00999999); */
 	refresh(data);
 }
 
@@ -33,35 +34,43 @@ void	draw_map(t_data *data)
 {
 	int	i;
 	int	c;
-	int	size;
-	
+	int	i_x;
+	int	i_y;
+
+	i_x = data->initial_x;
+	i_y = data->initial_y;
 	draw_background(data);
-/* 	size = calculate_blocks(data); */
 	i = 0;
 	while (data->map[i])
 	{
 		c = data->map[i];
 		if (c == '1')
 		{
-			draw_quadrilaters(data->initial_x, data->initial_y, data->size_x, data->size_y, data, 0x00FF0000);
-			data->initial_x += data->size_x + 5;
+			draw_quadrilaters(i_x, i_y, data->size_x, data->size_y, data, 0x00FF0000);
+			i_x += data->size_x + 5;
 		}
 		else if (c == '0')
 		{
-			draw_quadrilaters(data->initial_x, data->initial_y, data->size_x, data->size_y, data, 0x00000000);
-			data->initial_x += data->size_x + 5;
+			draw_quadrilaters(i_x, i_y, data->size_x, data->size_y, data, 0x666666);
+			i_x += data->size_x + 5;
 		}
 		else if (c == 'W' || c == 'E' || c == 'N' || c == 'S')
 		{
-			draw_quadrilaters(data->initial_x, data->initial_y, data->size_x, data->size_y, data, 0x0033CC00);
-			data->initial_x += data->size_x + 5;
+			draw_quadrilaters(i_x, i_y, data->size_x, data->size_y, data, 0x666666);
+			if (data->upg == 0)
+			{
+				data->player_x = i_x;
+				data->player_y = i_y;
+			}
+			i_x += data->size_x + 5;
 		}
 		else if (c == '\n')
 		{
-			data->initial_x = 0;
-			data->initial_y += data->size_y + 5;
+			i_x = 0;
+			i_y += data->size_y + 5;
 		}
 		i++;
 	}
+	data->upg = 1;
 	refresh(data);
 }

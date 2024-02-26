@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/01/16 02:36:05 by romachad         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:31:07 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,33 @@ static int	movement(int key, t_data *data)
 	
 	factor = 10;
 	hook_got(key);
-	if (key == 119)
+	if (key == 119) // W
 	{
-		data->initial_x -= factor/2;
+		data->player_y -= factor/2;
+		/* data->initial_x -= factor/2;
 		data->initial_y -= factor/2;
 		data->size_x += factor;
-		data->size_y += factor;
+		data->size_y += factor; */
 	}
-	else if (key == 115)
+	else if (key == 115) // S
 	{
-		data->initial_x += factor/2;
+		data->player_y += factor/2;
+		/* data->initial_x += factor/2;
 		data->initial_y += factor/2;
 		data->size_x -= factor;
-		data->size_y -= factor;
+		data->size_y -= factor; */
 	}
 	else if (key == 100)
 	{
-		data->initial_x += factor/2;
+		data->player_x += factor/2;
 	}
 	else if (key == 97)
 	{
-		data->initial_x -= factor/2;
+		data->player_x -= factor/2;
 	}
-	draw_quadrilaters(data->initial_x, data->initial_y, data->size_x, data->size_y, data, 0x00FF0000);
-	refresh(data);
+	display(data);
+/* 	draw_quadrilaters(data->initial_x, data->initial_y, data->size_x, data->size_y, data, 0x00FF0000);
+	refresh(data); */
 }
 
 void	get_hook(t_data *data)

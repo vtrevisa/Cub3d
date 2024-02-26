@@ -23,7 +23,7 @@ LIB_INC_D	= $(LPATH)/Include
 #--FILES--
 SRC 		= $(INI) $(MAP) $(SYS) $(UTI) $(MSG)
 INI			= init.c
-MAP			= draw_map.c square.c
+MAP			= draw_map.c player.c square.c
 SYS			= hooks.c main.c
 UTI			= utils.c map_reader.c
 MSG			= msg.c
@@ -46,8 +46,15 @@ PROGRESS			=	0
 
 all: $(NAME)
 
+t:
+	@gcc TESTE_RC/main.c TESTE_RC/utils_teste.c $(CFLAGS) $(INCLUDE) -lreadline $(LIB)
+	./a.out
+
 r: $(NAME)
 	./$(NAME) $(MAPA)
+
+v:
+	valgrind ./$(NAME) $(MAPA)
 
 $(NAME): $(LIB) $(OBJ) $(OBJ_D) $(HEADERS)
 	@echo "$(BLUE)Compiling $(WHITE)cub3D"

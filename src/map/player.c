@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/02/26 16:28:48 by vtrevisa         ###   ########.fr       */
+/*   Created: 2024/02/26 14:21:10 by vtrevisa          #+#    #+#             */
+/*   Updated: 2024/02/26 14:33:11 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	display(t_data *data)
+void	draw_player(t_data *data)
 {
-	draw_background(data);
-	draw_map(data);
-	draw_player(data);
-}
-
-int	main(int argc, char *argv[])
-{
-	t_data data;
-	
-	if (argc != 2)
-		return (-1);
-	ft_bzero(&data, sizeof(t_data));
-	if (!init_mlx(&data, argc, argv))
-		return (-1);
-	/*RAY_CAST_CALCULATOR*/
-	display(&data);
-	get_hook(&data);
-	mlx_loop(data.mlx);
-	return (0);
+	write(1, "ok1\n", 4);
+	draw_quadrilaters(data->player_x, data->player_y, data->size_x, data->size_y, data, 0xffff00);
+	write(1, "ok2\n", 4);
+	refresh(data);
+	write(1, "ok3\n", 4);
 }

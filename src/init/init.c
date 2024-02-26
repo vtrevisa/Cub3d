@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/02/20 18:48:10 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:26:44 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	init_mlx(t_data *data, int argc, char **argv)
 		return (invalid_config());
 	else
 		data->map_name = ft_strdup(argv[1]);
-	
+	data->upg = 0;
 	data->max_x = 800;
 	data->max_y = 600;
 	data->mlx = NULL;
