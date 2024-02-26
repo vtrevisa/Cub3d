@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/02/26 16:11:50 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:53:32 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <math.h>
 
 #define WHITE "\e[00m"
 #define GREEN "\e[32m"
@@ -23,6 +24,7 @@
 #define YELLOW "\e[033m"
 #define BLUE "\e[34m"
 #define PI 3.14159265359
+
 
 /* 	x and y -> pixels to be painted
 	size_x and y -> how many pixels will be painted
