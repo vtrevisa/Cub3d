@@ -6,9 +6,12 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/02/26 16:53:32 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:33:10 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//FOR TEST
+#include <stdio.h>
 
 #include "../mlx_linux/mlx_int.h"
 #include "../mlx_linux/mlx.h"

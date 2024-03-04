@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/02/26 14:26:44 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/04 13:04:34 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,17 @@ int	init_mlx(t_data *data, int argc, char **argv)
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_lenght, &data->endian);
 	img_initialized();
 
+	if (map_reader(data) < 0)
+		exit (-1);
 	data->initial_x=0;
 	data->initial_y=0;
-	data->size_x=20;
-	data->size_y=20;
+	data->size_x = 800 / data->map_size[0];
+	data->size_y = 600 / data->map_size[1];
 	data->x=0;
 	data->y=0;
 	show_dataxy(data);
 
-	if (map_reader(data) < 0)
-		exit (-1);
-	data->player_x = 1;
-	data->player_y = 1;
 	data->flag = 0;
+	data->p_angle = 0; // for now, latter we have to use the cardinal view
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/02/26 17:03:09 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/04 13:08:18 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,22 @@ static int	movement(int key, t_data *data)
 {
 	show_dataxy(data);
 	int	factor;
-	
-	factor = 10;
+	float x, y;
+
 	hook_got(key);
 	if (key == 119) // W
 	{
-		data->player_x += data->p_deltX;
-		data->player_y -= data->p_deltX;
-		/* data->initial_x -= factor/2;All functions of the math
-library
+		x -= data->p_deltX;
+		y -= data->p_deltY;
+		/* data->initial_x -= factor/2;
 		data->initial_y -= factor/2;
 		data->size_x += factor;
 		data->size_y += factor; */
 	}
 	else if (key == 115) // S
 	{
-		data->player_x -= data->p_deltX;
-		data->player_y += data->p_deltX;
+		x += data->p_deltX;
+		y += data->p_deltY;
 		/* data->initial_x += factor/2;
 		data->initial_y += factor/2;
 		data->size_x -= factor;
@@ -41,19 +40,22 @@ library
 	else if (key == 100) // D
 	{
 		data->p_angle += 0.1;
-		/* if (data->p_angle > (2 * PI))
-			data->p_angle -= (2 * PI); */
+		if (data->p_angle > (2 * PI))
+			data->p_angle -= (2 * PI);
 		data->p_deltX = cos (data->p_angle) * 5;
 		data->p_deltY = sin (data->p_angle) * 5;
 	}
 	else if (key == 97) // A
 	{
 		data->p_angle -= 0.1;
-		/* if (data->p_angle < 0)
-			data->p_angle += (2 * PI); */
+		if (data->p_angle < 0)
+			data->p_angle += (2 * PI);
 		data->p_deltX = cos (data->p_angle) * 5;
 		data->p_deltY = sin (data->p_angle) * 5;
 	}
+	data->player_x += (int)x;
+	data->player_y += (int)y;
+	printf("player_x: %d\nplayer_y: %d\ndeltX: %f\ndeltY: %f\nangle: %f\n", data->player_x, data->player_y, data->p_deltX, data->p_deltY, data->p_angle);
 	display(data);
 /* 	draw_quadrilaters(data->initial_x, data->initial_y, data->size_x, data->size_y, data, 0x00FF0000);
 	refresh(data); */

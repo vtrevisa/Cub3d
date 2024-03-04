@@ -6,21 +6,11 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/02/26 16:08:58 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/02/28 14:07:56 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-
-/* static int	calculate_blocks(t_data *data)
-{
-	data->size_x = 800 / data->map_size[0];
-	data->size_y = 600 / data->map_size[1];
-	if (data->size_x < data->size_y)
-		return(data->size_x);
-	else
-		return (data->size_y);
-} */
 
 void	draw_background (t_data *data)
 {
@@ -46,28 +36,28 @@ void	draw_map(t_data *data)
 		c = data->map[i];
 		if (c == '1')
 		{
-			draw_quadrilaters(i_x, i_y, data->size_x, data->size_y, data, 0x00FF0000);
-			i_x += data->size_x + 5;
+			draw_quadrilaters(i_x, i_y, data->size_x - 5, data->size_y - 5, data, 0x00FF0000);
+			i_x += data->size_x;
 		}
 		else if (c == '0')
 		{
-			draw_quadrilaters(i_x, i_y, data->size_x, data->size_y, data, 0x666666);
-			i_x += data->size_x + 5;
+			draw_quadrilaters(i_x, i_y, data->size_x - 5, data->size_y - 5, data, 0x666666);
+			i_x += data->size_x;
 		}
 		else if (c == 'W' || c == 'E' || c == 'N' || c == 'S')
 		{
-			draw_quadrilaters(i_x, i_y, data->size_x, data->size_y, data, 0x666666);
+			draw_quadrilaters(i_x, i_y, data->size_x - 5, data->size_y - 5, data, 0x666666);
 			if (data->upg == 0)
 			{
 				data->player_x = i_x;
 				data->player_y = i_y;
 			}
-			i_x += data->size_x + 5;
+			i_x += data->size_x;
 		}
 		else if (c == '\n')
 		{
 			i_x = 0;
-			i_y += data->size_y + 5;
+			i_y += data->size_y;
 		}
 		i++;
 	}
