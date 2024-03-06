@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/02/28 14:07:56 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:13:09 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ void	draw_map(t_data *data)
 		c = data->map[i];
 		if (c == '1')
 		{
-			draw_quadrilaters(i_x, i_y, data->size_x - 5, data->size_y - 5, data, 0x00FF0000);
+			draw_quadrilaters(i_x, i_y, data->size_x - 2, data->size_y - 2, data, 0x00FF0000);
 			i_x += data->size_x;
 		}
 		else if (c == '0')
 		{
-			draw_quadrilaters(i_x, i_y, data->size_x - 5, data->size_y - 5, data, 0x666666);
+			draw_quadrilaters(i_x, i_y, data->size_x - 2, data->size_y - 2, data, 0x666666);
 			i_x += data->size_x;
 		}
 		else if (c == 'W' || c == 'E' || c == 'N' || c == 'S')
 		{
-			draw_quadrilaters(i_x, i_y, data->size_x - 5, data->size_y - 5, data, 0x666666);
+			draw_quadrilaters(i_x, i_y, data->size_x - 2, data->size_y - 2, data, 0x666666);
 			if (data->upg == 0)
 			{
 				data->player_x = i_x;

@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/04 13:08:18 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:48:04 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	movement(int key, t_data *data)
 	hook_got(key);
 	if (key == 119) // W
 	{
-		x -= data->p_deltX;
-		y -= data->p_deltY;
+		x += data->p_deltX;
+		y += data->p_deltY;
 		/* data->initial_x -= factor/2;
 		data->initial_y -= factor/2;
 		data->size_x += factor;
@@ -30,8 +30,8 @@ static int	movement(int key, t_data *data)
 	}
 	else if (key == 115) // S
 	{
-		x += data->p_deltX;
-		y += data->p_deltY;
+		x -= data->p_deltX;
+		y -= data->p_deltY;
 		/* data->initial_x += factor/2;
 		data->initial_y += factor/2;
 		data->size_x -= factor;

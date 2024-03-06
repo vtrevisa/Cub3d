@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:50:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/01/05 14:47:31 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:09:52 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,24 @@ void	draw_quadrilaters(int initial_x, int initial_y, int size_x, int size_y, t_d
 			initial_x++;
 		}
 		initial_y++;
+	}
+}
+
+void	dda(int x1, int x2, int y1, int y2, int color, t_data *data)
+{
+	int step;
+	float x, y, xinc, yinc;
+	step = fabs (x2 - x1);
+	if (fabs (y2 - y1) > step)
+		step = fabs (y2 - y1);
+	xinc = (x2 - x1)/step;
+	yinc = (y2 - y1)/step;
+	x = x1;
+	y = y1;
+	while (x < x2)
+	{
+		my_mlx_pixel_put(data, (int)round(x), (int)round (y), color);
+		x = x + xinc;
+		y = y + yinc;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/02/28 13:33:10 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:02:58 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,16 @@ typedef struct s_data
 	int		blocks_nbr;
 	int		flag; //char if 1 plaer pos
 	char	upg;
-	//RAY_CAST INFO
-	char	player_dir;
+	//PLAYER POSITION AND MOVEMENT
 	int		player_x;
 	int		player_y;
-	float	plane_x;
-	float	plane_y;
-	int		dir_x;
-	int		dir_y;
 	float	p_deltX;
 	float	p_deltY;
 	float	p_angle;
+	char 	player_dir;
+	//RAY_CAST INFO
+	int		ray, mx, my, mp, dof;
+	float	ray_x, ray_y, r_angle, rx_offset, ry_offset;
 }	t_data;
 
 //--MAP--
@@ -79,6 +78,7 @@ void	draw_map(t_data *data);
 void	draw_background (t_data *data);
 void	draw_quadrilaters(int initial_x, int initial_y, int size_x, int size_y, t_data *data, int color);
 void	draw_player(t_data *data);
+void	dda(int x1, int x2, int y1, int y2, int color, t_data *data);
 
 //--INIT--
 int	init_mlx(t_data *data, int argc, char **argv);
@@ -102,6 +102,7 @@ void	show_map_nbrs(t_data *data);
 //--SYSTEM--
 void	display(t_data *data);
 void	get_hook(t_data *data);
+void	drawRays3D (t_data *data);
 
 //--UTILS--
 void	refresh(t_data *data);

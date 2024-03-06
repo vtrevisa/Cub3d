@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/02/28 14:08:27 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:12:53 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	display(t_data *data)
 {
 	draw_background(data);
 	draw_map(data);
+	drawRays3D(data);
 	draw_player(data);
 }
 
