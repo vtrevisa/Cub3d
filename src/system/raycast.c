@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:12:34 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/06 19:06:18 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:28:27 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	drawRays3D (t_data *data)
 			data->ray_x = (data->player_y - data->ray_y) * aTan+data->player_x;
 			data->ry_offset = - 64;
 			data->rx_offset = - data->ry_offset*aTan;
-			dda (data->player_x, data->ray_x, data->player_y, data->ray_y, 0x00ff00, data);
+			/*dda (data->player_x, data->ray_x, data->player_y, data->ray_y, 0x00ff00, data);
+			ft_printf(GREEN);
+			ft_printf("looking up ray draw\n");
+			ft_printf(WHITE); */
 		}
 		if (data->r_angle < PI) //looking down
 		{
@@ -35,14 +38,20 @@ void	drawRays3D (t_data *data)
 			data->ray_x = (data->player_y - data->ray_y) * aTan+data->player_x;
 			data->ry_offset = 64;
 			data->rx_offset = - data->ry_offset*aTan;
-			dda (data->player_x, data->ray_x, data->player_y, data->ray_y, 0x00ff00, data);
+		/*	dda (data->player_x, data->ray_x, data->player_y, data->ray_y, 0x00ff00, data);
+			ft_printf(GREEN);
+			ft_printf("looking down ray draw\n");
+			ft_printf(WHITE); */
 		}
 		if (data->r_angle == PI || data->r_angle  == 0) //looking horizontally
 		{
 			data->ray_y = data->player_y;
 			data->ray_x = data->player_x;
 			data->dof = 8;
-			dda (data->player_x, data->ray_x, data->player_y, data->ray_y, 0x00ff00, data);
+/* 			dda (data->player_x, data->ray_x, data->player_y, data->ray_y, 0x00ff00, data);
+			ft_printf(GREEN);
+			ft_printf("looking horizon ray draw\n");
+			ft_printf(WHITE); */
 		}
 		while (data->dof < 8)
 		{
@@ -52,12 +61,14 @@ void	drawRays3D (t_data *data)
 			if (data->mp < (data->map_size[0] * data->map_size[1]) && data->map[data->mp] == '1')
 			{
 				data->dof = 8;//hit a wall
+				draw_quadrilaters(data->ray_x - 1, data->ray_y, 3, 1, data, 0x0000ff);
 			}
 			else //next line
 			{
 					data->ray_x += data->rx_offset;
 					data->ray_y += data->ry_offset;
-					data->dof += 1; 
+					data->dof += 1;
+					draw_quadrilaters(data->ray_x - 1, data->ray_y, 3, 1, data, 0x00ff00);
 			}
 		}
 		data->ray++;
