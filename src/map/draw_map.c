@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/06 19:13:09 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:43:46 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	draw_map(t_data *data)
 			}
 			i_x += data->size_x;
 		}
-		else if (c == '\n')
+		else if ((c == '\n'))
 		{
 			i_x = 0;
 			i_y += data->size_y;

@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:07:31 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/02/20 18:50:33 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:57:36 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,57 @@ int	check_map(char *str, t_data *data, int l)
 	return (0);
 }
 
+char *remove_space(t_data *data, char *str)
+{
+	char	*ret;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	ret = malloc (sizeof (char) * data->max_x);
+	while (str[i])
+	{
+		if (str[i] != ' ')
+		{
+			ret[j] = str[i];
+			j++;
+			i++;
+		}
+		else
+			i++;
+	}
+	return (ret);
+}
+
+char *remove_lnbrk(t_data *data, char *str)
+{
+	char	*ret;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	ret = malloc (sizeof (char) * data->max_x);
+	while (str[i])
+	{
+		if (str[i] != '\n')
+		{
+			ret[j] = str[i];
+			j++;
+			i++;
+		}
+		else
+			i++;
+	}
+	return (ret);
+}
+
 int	map_reader(t_data *data)
 {
 	int		fd;
 	char	*tmp;
+	char	*tmpns;
 	char	*map_name;
 	int	l = 1;
 
@@ -125,17 +172,21 @@ int	map_reader(t_data *data)
 	ft_bzero(data->map, data->blocks_nbr);
 	while(tmp)
 	{
-	//LOAD_MAP
-		data->map = ft_strjoin(data->map, tmp);
 	//CHECK_MAP
 		if (check_map(tmp, data, l) < 0)
 			return (-1);
+	//LOAD_MAP
+		tmpns = remove_space(data, tmp);
+		data->map = ft_strjoin(data->map, tmpns);
 		free(tmp);
 		tmp = get_next_line(fd);
 		l++;
 	}
-		map_loaded(data->map_name);
-		show_map(data->map);
+	map_loaded(data->map_name);
+	show_map(data->map);
+	show_map_nbr(data->map);
+	data->map_lined = remove_lnbrk(data, data->map);
+	show_map(data->map_lined);
 	ft_printf("FACING ");
 	ft_printf(RED);
 	ft_printf("%c ", data->player_dir);

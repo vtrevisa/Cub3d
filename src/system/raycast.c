@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:12:34 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/07 16:28:27 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:00:51 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	drawRays3D (t_data *data)
 		float aTan = -1 / tan (data->r_angle);
 		if (data->r_angle > PI) //looking up
 		{
-			data->ray_y = (((int)data->player_y >> 6)<< 6) - 0.0001;
+			data->ray_y = (((int)data->player_y / data->size_y)* data->size_y) - 0.0001;
 			data->ray_x = (data->player_y - data->ray_y) * aTan+data->player_x;
-			data->ry_offset = - 64;
+			data->ry_offset = - data->size_y;
 			data->rx_offset = - data->ry_offset*aTan;
 			/*dda (data->player_x, data->ray_x, data->player_y, data->ray_y, 0x00ff00, data);
 			ft_printf(GREEN);
@@ -34,9 +34,9 @@ void	drawRays3D (t_data *data)
 		}
 		if (data->r_angle < PI) //looking down
 		{
-			data->ray_y = (((int)data->player_y >> 6)<< 6) + 64;
+			data->ray_y = (((int)data->player_y / data->size_y)* data->size_y) + data->size_y;
 			data->ray_x = (data->player_y - data->ray_y) * aTan+data->player_x;
-			data->ry_offset = 64;
+			data->ry_offset = data->size_y;
 			data->rx_offset = - data->ry_offset*aTan;
 		/*	dda (data->player_x, data->ray_x, data->player_y, data->ray_y, 0x00ff00, data);
 			ft_printf(GREEN);
@@ -47,28 +47,29 @@ void	drawRays3D (t_data *data)
 		{
 			data->ray_y = data->player_y;
 			data->ray_x = data->player_x;
-			data->dof = 8;
+			data->dof = 2;
 /* 			dda (data->player_x, data->ray_x, data->player_y, data->ray_y, 0x00ff00, data);
 			ft_printf(GREEN);
 			ft_printf("looking horizon ray draw\n");
 			ft_printf(WHITE); */
 		}
-		while (data->dof < 8)
+		while (data->dof < 2) 
 		{
-			data->mx = (int)(data->ray_x)>>6;
-			data->my = (int)(data->ray_y)>>6;
+			data->mx = (int)(data->ray_x)/data->size_y;
+			data->my = (int)(data->ray_y)/data->size_y + 1;
 			data->mp = data->my * data->map_size[0] + data->mx;
-			if (data->mp < (data->map_size[0] * data->map_size[1]) && data->map[data->mp] == '1')
+			ft_printf("my:%d\nmx:%d\nmp search: %d = %c\n",data->my, data->mx, data->mp, data->map_lined[data->mp]);
+			if (data->mp < (data->map_size[0] * data->map_size[1]) && data->map_lined[data->mp] == '1')
 			{
-				data->dof = 8;//hit a wall
 				draw_quadrilaters(data->ray_x - 1, data->ray_y, 3, 1, data, 0x0000ff);
+				data->dof = 2;//hit a wall
 			}
 			else //next line
 			{
+					draw_quadrilaters(data->ray_x - 1, data->ray_y, 3, 1, data, 0x00ff00);
 					data->ray_x += data->rx_offset;
 					data->ray_y += data->ry_offset;
 					data->dof += 1;
-					draw_quadrilaters(data->ray_x - 1, data->ray_y, 3, 1, data, 0x00ff00);
 			}
 		}
 		data->ray++;

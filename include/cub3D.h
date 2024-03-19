@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/06 19:02:58 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:44:40 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_data
 	//MAP INFO
 	char	*map_name;
 	char	*map;
+	char	*map_lined;
 	int		map_size[2];
 	int		blocks_nbr;
 	int		flag; //char if 1 plaer pos
@@ -98,6 +99,7 @@ void	show_map(char *map);
 int		map_error(void);
 void	map_loaded(char *str);
 void	show_map_nbrs(t_data *data);
+void	show_map_nbr(char *map);
 
 //--SYSTEM--
 void	display(t_data *data);

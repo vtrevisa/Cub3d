@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/07 16:26:30 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:58:34 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,33 @@ void	show_map_nbrs(t_data *data)
 	ft_printf("Map Y: %d\n", data->map_size[1]);
 	ft_printf("Map Blocks: %d\n", data->blocks_nbr);
 	ft_printf(WHITE);
+}
+
+void	show_map_nbr(char *map)
+{
+	int i, j;
+	i = 1;
+	j = -1;
+	ft_printf("  ");
+	while (map[i + j])
+	{
+		if (map[i + j] == ' ')
+		{
+			j++;
+		}
+		else if (map[i + j] == '\n')
+		{
+			ft_printf("%c", map[i + j]);
+			j++;
+		}
+		else
+		{
+			ft_printf("%d ", i);
+			i++;
+		}
+		if (i < 10)
+			ft_printf("  ");
+		else if (i >= 10 && i < 100)
+			ft_printf(" ");
+	}
 }

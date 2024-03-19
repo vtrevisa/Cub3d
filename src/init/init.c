@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/04 23:34:09 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:11:26 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ int	init_mlx(t_data *data, int argc, char **argv)
 	data->initial_y=0;
 	data->size_x = 800 / data->map_size[0];
 	data->size_y = 600 / data->map_size[1];
+	if (data->size_x < data->size_y)
+		data->size_y = data->size_x;
+	else
+		data->size_x = data->size_y;
 	data->x=0;
 	data->y=0;
 	show_dataxy(data);
