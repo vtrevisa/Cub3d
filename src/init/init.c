@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/13 19:11:26 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:58:47 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	init_mlx(t_data *data, int argc, char **argv)
 	show_dataxy(data);
 
 	data->flag = 0;
-	data->p_angle = PI + PI/2; // for now, latter we have to use the cardinal view
+	data->p_angle = PI + PI/2; // for now, latter we have to use the cardinal view (straight right is 0 or 2PI)
 	data->p_deltX = cos (data->p_angle) * 5;
 	data->p_deltY = sin (data->p_angle) * 5;
 	return (1);

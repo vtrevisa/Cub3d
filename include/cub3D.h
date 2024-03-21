@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/19 14:44:40 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:02:13 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 #define YELLOW "\e[033m"
 #define BLUE "\e[34m"
 #define PI 3.14159265359
+#define P2 PI/2
+#define P3 3*PI/2
 
 
 /* 	x and y -> pixels to be painted

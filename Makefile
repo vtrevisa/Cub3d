@@ -54,7 +54,7 @@ r: $(NAME)
 	./$(NAME) $(MAPA)
 
 v:
-	valgrind ./$(NAME) $(MAPA)
+	valgrind --track-origins=yes ./$(NAME) $(MAPA)
 
 $(NAME): $(LIB) $(OBJ) $(OBJ_D) $(HEADERS)
 	@echo "$(BLUE)Compiling $(WHITE)cub3D"
