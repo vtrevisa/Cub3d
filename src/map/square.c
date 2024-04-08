@@ -6,22 +6,17 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:50:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/07 15:54:51 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:15:30 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-/*	
-	x and y -> pixels to be painted
-	size_x and y -> how many pixels will be painted
-	img_x and y -> initial poition of the pixels to be painted
-*/
 
 void	draw_quadrilaters(int initial_x, int initial_y, int size_x, int size_y, t_data *data, int color)
 {
-	int img_x;
-	int img_y;
-	
+	int	img_x;
+	int	img_y;
+
 	img_x = initial_x;
 	img_y = initial_y;
 	while (initial_y <= size_y + img_y)
@@ -36,7 +31,7 @@ void	draw_quadrilaters(int initial_x, int initial_y, int size_x, int size_y, t_d
 	}
 }
 
-void	dda(int x1, int x2, int y1, int y2, int color, t_data *data)
+void	dda(int x1, int x2, int y1, int y2, int col, t_data *data)
 {
 	int step;
 	float x, y, xinc, yinc;
@@ -49,7 +44,7 @@ void	dda(int x1, int x2, int y1, int y2, int color, t_data *data)
 	y = y1;
 	while (x < x2)
 	{
-		draw_quadrilaters((int)fabs (x), (int)fabs (y), 2, 2, data, color);
+		draw_quadrilaters((int)fabs (x), (int)fabs (y), 2, 2, data, col);
 		x = x + xinc;
 		y = y + yinc;
 	}

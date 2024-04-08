@@ -15,17 +15,18 @@ LPATH		= ./Libft
 
 #--DIRS--
 SRC_D		= ./src
-DIRS		= . map init system utils msg
+DIRS		= . map init raycast system utils msg
 OBJ_D		= ./objects
 INCLUDE_D	= ./include
 LIB_INC_D	= $(LPATH)/Include
 
 #--FILES--
-SRC 		= $(INI) $(MAP) $(SYS) $(UTI) $(MSG)
+SRC 		= $(INI) $(MAP) $(RAY) $(SYS) $(UTI) $(MSG)
 INI			= init.c
 MAP			= draw_map.c player.c square.c
-SYS			= hooks.c main.c raycast.c
-UTI			= utils.c map_reader.c
+RAY			= raycast.c r_utils.c r_utils2.c r_utils3.c
+SYS			= hooks.c main.c
+UTI			= utils.c map_reader.c utils_reader.c
 MSG			= msg.c
 HEADERS		= ./include/cub3D.h #./mlx_linux/mlx.h ./mlx_linux/mlx_int.h
 INCLUDE		= -I $(INCLUDE_D) -I $(LIB_INC_D)
@@ -48,12 +49,12 @@ all: $(NAME)
 
 t:
 	@gcc TESTE_RC/main.c TESTE_RC/utils_teste.c $(CFLAGS) $(INCLUDE) -lreadline $(LIB)
-	./a.out
+	valgrind --track-origins=yes ./a.out
 
 r: $(NAME)
 	./$(NAME) $(MAPA)
 
-v:
+v: $(NAME)
 	valgrind --track-origins=yes ./$(NAME) $(MAPA)
 
 $(NAME): $(LIB) $(OBJ) $(OBJ_D) $(HEADERS)

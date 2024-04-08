@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/07 15:39:39 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:18:25 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,32 @@ void	display(t_data *data)
 {
 	draw_background(data);
 	draw_map(data);
-	drawRays3D(data);
+	drawrays3d(data);
 	draw_player(data);
+}
+
+static int	init_all(t_data *data, int argc, char **argv)
+{
+	if (!init_params(data, argc, argv))
+		return (0);
+	else if (!init_mlx(data))
+		return (0);
+	else if (!init_map(data))
+		return (0);
+	else
+		return (1);
 }
 
 int	main(int argc, char *argv[])
 {
-	t_data data;
-	
+	t_data	data;
+
 	if (argc != 2)
 		return (-1);
+	
 	ft_bzero(&data, sizeof(t_data));
-	if (!init_mlx(&data, argc, argv))
+	if (!init_all(&data, argc, argv))
 		return (-1);
-	/*RAY_CAST_CALCULATOR*/
 	display(&data);
 	get_hook(&data);
 	mlx_loop(data.mlx);

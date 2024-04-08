@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/19 14:43:46 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:07:21 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	draw_background (t_data *data)
 {
-	draw_quadrilaters(0, 0, 800, 600, data, 0x0);
-	/* draw_quadrilaters(0, 0, 800, 300, data, 0x00CCFFFF);
-	draw_quadrilaters(0, 300, 800, 300, data, 0x00999999); */
+	draw_quadrilaters(0, 0, data->max_x, data->max_y, data, 0x0);
 	refresh(data);
 }
 

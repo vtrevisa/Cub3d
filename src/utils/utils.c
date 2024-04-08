@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/02/27 17:31:43 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/03 20:34:19 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,13 @@ int	ft_strlen_spaceless(const char *s)
 		i++;
 	}
 	return ((size_t)len);
+}
+
+int	exit_mlx(t_data *data)
+{		
+	mlx_destroy_image(data->mlx, data->img);
+	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
+	free (data->mlx);
+	exit(0);
 }
