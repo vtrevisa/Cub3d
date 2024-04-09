@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:21:10 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/08 18:07:35 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:04:06 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 void	draw_player(t_data *data)
 {
 	int	temp;
-	/* write(1, "ok1\n", 4); */
-	draw_quadrilaters(data->player_x, data->player_y, 10, 10, data, 0xffff00);
-	/* this makes a square to orbitate the player square somehow, its fun*/
-	draw_quadrilaters((data->player_x + data->p_deltX * 5) + 2, (data->player_y + data->p_deltY * 5) + 2, 5, 5, data, 0xffff00);
-	/* write(1, "ok2\n", 4); */
+
+	draw_yell_quadrilaters(data->player_x + 5, data->player_y + 5, 10, data);
+	draw_yell_quadrilaters((data->player_x + data->p_deltX * 5) + 8, \
+		(data->player_y + data->p_deltY * 5) + 8, 5, data);
 	refresh(data);
-	/* write(1, "ok3\n", 4); */
 }

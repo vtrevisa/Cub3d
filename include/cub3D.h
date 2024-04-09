@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/08 18:10:16 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:01:21 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct s_data
 	int		endian;
 	void	*mlx;
 	void	*win;
-	//DONT REMMEBER WHAT IT IS
+	//SCREEN CONFIGS
 	int		max_x;
 	int		max_y;
 	//MAP INFO
@@ -106,7 +106,7 @@ typedef struct s_data
 	double	p_deltX;
 	double	p_deltY;
 	double	p_angle;
-	char 	player_dir;
+	double		player_dir;
 
 }	t_data;
 
@@ -115,7 +115,10 @@ void	draw_map(t_data *data);
 void	draw_background (t_data *data);
 void	draw_quadrilaters(int initial_x, int initial_y, int size_x, int size_y, t_data *data, int color);
 void	draw_player(t_data *data);
-void	dda(int x1, int x2, int y1, int y2, int color, t_data *data);
+void	draw_red_quadrilaters(int ix, int iy, int sz, t_data *data);
+void	draw_grey_quadrilaters(int ix, int iy, int sz, t_data *data);
+void	draw_yell_quadrilaters(int ix, int iy, int sz, t_data *data);
+void	draw_3d_quadrilaters(t_ray *r, t_data *data);
 
 //--INIT--
 int	init_params(t_data *data, int argc, char **argv);

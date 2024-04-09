@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 20:34:06 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/04 18:01:52 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:01:34 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,14 @@ int	check_dir_facing(char c, t_data *data, int i, int l)
 {
 	if (data->flag)
 		return (map_error());
-	data->player_dir = c;
+	if (c == 'N')
+		data->player_dir = 1.5;
+	if (c == 'S')
+		data->player_dir = 0.5;
+	if (c == 'E')
+		data->player_dir = 0;
+	if (c == 'W')
+		data->player_dir = 1;
 	data->flag = 1;
 	data->player_x = i;
 	data->player_y = l;

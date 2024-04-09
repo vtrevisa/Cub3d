@@ -6,16 +6,55 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/08 18:07:21 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:52:29 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	draw_background (t_data *data)
+void	draw_background(t_data *data)
 {
-	draw_quadrilaters(0, 0, data->max_x, data->max_y, data, 0x0);
+	int	ini_x;
+	int	ini_y;
+
+	ini_x = 0;
+	ini_y = 0;
+	while (ini_y <= data->max_y)
+	{
+		ini_x = 0;
+		while (ini_x <= data->max_x)
+		{
+			my_mlx_pixel_put(data, ini_x, ini_y, 0);
+			ini_x++;
+		}
+		ini_y++;
+	}
 	refresh(data);
+}
+
+static void	if_wall_or_ground(int *ix, int iy, t_data *data, char flag)
+{
+	if (flag == '1')
+	{
+		draw_red_quadrilaters(*ix, iy, data->cube_size - 2, data);
+		*ix += data->size_x;
+	}
+	else if (flag == '0')
+	{
+		draw_grey_quadrilaters(*ix, iy, data->cube_size - 2, data);
+		*ix += data->size_x;
+	}
+}
+
+static void	if_player(int *ix, int iy, t_data *data, char flag)
+{
+	draw_grey_quadrilaters(*ix, iy, data->cube_size - 2, data);
+	if (data->upg == 0)
+	{
+		data->player_x = *ix;
+		data->player_y = iy;
+	}
+	*ix += data->size_x;
 }
 
 void	draw_map(t_data *data)
@@ -32,26 +71,10 @@ void	draw_map(t_data *data)
 	while (data->map[i])
 	{
 		c = data->map[i];
-		if (c == '1')
-		{
-			draw_quadrilaters(i_x, i_y, data->size_x - 2, data->size_y - 2, data, 0x00FF0000);
-			i_x += data->size_x;
-		}
-		else if (c == '0')
-		{
-			draw_quadrilaters(i_x, i_y, data->size_x - 2, data->size_y - 2, data, 0x666666);
-			i_x += data->size_x;
-		}
+		if (c == '1' || c == '0')
+			if_wall_or_ground(&i_x, i_y, data, c);
 		else if (c == 'W' || c == 'E' || c == 'N' || c == 'S')
-		{
-			draw_quadrilaters(i_x, i_y, data->size_x - 2, data->size_y - 2, data, 0x666666);
-			if (data->upg == 0)
-			{
-				data->player_x = i_x;
-				data->player_y = i_y;
-			}
-			i_x += data->size_x;
-		}
+			if_player(&i_x, i_y, data, c);
 		else if ((c == '\n'))
 		{
 			i_x = 0;

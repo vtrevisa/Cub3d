@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 20:00:33 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/08 18:07:54 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:39:21 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	draw3d(t_data *data, t_ray *r)
 	r->ini_y = (int)r->lineO;
 	r->size_x = 4;
 	r->size_y = (int)r->lineH;
-	draw_quadrilaters(r->ini_x, r->ini_y, r->size_x, r->size_y, data, r->color);
+	draw_3d_quadrilaters(r, data);
 	refresh(data);
 	r->r_angle += DR;
 	if (r->r_angle < 0)

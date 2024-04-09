@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/08 18:14:25 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:01:48 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,19 @@ int	init_map(t_data *data)
 	data->size_x = (data->max_x / 2) / data->map_size[0];
 	data->size_y = 600 / data->map_size[1];
 	if (data->size_x < data->size_y)
+	{
 		data->size_y = data->size_x;
+		data->cube_size = data->size_x;
+	}
 	else
+	{
 		data->size_x = data->size_y;
+		data->cube_size = data->size_y;
+	}
 	data->x = 0;
 	data->y = 0;
 	data->flag = 0;
-	data->p_angle = PI + P2;
+	data->p_angle = PI * data->player_dir;
 	data->p_deltX = cos (data->p_angle) * 5;
 	data->p_deltY = sin (data->p_angle) * 5;
 	return (1);
