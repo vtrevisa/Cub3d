@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/10 12:12:19 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:11:52 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ typedef struct s_data
 }	t_data;
 
 //--MAP--
-int					parse_map(t_data *data);
+int					parse_map_file(t_data *data);
 void				draw_map(t_data *data);
 void				draw_background (t_data *data);
 void				draw_quadrilaters(int initial_x, int initial_y, int size_x, int size_y, t_data *data, int color);
@@ -165,7 +165,7 @@ void				drawrays3d (t_data *data);
 
 //--UTILS--
 	//MAP_READER
-int					map_reader(t_data *data);
+char				*map_reader(t_data *data);
 	//UTILS
 void				refresh(t_data *data);
 void				my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -174,4 +174,4 @@ int					ft_strlen_spaceless(const char *s);
 int					get_quantity_blocks(int *x, int *y, char *map_name);
 char				*cat_map(t_data *data, char *tmp, int fd, int l);
 	//BLACK_HOLE
-void	black_hole(t_data *data, t_ray *r);
+void				black_hole(t_data *data, t_ray *r);

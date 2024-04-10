@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/10 13:29:23 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:12:01 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ int	init_mlx(t_data *data)
 
 int	init_map(t_data *data)
 {
-	if (parse_map(data) < 0)
-		exit (-1);
+	parse_map_file(data);
 	black_hole(data, data->r);
 	/* data->initial_x = 0;
 	data->initial_y = 0;
