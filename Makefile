@@ -5,9 +5,8 @@ CFLAGS		= -lmlx -lXext -lX11 -lm -lz -g
 VPATH		= $(addprefix $(SRC_D)/, $(DIRS))
 
 #--CONFIG--
-#MAPA			= map_simple_R.cub
-MAPA			= map_test_right.cub
-#MAPA 			= map_test.cub
+MAPA			= map_right.cub
+
 
 #--LIBFT--
 LIB			= $(addprefix $(LPATH)/, libft.a)
@@ -23,12 +22,12 @@ LIB_INC_D	= $(LPATH)/Include
 #--FILES--
 SRC 		= $(INI) $(MAP) $(RAY) $(SYS) $(UTI) $(MSG)
 INI			= init.c
-MAP			= draw_map.c player.c square.c
+MAP			= draw_map.c player.c square.c check_map.c
 RAY			= raycast.c r_utils.c r_utils2.c r_utils3.c
 SYS			= hooks.c main.c
-UTI			= utils.c map_reader.c utils_reader.c
+UTI			= utils.c map_reader.c utils_reader.c black_hole.c
 MSG			= msg.c
-HEADERS		= ./include/cub3D.h #./mlx_linux/mlx.h ./mlx_linux/mlx_int.h
+HEADERS		= ./include/cub3D.h
 INCLUDE		= -I $(INCLUDE_D) -I $(LIB_INC_D)
 
 #--OBJECTS--
@@ -55,7 +54,7 @@ r: $(NAME)
 	./$(NAME) $(MAPA)
 
 v: $(NAME)
-	valgrind --track-origins=yes ./$(NAME) $(MAPA)
+	valgrind --track-origins=yes --leak-check=full ./$(NAME) $(MAPA)
 
 $(NAME): $(LIB) $(OBJ) $(OBJ_D) $(HEADERS)
 	@echo "$(BLUE)Compiling $(WHITE)cub3D"

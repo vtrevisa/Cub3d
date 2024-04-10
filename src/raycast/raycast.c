@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 18:18:09 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/04 18:30:08 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:01:31 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	drawrays3d(t_data *data)
 {
 	t_ray	r;
 
+	data->r = &r;
 	set_parameters(data, &r);
 	while (r.ray < 60)
 	{

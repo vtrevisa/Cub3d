@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/09 10:59:18 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:29:04 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	main(int argc, char *argv[])
 	ft_bzero(&data, sizeof(t_data));
 	if (!init_all(&data, argc, argv))
 		return (-1);
-	display(&data);
+/* 	display(&data);
 	get_hook(&data);
-	mlx_loop(data.mlx);
+	mlx_loop(data.mlx); */
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/09 12:01:48 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:29:23 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ int	init_mlx(t_data *data)
 
 int	init_map(t_data *data)
 {
-	if (map_reader(data) < 0)
+	if (parse_map(data) < 0)
 		exit (-1);
-	data->initial_x = 0;
+	black_hole(data, data->r);
+	/* data->initial_x = 0;
 	data->initial_y = 0;
 	data->size_x = (data->max_x / 2) / data->map_size[0];
 	data->size_y = 600 / data->map_size[1];
@@ -63,6 +64,6 @@ int	init_map(t_data *data)
 	data->flag = 0;
 	data->p_angle = PI * data->player_dir;
 	data->p_deltX = cos (data->p_angle) * 5;
-	data->p_deltY = sin (data->p_angle) * 5;
+	data->p_deltY = sin (data->p_angle) * 5; */
 	return (1);
 }
