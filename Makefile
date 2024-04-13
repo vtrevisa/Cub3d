@@ -1,7 +1,8 @@
 #--STARNDARD--
 NAME		= cub3D
 #CFLAGS		= -I/mlx_linux -Imlx_linux -O3 -Lmlx_linux -lmlx_Linux -L/mlx_linux -Imlx_linux -lXext -lX11 -lm -lz -g
-CFLAGS		= -lmlx -lXext -lX11 -lm -lz -g
+# CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -g
 VPATH		= $(addprefix $(SRC_D)/, $(DIRS))
 
 #--CONFIG--
@@ -25,10 +26,11 @@ INI			= init.c
 MAP			= draw_map.c player.c square.c check_map.c
 RAY			= raycast.c r_utils.c r_utils2.c r_utils3.c
 SYS			= hooks.c main.c
-UTI			= utils.c map_reader.c utils_reader.c black_hole.c
+UTI			= utils.c black_hole.c map_reader.c utils_reader.c
 MSG			= msg.c
 HEADERS		= ./include/cub3D.h
-INCLUDE		= -I $(INCLUDE_D) -I $(LIB_INC_D)
+INCLUDE		= -I $(INCLUDE_D) -I $(LIB_INC_D) -I./MLX42/include/MLX42
+MLX42 = ./MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 #--OBJECTS--
 OBJ			= $(SRC:%.c=$(OBJ_D)/%.o)
@@ -47,18 +49,18 @@ PROGRESS			=	0
 all: $(NAME)
 
 t:
-	@gcc TESTE_RC/main.c TESTE_RC/utils_teste.c $(CFLAGS) $(INCLUDE) -lreadline $(LIB)
+	@gcc TESTE_RC/main.c TESTE_RC/utils_teste.c $(CFLAGS) $(INCLUDE) $(LIB)
 	valgrind --track-origins=yes ./a.out
 
 r: $(NAME)
 	./$(NAME) $(MAPA)
 
 v: $(NAME)
-	valgrind --track-origins=yes --leak-check=full ./$(NAME) $(MAPA)
+	valgrind --leak-check=full ./$(NAME) $(MAPA)
 
 $(NAME): $(LIB) $(OBJ) $(OBJ_D) $(HEADERS)
 	@echo "$(BLUE)Compiling $(WHITE)cub3D"
-	@cc $(OBJ) $(CFLAGS) $(INCLUDE) -lreadline $(LIB) -o $@
+	@cc $(OBJ) $(INCLUDE) $(MLX42) $(CFLAGS) $(LIB) -o $@
 	@echo "$(GREEN)Compiled $(WHITE)cub3D"
 
 $(LIB):

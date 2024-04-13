@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch with LLDB",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/cub3D",
+            "args": ["map_right.cub"],
+            "preLaunchTask": "clang build",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

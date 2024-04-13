@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   black_hole.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 11:53:50 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/10 13:26:51 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:49:57 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 static void	exit_mlx(t_data *data)
 {
-	mlx_destroy_image(data->mlx, data->img);
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
+	// mlx_destroy_image(data->mlx, data->img);
+	// mlx_destroy_window(data->mlx, data->win);
+	// mlx_destroy_display(data->mlx);
+	mlx_terminate(data->mlx);
 	free (data->mlx);
 	exit(0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 18:18:09 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/10 12:01:31 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/11 20:53:22 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	drawrays3d(t_data *data)
 		set_parameters3(data, &r);
 		while (r.dof < 8)
 			while_no_wallv(data, &r);
-		att_dist(data, &r);
+		att_dist(&r);
 		draw3d(data, &r);
 		r.ray++;
 	}
