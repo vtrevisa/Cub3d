@@ -6,28 +6,47 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 11:03:32 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/11 21:22:36 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/04/12 23:51:43 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	draw_red_quadrilaters(int initial_x, int initial_y, int size_x, int size_y, t_data *data)
+// void	draw_red_quadrilaters(int initial_x, int initial_y, int size, t_data *data)
+// {
+// 	int	img_x;
+// 	int	img_y;
+
+// 	img_x = initial_x;
+// 	img_y = initial_y;
+// 	while (initial_y <= size + img_y)
+// 	{
+// 		initial_x = img_x;
+// 		while (initial_x <= size + img_x)
+// 		{
+// 			mlx_put_pixel(data->img, initial_x, initial_y, 0x00F000);
+// 			initial_x++;
+// 		}
+// 		initial_y++;
+// 	}
+// }
+
+void	draw_red_quadrilaters(int ix, int iy, int sz, t_data *data)
 {
 	int	img_x;
 	int	img_y;
 
-	img_x = initial_x;
-	img_y = initial_y;
-	while (initial_y <= size_y + img_y)
+	img_x = ix;
+	img_y = iy;
+	while (iy <= sz + img_y)
 	{
-		initial_x = img_x;
-		while (initial_x <= size_x + img_x)
+		ix = img_x;
+		while (ix <= sz + img_x)
 		{
-			mlx_put_pixel(data->img, initial_x, initial_y, 0x00FF0000);
-			initial_x++;
+			my_mlx_pixel_put(data, ix, iy, 0x00FF0000);
+			ix++;
 		}
-		initial_y++;
+		iy++;
 	}
 }
 
@@ -43,7 +62,7 @@ void	draw_grey_quadrilaters(int ix, int iy, int sz, t_data *data)
 		ix = img_x;
 		while (ix <= sz + img_x)
 		{
-			mlx_put_pixel(data->img, ix, iy, 0x666666);
+			mlx_put_pixel(data->img, ix, iy, 0xffff00);
 			ix++;
 		}
 		iy++;

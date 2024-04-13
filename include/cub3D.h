@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/11 21:20:18 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/04/12 23:46:25 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void			draw_background(t_data *data);
 void			draw_quadrilaters(int initial_x, int initial_y, int size_x,
 					int size_y, t_data *data, int color);
 void			draw_player(t_data *data);
-void			draw_red_quadrilaters(int ix, int iy, int size_x, int size_y, t_data *data);
+void			draw_red_quadrilaters(int ix, int iy, int size, t_data *data);
 void			draw_grey_quadrilaters(int ix, int iy, int sz, t_data *data);
 void			draw_yell_quadrilaters(int ix, int iy, int sz, t_data *data);
 void			draw_3d_quadrilaters(t_ray *r, t_data *data);

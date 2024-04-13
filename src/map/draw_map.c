@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/11 21:25:20 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/04/12 23:45:19 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	if_wall_or_ground(int *ix, int iy, t_data *data, char flag)
 {
 	if (flag == '1')
 	{
-		draw_red_quadrilaters(*ix, iy, data->size_x - 2, data->size_y - 2, data);
+		draw_red_quadrilaters(*ix, iy, data->cube_size -2, data);
 		*ix += data->size_x;
 	}
 	else if (flag == '0')
