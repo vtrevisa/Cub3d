@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/09 14:29:04 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:40:02 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	display(t_data *data)
 	draw_map(data);
 	drawrays3d(data);
 	draw_player(data);
+	refresh(data);
 }
 
 static int	init_all(t_data *data, int argc, char **argv)
@@ -41,8 +42,8 @@ int	main(int argc, char *argv[])
 	ft_bzero(&data, sizeof(t_data));
 	if (!init_all(&data, argc, argv))
 		return (-1);
-/* 	display(&data);
+	display(&data);
 	get_hook(&data);
-	mlx_loop(data.mlx); */
+	mlx_loop(data.mlx);
 	return (0);
 }

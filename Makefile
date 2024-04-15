@@ -22,10 +22,10 @@ LIB_INC_D	= $(LPATH)/Include
 #--FILES--
 SRC 		= $(INI) $(MAP) $(RAY) $(SYS) $(UTI) $(MSG)
 INI			= init.c
-MAP			= draw_map.c player.c square.c check_map.c
+MAP			= draw_map.c player.c square.c utils_reader.c
 RAY			= raycast.c r_utils.c r_utils2.c r_utils3.c
 SYS			= hooks.c main.c
-UTI			= utils.c map_reader.c utils_reader.c black_hole.c
+UTI			= utils.c black_hole.c map_utils.c
 MSG			= msg.c
 HEADERS		= ./include/cub3D.h
 INCLUDE		= -I $(INCLUDE_D) -I $(LIB_INC_D)
@@ -34,11 +34,11 @@ INCLUDE		= -I $(INCLUDE_D) -I $(LIB_INC_D)
 OBJ			= $(SRC:%.c=$(OBJ_D)/%.o)
 
 #--COLORS--
-WHITE	=	\e[00m
-GREEN	=	\e[32m
-RED		=	\e[91m
-YELLOW	=	\e[033m
-BLUE	=	\e[34m
+WHITE		=	\e[00m
+GREEN		=	\e[32m
+RED			=	\e[91m
+YELLOW		=	\e[033m
+BLUE		=	\e[34m
 
 #--PROGRESSION--
 NUMBER_OF_SRC_FILES	=	$(words $(SRC))

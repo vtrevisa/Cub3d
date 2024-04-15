@@ -6,30 +6,56 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/09 11:52:29 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:22:06 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	draw_background(t_data *data)
+static void	draw_ceiling(t_data *data)
 {
 	int	ini_x;
 	int	ini_y;
 
 	ini_x = 0;
 	ini_y = 0;
-	while (ini_y <= data->max_y)
+	while (ini_y <= data->max_y / 2)
 	{
 		ini_x = 0;
 		while (ini_x <= data->max_x)
 		{
-			my_mlx_pixel_put(data, ini_x, ini_y, 0);
+			my_mlx_pixel_put(data, ini_x, ini_y, data->color_c);
 			ini_x++;
 		}
 		ini_y++;
 	}
 	refresh(data);
+}
+
+static void	draw_floor(t_data *data)
+{
+	int	ini_x;
+	int	ini_y;
+
+	ini_x = 0;
+	ini_y = data->max_y / 2;
+	while (ini_y <= data->max_y)
+	{
+		ini_x = 0;
+		while (ini_x <= data->max_x)
+		{
+			my_mlx_pixel_put(data, ini_x, ini_y, data->color_f);
+			ini_x++;
+		}
+		ini_y++;
+	}
+	refresh(data);
+}
+
+void	draw_background(t_data *data)
+{
+	draw_floor(data);
+	draw_ceiling(data);
 }
 
 static void	if_wall_or_ground(int *ix, int iy, t_data *data, char flag)
@@ -57,6 +83,11 @@ static void	if_player(int *ix, int iy, t_data *data, char flag)
 	*ix += data->size_x;
 }
 
+static void	if_space(int *ix, t_data *data)
+{
+	*ix += data->size_x;
+}
+
 void	draw_map(t_data *data)
 {
 	int	i;
@@ -71,6 +102,7 @@ void	draw_map(t_data *data)
 	while (data->map[i])
 	{
 		c = data->map[i];
+	/* 	ft_printf("data->map[%d] = %c\n", i, c); */
 		if (c == '1' || c == '0')
 			if_wall_or_ground(&i_x, i_y, data, c);
 		else if (c == 'W' || c == 'E' || c == 'N' || c == 'S')
@@ -80,6 +112,8 @@ void	draw_map(t_data *data)
 			i_x = 0;
 			i_y += data->size_y;
 		}
+		else if (c == ' ' || c == '	')
+			if_space(&i_x, data);
 		i++;
 	}
 	data->upg = 1;

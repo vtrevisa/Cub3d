@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/19 13:58:34 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:26:09 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	open_error(int fd)
 
 void	show_map(char *map)
 {
-	ft_printf(YELLOW);
+	ft_printf(GREEN);
 	ft_printf("Current map:\n%s\n", map);
 	ft_printf(WHITE);
 }

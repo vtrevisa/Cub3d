@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/10 11:59:56 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/11 18:57:54 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	dst = data->addr + offset;
 	*(unsigned int *)dst = color;
 }
-

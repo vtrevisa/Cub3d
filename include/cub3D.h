@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/10 17:11:52 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:53:33 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@
 	size_x and y -> how many pixels will be painted
 	img_x and y -> initial poition of the pixels to be painted 
 */
+
+typedef struct	s_col
+{
+	int	r;
+	int	g;
+	int	b;
+	char **col;
+	char	tmp;
+}	t_col;
 
 typedef struct	s_ray //2 screen
 {
@@ -92,11 +101,14 @@ typedef struct s_data
 	//MAP INFO
 	char			*map_name;
 	char			*map;
-	char			*map_lined;
+	char			**map_lined;
 	int				map_size[2];
 	int				blocks_nbr;
 	int				flag;
 	char			upg;
+	char			*textures[4];
+	unsigned long	color_c;
+	unsigned long	color_f;
 	//PLAYER POSITION AND MOVEMENT
 	int				player_x;
 	int				player_y;
@@ -164,8 +176,8 @@ void				get_hook(t_data *data);
 void				drawrays3d (t_data *data);
 
 //--UTILS--
-	//MAP_READER
-char				*map_reader(t_data *data);
+	//CHECK_MAP
+int					config_file_loader(t_data *data);
 	//UTILS
 void				refresh(t_data *data);
 void				my_mlx_pixel_put(t_data *data, int x, int y, int color);
