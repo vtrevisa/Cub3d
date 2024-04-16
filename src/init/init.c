@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/15 15:12:36 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/16 19:32:59 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	init_params(t_data *data, int argc, char **argv)
 	data->upg = 0;
 	data->max_x = 1024;
 	data->max_y = 600;
+	data->col_ok = 0;
+	data->txt_ok = 0;
 	return (1);
 }
 
@@ -42,11 +44,14 @@ int	init_mlx(t_data *data)
 
 int	init_map(t_data *data)
 {
-	config_file_loader(data);
+	data->mp_sz[0] = 0;
+	data->mp_sz[1] = 0;
+	if (!config_file_loader(data))
+		return (0);
 	data->initial_x = 0;
 	data->initial_y = 0;
-	data->size_x = (data->max_x / 2) / data->map_size[0];
-	data->size_y = 600 / data->map_size[1];
+	data->size_x = (data->max_x / 2) / data->mp_sz[0];
+	data->size_y = 600 / data->mp_sz[1];
 	if (data->size_x < data->size_y)
 	{
 		data->size_y = data->size_x;

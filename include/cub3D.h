@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/15 14:53:33 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/16 20:10:41 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,15 @@ typedef struct s_data
 	char			*map_name;
 	char			*map;
 	char			**map_lined;
-	int				map_size[2];
-	int				blocks_nbr;
+	int				mp_sz[2];
+	int				blk_nbr;
 	int				flag;
 	char			upg;
 	char			*textures[4];
 	unsigned long	color_c;
 	unsigned long	color_f;
+	int				col_ok;
+	int				txt_ok;
 	//PLAYER POSITION AND MOVEMENT
 	int				player_x;
 	int				player_y;
@@ -121,7 +123,7 @@ typedef struct s_data
 }	t_data;
 
 //--MAP--
-int					parse_map_file(t_data *data);
+int					parse_config_file(t_data *data);
 void				draw_map(t_data *data);
 void				draw_background (t_data *data);
 void				draw_quadrilaters(int initial_x, int initial_y, int size_x, int size_y, t_data *data, int color);
@@ -152,6 +154,7 @@ int					map_error(void);
 void				map_loaded(char *str);
 void				show_map_nbrs(t_data *data);
 void				show_map_nbr(char *map);
+void	show_map_splitted(char **str, t_data *data);
 
 //--RAYCAST--
 	//R_UTILS
@@ -183,7 +186,7 @@ void				refresh(t_data *data);
 void				my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int					ft_strlen_spaceless(const char *s);
 	//UTILS_READER
-int					get_quantity_blocks(int *x, int *y, char *map_name);
+int					get_qtt_blk(int *x, int *y, char *map_name);
 char				*cat_map(t_data *data, char *tmp, int fd, int l);
 	//BLACK_HOLE
-void				black_hole(t_data *data, t_ray *r);
+void				black_hole(t_data *data);

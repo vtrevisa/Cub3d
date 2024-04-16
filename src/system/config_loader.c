@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   config_loader.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/15 15:38:22 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/16 20:17:52 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,6 @@ static unsigned long	ft_rgb_to_hex(int r, int g, int b)
 {
 	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
-
-/* Except for the map content, each type of element can be separated by one or
-		more empty line(s). */
-		
-		/* Except for the map content which always has to be the last, each type of
-		element can be set in any order in the file. */
-
-		/* Except for the map, each type of information from an element can be separated
-		by one or more space(s). */
-
-		/* Each element (except the map) firsts information is the type identifier (composed by one 
-		or two character(s)), followed by all specific informations for each
-		object in a strict order
-			->North Texture:
-			"NO ./path_to_texture 
-
-			->Floor color
-			"F 220,100,0"
-*/
 
 static int	load_textures(t_data *data, char *str, char dir)
 {
@@ -51,6 +32,7 @@ static int	load_textures(t_data *data, char *str, char dir)
 	data->textures[i] = ft_strdup(str);
 	if (!data->textures[i])
 		return (0);
+	data->txt_ok = 1;
 	return (1);
 }
 
@@ -66,9 +48,7 @@ static int	load_color_cf(t_data *data, char *str, char place)
 		while (str[i] < '0' || str[i] > '9')
 			i++;
 		if (str[i] >= '0' && str[i] <= '9')
-		{
 			c.col = ft_split(str + i, ',');
-		}
 		break ;
 	}
 	c.r = ft_atoi(c.col[0]);
@@ -76,19 +56,21 @@ static int	load_color_cf(t_data *data, char *str, char place)
 	c.b = ft_atoi(c.col[2]);
 	if (place == 'C')
 		data->color_c = ft_rgb_to_hex(c.r, c.g, c.b);
-	if (place == 'F')
+	else if (place == 'F')
 		data->color_f = ft_rgb_to_hex(c.r, c.g, c.b);
+	if (data->color_c == 0)
+		data->color_c = 1;
+	if (data->color_f == 0)
+		data->color_f = 1;
+	data->col_ok = 1;
+	return (1);
 }
 
 int	config_loader(t_data *data, int *fd, char **map)
 {
 	char	*tmp;
 	int		i;
-	int		t;
-	int		c;
 
-	t = 0;
-	c = 0;
 	tmp = get_next_line(*fd);
 	while (tmp)
 	{
@@ -97,9 +79,9 @@ int	config_loader(t_data *data, int *fd, char **map)
 			i++;
 		if (tmp[i] == '\n')
 		{}
-		else if ((tmp[i] == 'N' || tmp[i] == 'S' || tmp[i] == 'W' || tmp[i] == 'E') && (++t) <= 4)
+		else if ((tmp[i] == 'N' || tmp[i] == 'S' || tmp[i] == 'W' || tmp[i] == 'E'))
 			load_textures(data, tmp, tmp[i]);
-		else if ((tmp[i] == 'F' || tmp[i] == 'C') && (++c) <= 2)
+		else if ((tmp[i] == 'F' || tmp[i] == 'C'))
 			load_color_cf(data, tmp, tmp[i]);
 		else
 		{
@@ -110,24 +92,34 @@ int	config_loader(t_data *data, int *fd, char **map)
 		free(tmp);
 		tmp = get_next_line(*fd);
 	}
+	return (0);
 }
 
 int	map_loader(t_data *data, int *fd, char **map)
 {
 	char	*tmp;
+	int		s_tmp;
+	char	*tmp2;
+	int		s_tmp2;
 
-	tmp = *map;
-	data->blocks_nbr = get_quantity_blocks \
-		(&data->map_size[0], & data->map_size[1], ft_strjoin("./src/maps/", data->map_name));
-	data->map = malloc(sizeof(char) * data->blocks_nbr);
-	ft_bzero(data->map, data->blocks_nbr);
+	tmp = ft_strdup(*map);
+	data->map = NULL;
 	while (tmp)
 	{
-		data->map = ft_strjoin(data->map, tmp);
+		if (!data->map)
+			data->map = ft_strdup(tmp);
+		else
+		{
+			tmp2 = ft_strdup(data->map);
+			free(data->map);
+			s_tmp = ft_strlen(tmp);
+			s_tmp2 = ft_strlen(tmp2);
+			data->map = malloc(sizeof (char) * (s_tmp + s_tmp2) + 1);
+			data->map = ft_strjoin(tmp2, tmp);
+		}
 		free(tmp);
 		tmp = get_next_line(*fd);
 	}
-
 	return (1);
 }
 
@@ -138,7 +130,7 @@ int	config_file_loader(t_data *data)
 	int		ret;
 	char	*map;
 
-	map_name = ft_strjoin("./src/maps/", data->map_name);
+	map_name = ft_strjoin("./src/map/maps/", data->map_name);
 	fd = open (map_name, O_RDONLY);
 	free (map_name);
 	if (fd < 0)
@@ -147,6 +139,7 @@ int	config_file_loader(t_data *data)
 		return (map_error());
 	if (!map_loader(data, &fd, &map))
 		return (map_error());
-	data->map_lined = ft_split(data->map, '\n');
+	if (!parse_config_file(data))
+		return (map_error());
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/15 14:26:09 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/16 19:32:59 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	map_error(void)
 	ft_printf(RED);
 	ft_printf("\nFailed to read the map\n");
 	ft_printf(WHITE);
-	return (-1);
+	return (0);
 }
 
 void	map_loaded(char *str)
@@ -113,9 +113,9 @@ void	map_loaded(char *str)
 void	show_map_nbrs(t_data *data)
 {
 	ft_printf(BLUE);
-	ft_printf("\nMap X: %d\n", data->map_size[0]);
-	ft_printf("Map Y: %d\n", data->map_size[1]);
-	ft_printf("Map Blocks: %d\n", data->blocks_nbr);
+	ft_printf("\nMap X: %d\n", data->mp_sz[0]);
+	ft_printf("Map Y: %d\n", data->mp_sz[1]);
+	ft_printf("Map Blocks: %d\n", data->blk_nbr);
 	ft_printf(WHITE);
 }
 
@@ -145,5 +145,17 @@ void	show_map_nbr(char *map)
 			ft_printf("  ");
 		else if (i >= 10 && i < 100)
 			ft_printf(" ");
+	}
+}
+
+void	show_map_splitted(char **str, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->mp_sz[1] - 1)
+	{
+		ft_printf("%s\n", str[i]);
+		i++;
 	}
 }

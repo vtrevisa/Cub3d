@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/15 15:40:02 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:58:48 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char *argv[])
 		return (-1);
 	ft_bzero(&data, sizeof(t_data));
 	if (!init_all(&data, argc, argv))
-		return (-1);
+		black_hole(&data);
 	display(&data);
 	get_hook(&data);
 	mlx_loop(data.mlx);

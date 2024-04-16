@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 11:53:50 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/10 13:26:51 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/15 16:22:44 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	exit_mlx(t_data *data)
 	exit(0);
 }
 
-void	black_hole(t_data *data, t_ray *ray)
+void	black_hole(t_data *data)
 {
 	if (data->mlx)
 		exit_mlx(data);

@@ -22,10 +22,10 @@ LIB_INC_D	= $(LPATH)/Include
 #--FILES--
 SRC 		= $(INI) $(MAP) $(RAY) $(SYS) $(UTI) $(MSG)
 INI			= init.c
-MAP			= draw_map.c player.c square.c utils_reader.c
+MAP			= draw_map.c  utils_reader.c check_map.c
 RAY			= raycast.c r_utils.c r_utils2.c r_utils3.c
-SYS			= hooks.c main.c
-UTI			= utils.c black_hole.c map_utils.c
+SYS			= hooks.c main.c config_loader.c
+UTI			= utils.c black_hole.c draw_player.c draw_squares.c
 MSG			= msg.c
 HEADERS		= ./include/cub3D.h
 INCLUDE		= -I $(INCLUDE_D) -I $(LIB_INC_D)

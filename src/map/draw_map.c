@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/15 14:22:06 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:05:58 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static void	draw_ceiling(t_data *data)
 	int	ini_x;
 	int	ini_y;
 
-	ini_x = 0;
+	ini_x =  data->max_x / 2;
 	ini_y = 0;
 	while (ini_y <= data->max_y / 2)
 	{
-		ini_x = 0;
+		ini_x = data->max_x / 2;
 		while (ini_x <= data->max_x)
 		{
 			my_mlx_pixel_put(data, ini_x, ini_y, data->color_c);
@@ -37,11 +37,11 @@ static void	draw_floor(t_data *data)
 	int	ini_x;
 	int	ini_y;
 
-	ini_x = 0;
+	ini_x = data->max_x / 2;
 	ini_y = data->max_y / 2;
 	while (ini_y <= data->max_y)
 	{
-		ini_x = 0;
+		ini_x = data->max_x / 2;
 		while (ini_x <= data->max_x)
 		{
 			my_mlx_pixel_put(data, ini_x, ini_y, data->color_f);
@@ -102,7 +102,6 @@ void	draw_map(t_data *data)
 	while (data->map[i])
 	{
 		c = data->map[i];
-	/* 	ft_printf("data->map[%d] = %c\n", i, c); */
 		if (c == '1' || c == '0')
 			if_wall_or_ground(&i_x, i_y, data, c);
 		else if (c == 'W' || c == 'E' || c == 'N' || c == 'S')

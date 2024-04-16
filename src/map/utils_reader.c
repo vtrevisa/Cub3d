@@ -6,13 +6,13 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 20:34:06 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/10 12:23:31 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/16 20:28:49 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-char	*remove_space(t_data *data, char *str)
+char	*remove_space(t_data *data, char *str) //remove_lnbrk
 {
 	char	*ret;
 	int		i;
