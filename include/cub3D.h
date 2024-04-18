@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/08 18:10:16 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/16 21:15:37 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@
 	size_x and y -> how many pixels will be painted
 	img_x and y -> initial poition of the pixels to be painted 
 */
+
+typedef struct	s_col
+{
+	int	r;
+	int	g;
+	int	b;
+	char **col;
+	char	tmp;
+}	t_col;
 
 typedef struct	s_ray //2 screen
 {
@@ -107,6 +116,13 @@ typedef struct s_data
 	double	p_deltY;
 	double	p_angle;
 	char 	player_dir;
+	// CONFIGS
+	char			*textures[4];
+	unsigned long	color_c;
+	unsigned long	color_f;
+	int				col_ok;
+	int				txt_ok;
+
 
 }	t_data;
 
@@ -173,3 +189,5 @@ int		exit_mlx(t_data *data);
 	//UTILS_READER
 int		get_quantity_blocks(int *x, int *y, char *map_name);
 char	*cat_map(t_data *data, char **tmp, int fd, int l);
+
+int	config_file_loader(t_data *data);

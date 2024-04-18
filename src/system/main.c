@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/08 18:18:25 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:34:50 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	display(t_data *data)
 {
 	draw_background(data);
 	draw_map(data);
-	drawrays3d(data);
 	draw_player(data);
+	drawrays3d(data);
 }
 
 static int	init_all(t_data *data, int argc, char **argv)

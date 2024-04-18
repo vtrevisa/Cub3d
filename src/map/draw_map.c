@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/08 18:07:21 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:50:35 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ void	draw_map(t_data *data)
 	while (data->map[i])
 	{
 		c = data->map[i];
-		if (c == '1')
+		if (c == ' ')
+		{i_x += data->size_x;}
+		else if (c == '1')
 		{
 			draw_quadrilaters(i_x, i_y, data->size_x - 2, data->size_y - 2, data, 0x00FF0000);
 			i_x += data->size_x;
@@ -52,7 +54,7 @@ void	draw_map(t_data *data)
 			}
 			i_x += data->size_x;
 		}
-		else if ((c == '\n'))
+		else if (c == '\n')
 		{
 			i_x = 0;
 			i_y += data->size_y;

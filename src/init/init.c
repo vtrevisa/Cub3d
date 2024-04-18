@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/08 18:14:25 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/16 21:13:28 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	init_mlx(t_data *data)
 
 int	init_map(t_data *data)
 {
-	if (map_reader(data) < 0)
+	if (config_file_loader(data) < 0)
 		exit (-1);
 	data->initial_x = 0;
 	data->initial_y = 0;
