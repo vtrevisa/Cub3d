@@ -5,9 +5,9 @@ CFLAGS		= -lmlx -lXext -lX11 -lm -lz -g
 VPATH		= $(addprefix $(SRC_D)/, $(DIRS))
 
 #--CONFIG--
-#MAPA			= map_simple_R.cub
+MAPA			= map_simple_R.cub
 #MAPA			= map_test_right.cub
-MAPA 			= map_pdf.cub
+#MAPA 			= map_pdf.cub
 
 #--LIBFT--
 LIB			= $(addprefix $(LPATH)/, libft.a)

@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/17 12:50:35 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/23 19:09:29 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ void	draw_map(t_data *data)
 	int	c;
 	int	i_x;
 	int	i_y;
+	int	center;
 
+	center = data->size_x / 2;
 	i_x = data->initial_x;
 	i_y = data->initial_y;
 	draw_background(data);
@@ -49,8 +51,8 @@ void	draw_map(t_data *data)
 			draw_quadrilaters(i_x, i_y, data->size_x - 2, data->size_y - 2, data, 0x666666);
 			if (data->upg == 0)
 			{
-				data->player_x = i_x;
-				data->player_y = i_y;
+				data->player_x = i_x + center;
+				data->player_y = i_y + center;
 			}
 			i_x += data->size_x;
 		}

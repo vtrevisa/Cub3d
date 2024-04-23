@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/16 21:13:28 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:35:09 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	init_params(t_data *data, int argc, char **argv)
 		data->map_name = ft_strdup(argv[1]);
 	data->upg = 0;
 	data->max_x = 1024;
-	data->max_y = 600;
+	data->max_y = 512;
 	return (1);
 }
 
@@ -46,16 +46,19 @@ int	init_map(t_data *data)
 		exit (-1);
 	data->initial_x = 0;
 	data->initial_y = 0;
-	data->size_x = (data->max_x / 2) / data->map_size[0];
-	data->size_y = 600 / data->map_size[1];
-	if (data->size_x < data->size_y)
+/* 	data->size_x = (data->max_x / 2) / data->map_size[0];
+	data->size_y = 600 / data->map_size[1]; */
+	data->size_x = 64;
+	data->size_y = 64;
+	data->cube_size = 64;
+	/* if (data->size_x < data->size_y)
 		data->size_y = data->size_x;
 	else
-		data->size_x = data->size_y;
+		data->size_x = data->size_y; */
 	data->x = 0;
 	data->y = 0;
 	data->flag = 0;
-	data->p_angle = PI + P2;
+	data->p_angle = PI;
 	data->p_deltX = cos (data->p_angle) * 5;
 	data->p_deltY = sin (data->p_angle) * 5;
 	return (1);
