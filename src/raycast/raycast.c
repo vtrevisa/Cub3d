@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 18:18:09 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/24 14:54:43 by vtrevisa         ###   ########.fr       */
+/*   Created: 2024/04/04 1max_view:1max_view:09 by vtrevisa          #+#    #+#             */
+/*   Updated: 2024/04/24 15:00:41 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	check_vertical(t_data *data, t_ray *r)
 	{
 		set_parameters2(data, &r);
 		check_horizon(data, &r);
-		while (r.dof < 8)
+		while (r.dof < max_view)
 			while_no_wallh(data, &r);
 		set_parameters3(data, &r);
-		while (r.dof < 8)
+		while (r.dof < max_view)
 			while_no_wallv(data, &r);
 		att_dist(data, &r);
 		draw3d(data, &r);
@@ -64,7 +64,12 @@ void	drawrays3d(t_data *data)
 {
 	int r, mx, my, mp, dof, hx, hy, vx, vy;
 	double rx, ry, ra, xo, yo, disH, disV, disT;
+	int	max_view;
 
+	if (data->map_size[0] > data->map_size[1])
+		max_view = data->map_size[0];
+	else
+		max_view = data->map_size[1];
 	ra = data->p_angle-DR*30;
 	if (ra < 0)
 		ra += 2*PI;
@@ -96,9 +101,9 @@ void	drawrays3d(t_data *data)
 		{
 			rx = data->player_x;
 			ry = data->player_y;
-			dof = 8;
+			dof = max_view;
 		}
-		while (dof < 8)
+		while (dof < max_view)
 		{
 			mx = (int) rx / data->cube_size;
 			my = (int) ry / data->cube_size;
@@ -108,7 +113,7 @@ void	drawrays3d(t_data *data)
 				hx = rx;
 				hy = ry;
 				disH = dist(data, hx, hy, ra);
-				dof = 8;
+				dof = max_view;
 			/* ft_printf("Getting wall at: %d:%d\nFrom map[%d] = %c\n", mx, my, mp, data->map_lined[mp]);*/
 			}
 			else
@@ -142,9 +147,9 @@ void	drawrays3d(t_data *data)
 		{
 			rx = data->player_x;
 			ry = data->player_y;
-			dof = 8;
+			dof = max_view;
 		}
-		while (dof < 8)
+		while (dof < max_view)
 		{
 			mx = (int) rx / data->cube_size;
 			my = (int) ry / data->cube_size;
@@ -154,7 +159,7 @@ void	drawrays3d(t_data *data)
 				vx = rx;
 				vy = ry;
 				disV = dist(data, vx, vy, ra);
-				dof = 8;
+				dof = max_view;
 			}
 			else
 			{
@@ -196,7 +201,7 @@ void	drawrays3d(t_data *data)
 			lineH  = 500;
 		double lineO = 250 - lineH/2;
 		int	ray_widht = (data->max_x/2) / 60;
-		draw_quadrilaters(((r + 1) * ray_widht) + (data->max_x/2) + 10, (int)lineO, ray_widht, (int)lineH, data, color);
+		draw_quadrilaters(((r + 1) * ray_widht) + (data->max_x/2) + 30, (int)lineO, ray_widht + 1, (int)lineH, data, color);
 		refresh(data);
 	}
 }

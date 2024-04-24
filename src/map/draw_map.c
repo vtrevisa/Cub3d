@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/23 19:09:29 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:12:01 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 void	draw_background (t_data *data)
 {
-	draw_quadrilaters(0, 0, data->max_x, data->max_y, data, 0x0);
+	//3d map ceiling and floor
+	draw_quadrilaters(data->max_x/2 + 38, 0, data->max_x/2, data->max_y/2, data, data->color_c);
+	draw_quadrilaters(data->max_x/2 + 38, data->max_y/2, data->max_x/2, data->max_y/2, data, data->color_f);
+	//black background of minimap
+	draw_quadrilaters(0, 0, data->max_x/2, data->max_y, data, 0);
 	refresh(data);
 }
 
