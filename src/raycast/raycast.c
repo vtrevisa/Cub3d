@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 18:18:09 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/23 19:36:30 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:54:43 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,16 @@ void	drawrays3d(t_data *data)
 		double aTan = -1/tan(ra);
 		if (ra > PI) // up
 		{
-			ry = (((data->player_y)>>6)<<6) - 0.0001;
+			ry = (((data->player_y)/data->cube_size)*data->cube_size) - 0.0001;
 			rx = (data->player_y - ry) * aTan + data->player_x;
-			yo = -64;
+			yo = -data->cube_size;
 			xo = -yo * aTan;
 		}
 		if (ra < PI) // down
 		{
-			ry = (((data->player_y)>>6)<<6) + 64;
+			ry = (((data->player_y)/data->cube_size)*data->cube_size) + data->cube_size;
 			rx = (data->player_y - ry) * aTan + data->player_x;
-			yo = 64;
+			yo = data->cube_size;
 			xo = -yo * aTan;
 		}
 		if (ra == 0 || ra == PI)
@@ -100,8 +100,8 @@ void	drawrays3d(t_data *data)
 		}
 		while (dof < 8)
 		{
-			mx = (int) rx >> 6;
-			my = (int) ry >> 6;
+			mx = (int) rx / data->cube_size;
+			my = (int) ry / data->cube_size;
 			mp = my * data->map_size[0] + mx;
 			if (mp > 0 && mp < data->map_size[0] * data->map_size[1] && data->map_lined[mp] == '1')
 			{
@@ -126,16 +126,16 @@ void	drawrays3d(t_data *data)
 		double nTan = -tan(ra);
 		if (ra > P2 && ra < P3) // left
 		{
-			rx = (((int)data->player_x>>6)<<6) - 0.0001;
+			rx = (((int)data->player_x/data->cube_size)*data->cube_size) - 0.0001;
 			ry = (data->player_x - rx) * nTan+data->player_y;
-			xo = -64;
+			xo = -data->cube_size;
 			yo = -xo * nTan;
 		}
 		if (ra < P2 || ra > P3) // right
 		{
-			rx = (((int)data->player_x>>6)<<6) + 64;
+			rx = (((int)data->player_x/data->cube_size)*data->cube_size) + data->cube_size;
 			ry = (data->player_x - rx) * nTan+data->player_y;
-			xo = 64;
+			xo = data->cube_size;
 			yo = -xo * nTan;
 		}
 		if (ra == 0 || ra == PI)
@@ -146,8 +146,8 @@ void	drawrays3d(t_data *data)
 		}
 		while (dof < 8)
 		{
-			mx = (int) rx >> 6;
-			my = (int) ry >> 6;
+			mx = (int) rx / data->cube_size;
+			my = (int) ry / data->cube_size;
 			mp = my * data->map_size[0] + mx;
 			if (mp > 0 && mp < data->map_size[0] * data->map_size[1] && data->map_lined[mp] == '1')
 			{
@@ -169,16 +169,16 @@ void	drawrays3d(t_data *data)
 			rx = vx;
 			ry = vy;
 			disT = disV;
-			color = 0x00FF00;
+			color = 0x008000;
 		}
 		else
 		{
 			rx = hx;
 			ry = hy;
 			disT = disH;
-			color = 0x0000FF;
+			color = 0x006400;
 		}
-		draw_quadrilaters(rx-1, ry-1, 3, 3, data, color);
+		//draw_quadrilaters(rx-1, ry-1, 3, 3, data, color);
 		ra += DR;
 		if (ra < 0)
 			ra += 2*PI;
@@ -192,9 +192,11 @@ void	drawrays3d(t_data *data)
 			ca -= 2*PI;
 		disT *= cos(ca);
 		double lineH = (data->cube_size * 320)/disT;
-		if (lineH > 320)
-			lineH  = 320;
-		double lineO = 160 - lineH/2;
-		draw_quadrilaters(((r + 1) * 4) + (data->max_y + data->max_y/3), (int)lineO, 4, (int)lineH, data, color);
+		if (lineH > 500)
+			lineH  = 500;
+		double lineO = 250 - lineH/2;
+		int	ray_widht = (data->max_x/2) / 60;
+		draw_quadrilaters(((r + 1) * ray_widht) + (data->max_x/2) + 10, (int)lineO, ray_widht, (int)lineH, data, color);
+		refresh(data);
 	}
 }
