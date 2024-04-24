@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/24 14:48:09 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:52:32 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,18 @@ int	init_map(t_data *data)
 	data->size_y = 64;
 	data->cube_size = 64; */
 	if (data->size_x < data->size_y)
+	{
 		data->size_y = data->size_x;
+		data->cube_size = data->size_x;
+	}
 	else
+	{
 		data->size_x = data->size_y;
 	data->cube_size = data->size_x;
 	data->x = 0;
 	data->y = 0;
 	data->flag = 0;
-	data->p_angle = PI + P2;
+	data->p_angle = PI * data->player_dir;
 	data->p_deltX = cos (data->p_angle) * 5;
 	data->p_deltY = sin (data->p_angle) * 5;
 	return (1);

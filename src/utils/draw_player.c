@@ -1,48 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
+/*   Created: 2024/02/26 14:21:10 by vtrevisa          #+#    #+#             */
 /*   Updated: 2024/04/24 15:52:36 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	display(t_data *data)
+void	draw_player(t_data *data)
 {
-	draw_background(data);
-	draw_map(data);
-	draw_player(data);
-	drawrays3d(data);
-}
-
-static int	init_all(t_data *data, int argc, char **argv)
-{
-	if (!init_params(data, argc, argv))
-		return (0);
-	else if (!init_mlx(data))
-		return (0);
-	else if (!init_map(data))
-		return (0);
-	else
-		return (1);
-}
-
-int	main(int argc, char *argv[])
-{
-	t_data	data;
-
-	if (argc != 2)
-		return (-1);
-	ft_bzero(&data, sizeof(t_data));
-	if (!init_all(&data, argc, argv))
-		black_hole(&data);
-	display(&data);
-	get_hook(&data);
-	mlx_loop(data.mlx);
-	return (0);
+	int	temp;
+	
+	/* write(1, "ok1\n", 4); */
+	draw_quadrilaters(data->player_x, data->player_y, 10, 10, data, 0xffff00);
+	/* this makes a square to orbitate the player square somehow, its fun*/
+	draw_quadrilaters((data->player_x + data->p_deltX * 5) + 2, (data->player_y + data->p_deltY * 5) + 2, 5, 5, data, 0xffff00);
+	/* write(1, "ok2\n", 4); */
+	refresh(data);
 }

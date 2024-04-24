@@ -44,6 +44,7 @@ void	check_vertical(t_data *data, t_ray *r)
 {
 	t_ray	r;
 
+	data->r = &r;
 	set_parameters(data, &r);
 	while (r.ray < 60)
 	{

@@ -1,82 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_reader.c                                       :+:      :+:    :+:   */
+/*   config_loader.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/17 21:28:44 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/16 20:17:52 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-
-char	*remove_lnbrk(t_data *data, char *str)
-{
-	char	*ret;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	ret = malloc (sizeof (char) * data->max_x);
-	while (str[i])
-	{
-		if (str[i] != '\n')
-		{
-			ret[j] = str[i];
-			j++;
-			i++;
-		}
-		else
-			i++;
-	}
-	return (ret);
-}
-
-static int	is_valid_character(char c)
-{
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-		return (1);
-	else if (c == '1' || c == '2')
-		return (1);
-	else if (c == ' ')
-		return (1);
-	else
-		return (0);
-}
-
-static int	get_qtt_blk(int *x, int *y, char *map)
-{
-	int	i;
-	int	l_x;
-	int	l_y;
-	int	sum;
-
-	i = 0;
-	l_x = 0;
-	l_y = 0;
-	sum = 0;
-	while (map[i])
-	{
-		if (is_valid_character(map[i]))
-		{
-			l_x++;
-			sum++;
-		}
-		else if(map[i] == '\n')
-		{
-			if (l_x > *x)
-				*x = l_x;
-			l_x = 0;
-			l_y++;
-		}
-		i++;
-	}
-	*y = l_y;
-	return (sum);
-}
 
 static unsigned long	ft_rgb_to_hex(int r, int g, int b)
 {
@@ -196,7 +130,7 @@ int	config_file_loader(t_data *data)
 	int		ret;
 	char	*map;
 
-	map_name = ft_strjoin("./src/maps/", data->map_name);
+	map_name = ft_strjoin("./src/map/maps/", data->map_name);
 	fd = open (map_name, O_RDONLY);
 	free (map_name);
 	if (fd < 0)
@@ -205,12 +139,7 @@ int	config_file_loader(t_data *data)
 		return (map_error());
 	if (!map_loader(data, &fd, &map))
 		return (map_error());
-	data->blocks_nbr = get_qtt_blk(&data->map_size[0], &data->map_size[1], data->map);
-	data->map_lined = remove_lnbrk(data, data->map);
-	show_map(data->map);
-	write(1, "\n\n", 2);
-	show_map(data->map_lined);
-/* 	if (!parse_config_file(data))
-		return (map_error()); */
+	if (!parse_config_file(data))
+		return (map_error());
 	return (1);
 }
