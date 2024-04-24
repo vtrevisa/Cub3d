@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   r_utils3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 20:00:33 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/17 12:43:40 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:58:25 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	while_no_wallh(t_data *data, t_ray *r)
 {
 	r->mx = (int)(r->ray_x) / data->size_y;
 	r->my = (int)(r->ray_y) / data->size_y;
-	r->mp = r->my * data->map_size[0] + r->mx + 1;
+	r->mp = r->my * data->map_size[0] + r->mx;
 	if (r->mp > 0 && r->mp < (data->map_size[0] * data->map_size[1]) \
 		&& data->map_lined[r->mp] == '1')
 	{
