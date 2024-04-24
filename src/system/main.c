@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/24 15:52:36 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:34:50 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		return (-1);
+	
 	ft_bzero(&data, sizeof(t_data));
 	if (!init_all(&data, argc, argv))
-		black_hole(&data);
+		return (-1);
 	display(&data);
 	get_hook(&data);
 	mlx_loop(data.mlx);

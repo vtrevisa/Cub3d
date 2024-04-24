@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:31:44 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/16 19:32:59 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:42:17 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	while_no_wallv(t_data *data, t_ray *r)
 {
 	r->mx = (int)(r->ray_x) / data->size_y;
 	r->my = (int)(r->ray_y) / data->size_y;
-	r->mp = r->my * data->mp_sz[0] + r->mx;
-	if (r->mp > 0 && r->mp < (data->mp_sz[0] * data->mp_sz[1]) \
+	r->mp = r->my * data->map_size[0] + r->mx;
+	if (r->mp > 0 && r->mp < (data->map_size[0] * data->map_size[1]) \
 		&& data->map_lined[r->mp] == '1')
 	{
 		r->vy = r->ray_y;

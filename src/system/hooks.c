@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/15 17:01:06 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:51:51 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	movement(int key, t_data *data)
 	else if (key == A)
 		if_a(data);
 	else if (key == 65307)
-		black_hole(data);
+		exit_mlx(data);
 	data->player_x += (int) x;
 	data->player_y += (int) y;
 	display(data);

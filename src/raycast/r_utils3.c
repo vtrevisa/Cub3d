@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   r_utils3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 20:00:33 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/24 15:52:36 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:43:40 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	draw3d(t_data *data, t_ray *r)
 	r->ini_y = (int)r->lineO;
 	r->size_x = 4;
 	r->size_y = (int)r->lineH;
-	draw_3d_quadrilaters(r, data);
+	draw_quadrilaters(r->ini_x, r->ini_y, r->size_x, r->size_y, data, r->color);
 	refresh(data);
 	r->r_angle += DR;
 	if (r->r_angle < 0)
