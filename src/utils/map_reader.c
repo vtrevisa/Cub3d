@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/17 21:28:44 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:58:14 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ char	*remove_lnbrk(t_data *data, char *str)
 	char	*ret;
 	int		i;
 	int		j;
+	int		si;
 
 	i = 0;
 	j = 0;
+	si = 0;
 	ret = malloc (sizeof (char) * data->max_x);
 	while (str[i])
 	{
@@ -28,9 +30,19 @@ char	*remove_lnbrk(t_data *data, char *str)
 			ret[j] = str[i];
 			j++;
 			i++;
+			si++;
 		}
-		else
+		if (str[i] == '\n')
+		{
+			while (si < data->map_size[0])
+			{
+				ret[j] = '.';
+				j++;
+				si++;
+			}
 			i++;
+			si = 0;
+		}
 	}
 	return (ret);
 }
@@ -39,7 +51,7 @@ static int	is_valid_character(char c)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (1);
-	else if (c == '1' || c == '2')
+	else if (c == '1' || c == '0')
 		return (1);
 	else if (c == ' ')
 		return (1);
