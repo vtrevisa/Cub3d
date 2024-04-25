@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   square.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:50:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/08 18:15:30 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:41:26 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,4 @@ void	draw_quadrilaters(int initial_x, int initial_y, int size_x, int size_y, t_d
 		}
 		initial_y++;
 	}
-}
-
-void	dda(int x1, int x2, int y1, int y2, int col, t_data *data)
-{
-	int step;
-	float x, y, xinc, yinc;
-	step = fabs (x2 - x1);
-	if (fabs (y2 - y1) > step)
-		step = fabs (y2 - y1);
-	xinc = (x2 - x1)/step;
-	yinc = (y2 - y1)/step;
-	x = x1;
-	y = y1;
-	while (x < x2)
-	{
-		draw_quadrilaters((int)fabs (x), (int)fabs (y), 2, 2, data, col);
-		x = x + xinc;
-		y = y + yinc;
-	}
-	refresh (data);
 }

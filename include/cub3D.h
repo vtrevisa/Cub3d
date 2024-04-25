@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/16 21:15:37 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:09:25 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,8 +157,7 @@ void	show_map_nbr(char *map);
 
 //--RAYCAST--
 	//R_UTILS
-	double	dist(t_data *data, double bx, double by, double ang);
-	//double	dist(double ax, double ay, double bx, double by, double ang);
+	double	dist(t_data *data, double bx, double by);
 	void	set_parameters(t_data *data, t_ray *r);
 	void	set_parameters2(t_data *data, t_ray *r);
 	void	lking_up(t_data *data, t_ray *r);
@@ -169,7 +168,7 @@ void	show_map_nbr(char *map);
 	void	lking_r(t_data *data, t_ray *r);
 	void	lking_l(t_data *data, t_ray *r);
 	void	while_no_wallv(t_data *data, t_ray *r);
-	void	att_dist(t_data *data, t_ray *r);
+	void	att_dist(t_ray *r);
 	//R_UTILS3
 	void	draw3d(t_data *data, t_ray *r);
 

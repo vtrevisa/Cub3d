@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:21:10 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/23 19:09:06 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:06:43 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	draw_player(t_data *data)
 {
-	int	temp;
-	
 	/* write(1, "ok1\n", 4); */
 	draw_quadrilaters(data->player_x, data->player_y, 10, 10, data, 0xffff00);
 	/* this makes a square to orbitate the player square somehow, its fun*/

@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 20:00:33 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/24 16:58:25 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:09:37 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	while_no_wallh(t_data *data, t_ray *r)
 	{
 		r->hy = r->ray_y;
 		r->hx = r->ray_x;
-		r->disH = dist(data, r->hx, r->hy, r->r_angle);
+		r->disH = dist(data, r->hx, r->hy);
 		r->dof = 8;
 	}
 	else

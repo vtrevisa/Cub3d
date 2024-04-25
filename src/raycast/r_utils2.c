@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   r_utils2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:31:44 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/08 17:42:17 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:09:11 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	while_no_wallv(t_data *data, t_ray *r)
 	{
 		r->vy = r->ray_y;
 		r->vx = r->ray_x;
-		r->disV = dist(data, r->vx, r->vy, r->r_angle);
+		r->disV = dist(data, r->vx, r->vy);
 		r->dof = 8;
 	}
 	else
@@ -59,7 +59,7 @@ void	while_no_wallv(t_data *data, t_ray *r)
 	}
 }
 
-void	att_dist(t_data *data, t_ray *r)
+void	att_dist(t_ray *r)
 {
 	if (r->disV < r->disH)
 	{

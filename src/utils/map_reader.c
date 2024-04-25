@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/24 17:58:14 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:10:02 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,6 @@ int	config_file_loader(t_data *data)
 {
 	int		fd;
 	char	*map_name;
-	int		ret;
 	char	*map;
 
 	map_name = ft_strjoin("./src/maps/", data->map_name);

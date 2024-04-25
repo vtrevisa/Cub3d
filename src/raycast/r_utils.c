@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   r_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:47:34 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/08 17:42:22 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:07:15 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-double	dist(t_data *data, double bx, double by, double ang)
+double	dist(t_data *data, double bx, double by)
 {
 	int	ax;
 	int	ay;

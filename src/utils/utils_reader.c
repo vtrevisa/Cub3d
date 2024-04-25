@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_reader.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 20:34:06 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/04 18:01:52 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:10:26 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,44 +72,5 @@ int	check_dir_facing(char c, t_data *data, int i, int l)
 	data->flag = 1;
 	data->player_x = i;
 	data->player_y = l;
-}
-
-static int	check_map(char *str, t_data *data, int l)
-{
-	int		i;
-	char	c;
-	int		j;
-
-	j = 0;
-	i = 0;
-	while (str[i + j])
-	{
-		c = str[i + j];
-		if (c == '1' || c == '0')
-			i++;
-		else if (c == 'S' || c == 'W' || c == 'N' || c == 'E')
-		{
-			check_dir_facing(c, data, i, l);
-			i++;
-		}
-		else if (c == ' ')
-			j++;
-		else if (c == '\n' || c == '\0')
-			return (1);
-		else
-			return (map_error());
-	}
-	return (0);
-}
-
-char	*cat_map(t_data *data, char **tmp, int fd, int l)
-{
-	char	*tmpns;
-
-	if (check_map(*tmp, data, l) < 0)
-		exit (-1);
-	tmpns = remove_space(data, *tmp);
-	data->map = ft_strjoin(data->map, tmpns);
-	free(*tmp);
-	*tmp = get_next_line(fd);
+	return (1);
 }

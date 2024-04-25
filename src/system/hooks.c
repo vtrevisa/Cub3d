@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/08 17:51:51 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:09:51 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	if_a(t_data *data)
 
 static int	movement(int key, t_data *data)
 {
-	int		factor;
 	double	x;
 	double	y;
 
@@ -62,6 +61,7 @@ static int	movement(int key, t_data *data)
 	data->player_x += (int) x;
 	data->player_y += (int) y;
 	display(data);
+	return (0);
 }
 
 void	get_hook(t_data *data)

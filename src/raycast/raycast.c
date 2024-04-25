@@ -12,20 +12,6 @@
 
 #include "../../include/cub3D.h"
 
-static void	check_horizon(t_data *data, t_ray *r)
-{
-	if (r->r_angle > PI)
-		lking_up(data, r);
-	if (r->r_angle < PI)
-		lking_down(data, r);
-	if (r->r_angle == PI || r->r_angle == 0)
-	{
-		r->ray_y = data->player_y;
-		r->ray_x = data->player_x;
-		r->dof = 8;
-	}
-}
-
 void	check_vertical(t_data *data, t_ray *r)
 {
 	if (r->r_angle > P2 && r->r_angle < P3)
@@ -112,7 +98,7 @@ void	drawrays3d(t_data *data)
 			{
 				hx = rx;
 				hy = ry;
-				disH = dist(data, hx, hy, ra);
+				disH = dist(data, hx, hy);
 				dof = max_view;
 			/* ft_printf("Getting wall at: %d:%d\nFrom map[%d] = %c\n", mx, my, mp, data->map_lined[mp]);*/
 			}
@@ -158,7 +144,7 @@ void	drawrays3d(t_data *data)
 			{
 				vx = rx;
 				vy = ry;
-				disV = dist(data, vx, vy, ra);
+				disV = dist(data, vx, vy);
 				dof = max_view;
 			}
 			else
