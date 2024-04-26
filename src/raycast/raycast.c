@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/04/26 12:09:04 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:36:49 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,158 +14,147 @@
 
 void	drawrays3d(t_data *data)
 {
-	int		max_view;
-	double	aTan;
-	double	nTan;
-	int		color;
-	double	ca;
-	double	lineH;
-	double	lineO;
-	int		ray_widht;
-
-	int r, mx, my, mp, dof, hx, hy, vx, vy;
-	double rx, ry, ra, xo, yo, disH, disV, disT;
 	if (data->map_size[0] > data->map_size[1])
-		max_view = data->map_size[0];
+		data->ray.max_view = data->map_size[0];
 	else
-		max_view = data->map_size[1];
-	ra = data->p_angle - DR * 30;
-	if (ra < 0)
-		ra += 2 * PI;
-	if (ra > 2 * PI)
-		ra -= 2 * PI;
-	for (r = 0; r < 60; r++)
+		data->ray.max_view = data->map_size[1];
+	data->ray.ra = data->p_angle - DR * 30;
+	if (data->ray.ra < 0)
+		data->ray.ra += 2 * PI;
+	if (data->ray.ra > 2 * PI)
+		data->ray.ra -= 2 * PI;
+	for (data->ray.r = 0; data->ray.r < 60; data->ray.r++)
 	{
-		dof = 0;
-		disH = 1000000;
-		hx = data->player_x;
-		hy = data->player_y;
-		aTan = -1 / tan(ra);
-		if (ra > PI)
+		data->ray.dof = 0;
+		data->ray.disH = 1000000;
+		data->ray.hx = data->player_x;
+		data->ray.hy = data->player_y;
+		data->ray.aTan = -1 / tan(data->ray.ra);
+		if (data->ray.ra > PI)
 		{
-			ry = (((data->player_y) / data->cube_size) * data->cube_size)
+			data->ray.ry = (((data->player_y) / data->cube_size) * data->cube_size)
 				- 0.0001;
-			rx = (data->player_y - ry) * aTan + data->player_x;
-			yo = -data->cube_size;
-			xo = -yo * aTan;
+			data->ray.rx = (data->player_y - data->ray.ry) * data->ray.aTan + data->player_x;
+			data->ray.yo = -data->cube_size;
+			data->ray.xo = -data->ray.yo * data->ray.aTan;
 		}
-		if (ra < PI)
+		if (data->ray.ra < PI)
 		{
-			ry = (((data->player_y) / data->cube_size) * data->cube_size)
+			data->ray.ry = (((data->player_y) / data->cube_size) * data->cube_size)
 				+ data->cube_size;
-			rx = (data->player_y - ry) * aTan + data->player_x;
-			yo = data->cube_size;
-			xo = -yo * aTan;
+			data->ray.rx = (data->player_y - data->ray.ry) * data->ray.aTan + data->player_x;
+			data->ray.yo = data->cube_size;
+			data->ray.xo = -data->ray.yo * data->ray.aTan;
 		}
-		if (ra == 0 || ra == PI)
+		if (data->ray.ra == 0 || data->ray.ra == PI)
 		{
-			rx = data->player_x;
-			ry = data->player_y;
-			dof = max_view;
+			data->ray.rx = data->player_x;
+			data->ray.ry = data->player_y;
+			data->ray.dof = data->ray.max_view;
 		}
-		while (dof < max_view)
+		while (data->ray.dof < data->ray.max_view)
 		{
-			mx = (int)rx / data->cube_size;
-			my = (int)ry / data->cube_size;
-			mp = my * data->map_size[0] + mx;
-			if (mp > 0 && mp < data->map_size[0] * data->map_size[1]
-				&& data->map_lined[mp] == '1')
+			data->ray.mx = (int)data->ray.rx / data->cube_size;
+			data->ray.my = (int)data->ray.ry / data->cube_size;
+			data->ray.mp = data->ray.my * data->map_size[0] + data->ray.mx;
+			if (data->ray.mp > 0 && data->ray.mp < data->map_size[0] * data->map_size[1]
+				&& data->map_lined[data->ray.mp] == '1')
 			{
-				hx = rx;
-				hy = ry;
-				disH = dist(data, hx, hy);
-				dof = max_view;
+				data->ray.hx = data->ray.rx;
+				data->ray.hy = data->ray.ry;
+				data->ray.disH = dist(data, data->ray.hx, data->ray.hy);
+				data->ray.dof = data->ray.max_view;
 			}
 			else
 			{
-				rx += xo;
-				ry += yo;
-				dof += 1;
+				data->ray.rx += data->ray.xo;
+				data->ray.ry += data->ray.yo;
+				data->ray.dof += 1;
 			}
 		}
-		dof = 0;
-		disV = 1000000;
-		vx = data->player_x;
-		vy = data->player_y;
-		nTan = -tan(ra);
-		if (ra > P2 && ra < P3)
+		data->ray.dof = 0;
+		data->ray.disV = 1000000;
+		data->ray.vx = data->player_x;
+		data->ray.vy = data->player_y;
+		data->ray.nTan = -tan(data->ray.ra);
+		if (data->ray.ra > P2 && data->ray.ra < P3)
 		{
-			rx = (((int)data->player_x / data->cube_size) * data->cube_size)
+			data->ray.rx = (((int)data->player_x / data->cube_size) * data->cube_size)
 				- 0.0001;
-			ry = (data->player_x - rx) * nTan + data->player_y;
-			xo = -data->cube_size;
-			yo = -xo * nTan;
+			data->ray.ry = (data->player_x - data->ray.rx) * data->ray.nTan + data->player_y;
+			data->ray.xo = -data->cube_size;
+			data->ray.yo = -data->ray.xo * data->ray.nTan;
 		}
-		if (ra < P2 || ra > P3)
+		if (data->ray.ra < P2 || data->ray.ra > P3)
 		{
-			rx = (((int)data->player_x / data->cube_size) * data->cube_size)
+			data->ray.rx = (((int)data->player_x / data->cube_size) * data->cube_size)
 				+ data->cube_size;
-			ry = (data->player_x - rx) * nTan + data->player_y;
-			xo = data->cube_size;
-			yo = -xo * nTan;
+			data->ray.ry = (data->player_x - data->ray.rx) * data->ray.nTan + data->player_y;
+			data->ray.xo = data->cube_size;
+			data->ray.yo = -data->ray.xo * data->ray.nTan;
 		}
-		if (ra == 0 || ra == PI)
+		if (data->ray.ra == 0 || data->ray.ra == PI)
 		{
-			rx = data->player_x;
-			ry = data->player_y;
-			dof = max_view;
+			data->ray.rx = data->player_x;
+			data->ray.ry = data->player_y;
+			data->ray.dof = data->ray.max_view;
 		}
-		while (dof < max_view)
+		while (data->ray.dof < data->ray.max_view)
 		{
-			mx = (int)rx / data->cube_size;
-			my = (int)ry / data->cube_size;
-			mp = my * data->map_size[0] + mx;
-			if (mp > 0 && mp < data->map_size[0] * data->map_size[1]
-				&& data->map_lined[mp] == '1')
+			data->ray.mx = (int)data->ray.rx / data->cube_size;
+			data->ray.my = (int)data->ray.ry / data->cube_size;
+			data->ray.mp = data->ray.my * data->map_size[0] + data->ray.mx;
+			if (data->ray.mp > 0 && data->ray.mp < data->map_size[0] * data->map_size[1]
+				&& data->map_lined[data->ray.mp] == '1')
 			{
-				vx = rx;
-				vy = ry;
-				disV = dist(data, vx, vy);
-				dof = max_view;
+				data->ray.vx = data->ray.rx;
+				data->ray.vy = data->ray.ry;
+				data->ray.disV = dist(data, data->ray.vx, data->ray.vy);
+				data->ray.dof = data->ray.max_view;
 			}
 			else
 			{
-				rx += xo;
-				ry += yo;
-				dof += 1;
+				data->ray.rx += data->ray.xo;
+				data->ray.ry += data->ray.yo;
+				data->ray.dof += 1;
 			}
 		}
-		if (disV < disH)
+		if (data->ray.disV < data->ray.disH)
 		{
-			rx = vx;
-			ry = vy;
-			disT = disV;
-			color = 0x008000;
+			data->ray.rx = data->ray.vx;
+			data->ray.ry = data->ray.vy;
+			data->ray.disT = data->ray.disV;
+			data->ray.color = 0x008000;
 		}
 		else
 		{
-			rx = hx;
-			ry = hy;
-			disT = disH;
-			color = 0x006400;
+			data->ray.rx = data->ray.hx;
+			data->ray.ry = data->ray.hy;
+			data->ray.disT = data->ray.disH;
+			data->ray.color = 0x006400;
 		}
-		ra += DR;
-		if (ra < 0)
-			ra += 2 * PI;
-		if (ra > 2 * PI)
-			ra -= 2 * PI;
-		ca = data->p_angle - ra;
-		if (ca < 0)
-			ca += 2 * PI;
-		if (ca > 2 * PI)
-			ca -= 2 * PI;
-		disT *= cos(ca);
-		lineH = (data->cube_size * 320) / disT;
-		if (lineH > 500)
-			lineH = 500;
-		lineO = 250 - lineH / 2;
-		ray_widht = (data->max_x / 2) / 60;
-		draw_quadrilaters(((r + 1) * ray_widht) + (data->max_x / 2) + 30,
-							(int)lineO,
-							ray_widht + 1,
-							(int)lineH,
+		data->ray.ra += DR;
+		if (data->ray.ra < 0)
+			data->ray.ra += 2 * PI;
+		if (data->ray.ra > 2 * PI)
+			data->ray.ra -= 2 * PI;
+		data->ray.ca = data->p_angle - data->ray.ra;
+		if (data->ray.ca < 0)
+			data->ray.ca += 2 * PI;
+		if (data->ray.ca > 2 * PI)
+			data->ray.ca -= 2 * PI;
+		data->ray.disT *= cos(data->ray.ca);
+		data->ray.lineH = (data->cube_size * 320) / data->ray.disT;
+		if (data->ray.lineH > 500)
+			data->ray.lineH = 500;
+		data->ray.lineO = 250 - data->ray.lineH / 2;
+		data->ray.ray_widht = (data->max_x / 2) / 60;
+		draw_quadrilaters(((data->ray.r + 1) * data->ray.ray_widht) + (data->max_x / 2) + 30,
+							(int)data->ray.lineO,
+							data->ray.ray_widht + 1,
+							(int)data->ray.lineH,
 							data,
-							color);
+							data->ray.color);
 		refresh(data);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/25 20:10:02 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:38:13 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,9 +218,9 @@ int	config_file_loader(t_data *data)
 		return (map_error());
 	data->blocks_nbr = get_qtt_blk(&data->map_size[0], &data->map_size[1], data->map);
 	data->map_lined = remove_lnbrk(data, data->map);
-	show_map(data->map);
-	write(1, "\n\n", 2);
-	show_map(data->map_lined);
+	// show_map(data->map);
+	// write(1, "\n\n", 2);
+	// show_map(data->map_lined);
 /* 	if (!parse_config_file(data))
 		return (map_error()); */
 	return (1);

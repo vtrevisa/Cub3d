@@ -6,11 +6,10 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/26 12:13:24 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:41:02 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//FOR TEST
 #include "../Libft/Include/libft.h"
 #include "../mlx_linux/mlx.h"
 #include "../mlx_linux/mlx_int.h"
@@ -39,42 +38,37 @@ typedef struct s_col
 	char			tmp;
 }					t_col;
 
-// typedef struct	s_ray //2 screen
-// {
-// 	//3rd p
-// 	double	disH;
-// 	double	disV;
-// 	double	hx;
-// 	double	hy;
-// 	double	aTan;
-// 	double	ray_x;
-// 	double	ray_y;
-// 	double	r_angle;
-// 	double	rx_offset;
-// 	double	ry_offset;
-// 	double	disT;
-// 	double	vx;
-// 	double	vy;
-// 	double	nTan;
-// 	int		ray;
-// 	int		mx;
-// 	int		my;
-// 	int		mp;
-// 	int		dof;
-// 	int		color;
-// 	double	ca;
-// 	double	lineH;
-// 	double	lineO;
-// 	int		ini_x;
-// 	int		ini_y;
-// 	int		size_x;
-// 	int		size_y;
-
-// }	t_ray;
+typedef struct s_ray //2 screen
+{
+	int max_view;
+	double aTan;
+	double nTan;
+	int color;
+	double ca;
+	double lineH;
+	double lineO;
+	int ray_widht;
+	int r;
+	int mx;
+	int my;
+	int mp;
+	int dof;
+	int hx;
+	int hy;
+	int vx;
+	int vy;
+	double rx;
+	double ry;
+	double ra;
+	double xo;
+	double yo;
+	double disH;
+	double disV;
+	double disT;
+}					t_ray;
 
 typedef struct s_data
 {
-	//MAP CREATION
 	int				initial_x;
 	int				initial_y;
 	int				size_x;
@@ -82,7 +76,6 @@ typedef struct s_data
 	int				cube_size;
 	int				x;
 	int				y;
-	//MLX PARAMETERS
 	void			*img;
 	char			*addr;
 	int				bits_per_pixel;
@@ -90,31 +83,27 @@ typedef struct s_data
 	int				endian;
 	void			*mlx;
 	void			*win;
-	//DONT REMMEBER WHAT IT IS
 	int				max_x;
 	int				max_y;
-	//MAP INFO
 	char			*map_name;
 	char			*map;
 	char			*map_lined;
 	int				map_size[2];
 	int				blocks_nbr;
-	int flag; //char if 1 player pos
+	int				flag;
 	char			upg;
-	//PLAYER POSITION AND MOVEMENT
 	int				player_x;
 	int				player_y;
 	double			p_deltX;
 	double			p_deltY;
 	double			p_angle;
 	char			player_dir;
-	// CONFIGS
 	char			*textures[4];
 	unsigned long	color_c;
 	unsigned long	color_f;
 	int				col_ok;
 	int				txt_ok;
-
+	t_ray			ray;
 }					t_data;
 
 void				draw_map(t_data *data);
