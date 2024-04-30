@@ -15,7 +15,7 @@ SRC 		= $(INI) $(MAP) $(RAY) $(SYS) $(UTI) $(MSG)
 
 INI			= init.c
 MAP			= draw_map.c player.c square.c
-RAY			= raycast.c r_utils.c
+RAY			= raycast.c raycast_second.c r_utils.c
 SYS			= hooks.c main.c
 UTI			= utils.c map_reader.c utils_reader.c
 MSG			= msg.c

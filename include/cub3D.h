@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/26 12:41:02 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:29:57 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_ray //2 screen
 	double ca;
 	double lineH;
 	double lineO;
-	int ray_widht;
+	int ray_width;
 	int r;
 	int mx;
 	int my;
@@ -143,3 +143,4 @@ int					exit_mlx(t_data *data);
 int					get_quantity_blocks(int *x, int *y, char *map_name);
 char				*cat_map(t_data *data, char **tmp, int fd, int l);
 int					config_file_loader(t_data *data);
+void				drawrays3d_second(t_data *data);
