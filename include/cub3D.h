@@ -47,7 +47,7 @@ typedef struct s_ray //2 screen
 	double ca;
 	double lineH;
 	double lineO;
-	int ray_widht;
+	int ray_width;
 	int r;
 	int mx;
 	int my;
@@ -149,5 +149,6 @@ int					parse_config_file(t_data *data);
 int					txt_fail(void);
 int					col_fail(void);
 int					map_error_here(int index);
-void	show_map_array(char **map, int	ln);
-int	is_valid_character(char c);
+void        show_map_array(char **map, int	ln);
+int         is_valid_character(char c);
+void				drawrays3d_second(t_data *data);

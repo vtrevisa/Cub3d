@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:47:34 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/26 12:09:28 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:50:30 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ double	dist(t_data *data, double bx, double by)
 
 	ax = data->player_x;
 	ay = data->player_y;
-	return (sqrt ((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
+	return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
 }
