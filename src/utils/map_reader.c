@@ -3,14 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/26 12:38:13 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/01 13:01:20 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+char	**fill_map_array(t_data *data)
+{
+	char	**ret;
+	int		x;
+	int		y;
+	int		i;
+
+	i = 0;
+	y = -1;
+	ret = malloc (sizeof (char *) * data->map_size[1]);
+	while (++y <= data->map_size[1])
+	{
+		x = -1;
+		ret[y] = malloc (data->map_size[0] + 1);
+		while (++x < data->map_size[0])
+		{
+			ret[y][x] = data->map_lined[i];
+			i++;
+		}
+		ret[y][x] = '\0';
+	}
+	return (ret);
+}
 
 char	*remove_lnbrk(t_data *data, char *str)
 {
@@ -36,7 +60,7 @@ char	*remove_lnbrk(t_data *data, char *str)
 		{
 			while (si < data->map_size[0])
 			{
-				ret[j] = '.';
+				ret[j] = ' ';
 				j++;
 				si++;
 			}
@@ -47,7 +71,7 @@ char	*remove_lnbrk(t_data *data, char *str)
 	return (ret);
 }
 
-static int	is_valid_character(char c)
+int	is_valid_character(char c)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (1);
@@ -110,7 +134,7 @@ static int	load_textures(t_data *data, char *str, char dir)
 	data->textures[i] = ft_strdup(str);
 	if (!data->textures[i])
 		return (0);
-	data->txt_ok = 1;
+	data->txt_ok += 1;
 	return (1);
 }
 
@@ -140,7 +164,7 @@ static int	load_color_cf(t_data *data, char *str, char place)
 		data->color_c = 1;
 	if (data->color_f == 0)
 		data->color_f = 1;
-	data->col_ok = 1;
+	data->col_ok += 1;
 	return (1);
 }
 
@@ -218,10 +242,8 @@ int	config_file_loader(t_data *data)
 		return (map_error());
 	data->blocks_nbr = get_qtt_blk(&data->map_size[0], &data->map_size[1], data->map);
 	data->map_lined = remove_lnbrk(data, data->map);
-	// show_map(data->map);
-	// write(1, "\n\n", 2);
-	// show_map(data->map_lined);
-/* 	if (!parse_config_file(data))
-		return (map_error()); */
+	data->map_array = fill_map_array(data);
+	if (!parse_config_file(data))
+		return (map_error());
 	return (1);
 }

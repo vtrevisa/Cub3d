@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/03/19 13:58:34 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/04/29 19:41:09 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,42 @@ void	show_map_nbr(char *map)
 			ft_printf("  ");
 		else if (i >= 10 && i < 100)
 			ft_printf(" ");
+	}
+}
+
+int	txt_fail(void)
+{
+	ft_printf(RED);
+	ft_printf("Texture load error\n");
+	ft_printf(WHITE);
+	return (0);
+}
+
+int	col_fail(void)
+{
+	ft_printf(RED);
+	ft_printf("Texture load error\n");
+	ft_printf(WHITE);
+	return (0);
+}
+
+int	map_error_here(int index)
+{
+	ft_printf(RED);
+	ft_printf("Map error at data->map[%d]", index);
+	ft_printf(WHITE);
+
+	return (0);
+}
+
+void	show_map_array(char **map, int	ln)
+{
+	int	i;
+
+	i = 0;
+	while (i <= ln)
+	{
+		ft_printf("%s\n", map[i]);
+		i++;
 	}
 }

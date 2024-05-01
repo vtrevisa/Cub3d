@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/26 12:41:38 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/04/29 18:24:01 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	init_params(t_data *data, int argc, char **argv)
 	data->upg = 0;
 	data->max_x = 1024;
 	data->max_y = 512;
+	data->col_ok = 0;
+	data->txt_ok = 0;
 	return (1);
 }
 
