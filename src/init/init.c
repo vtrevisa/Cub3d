@@ -6,11 +6,24 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/29 18:24:01 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:58:09 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+int	get_p_angle(char dir)
+{
+	if (dir == 'N')
+		return (3);
+	if (dir == 'S')
+		return (1);
+	if (dir == 'E')
+		return (0);
+	if (dir == 'W')
+		return (2);
+	return (0);
+}
 
 int	init_params(t_data *data, int argc, char **argv)
 {
@@ -58,7 +71,7 @@ int	init_map(t_data *data)
 	data->x = 0;
 	data->y = 0;
 	data->flag = 0;
-	data->p_angle = PI + P2;
+	data->p_angle = (PI/2) * get_p_angle(data->player_dir);
 	data->p_deltX = cos (data->p_angle) * 5;
 	data->p_deltY = sin (data->p_angle) * 5;
 	return (1);

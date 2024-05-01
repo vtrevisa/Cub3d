@@ -1,5 +1,5 @@
 NAME		= cub3D
-CFLAGS      = -g #-Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror -g
 LFLAGS      = -lmlx -lXext -lX11 -lm -lz
 
 VPATH		= $(addprefix $(SRC_D)/, $(DIRS))
