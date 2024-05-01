@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/30 16:29:57 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/01 13:01:29 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ typedef struct s_data
 	char			*map_name;
 	char			*map;
 	char			*map_lined;
+	char			**map_array;
+	char			*line_below;
 	int				map_size[2];
 	int				blocks_nbr;
 	int				flag;
@@ -143,4 +145,10 @@ int					exit_mlx(t_data *data);
 int					get_quantity_blocks(int *x, int *y, char *map_name);
 char				*cat_map(t_data *data, char **tmp, int fd, int l);
 int					config_file_loader(t_data *data);
+int					parse_config_file(t_data *data);
+int					txt_fail(void);
+int					col_fail(void);
+int					map_error_here(int index);
+void        show_map_array(char **map, int	ln);
+int         is_valid_character(char c);
 void				drawrays3d_second(t_data *data);
