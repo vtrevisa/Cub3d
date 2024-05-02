@@ -17,7 +17,7 @@ INI			= init.c
 MAP			= draw_map.c player.c square.c parser.c
 RAY			= raycast.c raycast_second.c r_utils.c
 SYS			= hooks.c main.c
-UTI			= utils.c map_reader.c utils_reader.c
+UTI			= utils.c map_reader.c
 MSG			= msg.c
 HEADERS		= ./include/cub3D.h
 

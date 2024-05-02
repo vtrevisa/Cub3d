@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/01 22:04:25 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:18:34 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 void	draw_background (t_data *data)
 {
-	//3d map ceiling and floor
-	draw_quadrilaters(0, 0, data->max_x, data->max_y/2, data, data->color_c);
-	draw_quadrilaters(0, data->max_y/2, data->max_x, data->max_y/2, data, data->color_f);
-	//black background of minimap
+	data->draw.initial_x = 0;
+	data->draw.initial_y = 0;
+	data->draw.size_x = data->max_x;
+	data->draw.size_y = data->max_y/2;
+	data->draw.color = data->color_c;
+	draw_quadrilaters_2(data);
+	data->draw.initial_y = data->max_y/2;
+	data->draw.color = data->color_f;
+	draw_quadrilaters_2(data);
 	refresh(data);
 }
 

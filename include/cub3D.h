@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/02 15:53:11 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:15:56 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,15 @@ typedef struct s_ray //2 screen
 	double disT;
 }					t_ray;
 
+typedef struct s_draw
+{
+	int				initial_x;
+	int				initial_y;
+	int				size_x;
+	int				size_y;
+	int				color;
+}					t_draw;
+
 typedef struct s_data
 {
 	int				initial_x;
@@ -108,22 +117,14 @@ typedef struct s_data
 	int				N_S;
 	int				E_W;
 	t_ray			ray;
+	t_draw			draw;
 }					t_data;
-
-typedef struct s_draw
-{
-	int				initial_x;
-	int				initial_y;
-	int				size_x;
-	int				size_y;
-	t_data			*data;
-	int				color;
-}					t_draw;
 
 void				draw_map(t_data *data);
 void				draw_background(t_data *data);
 void				draw_quadrilaters(int initial_x, int initial_y, int size_x,
 						int size_y, t_data *data, int color);
+void				draw_quadrilaters_2(t_data *data);
 void				draw_player(t_data *data);
 void				dda(int x1, int x2, int y1, int y2, int color,
 						t_data *data);
@@ -161,6 +162,6 @@ int					parse_config_file(t_data *data);
 int					txt_fail(void);
 int					col_fail(void);
 int					map_error_here(int index);
-void        show_map_array(char **map, int	ln);
-int         is_valid_character(char c);
+void				show_map_array(char **map, int ln);
+int					is_valid_character(char c);
 void				drawrays3d_second(t_data *data);
