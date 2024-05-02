@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/02 17:15:56 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:33:03 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,7 @@ typedef struct s_data
 
 void				draw_map(t_data *data);
 void				draw_background(t_data *data);
-void				draw_quadrilaters(int initial_x, int initial_y, int size_x,
-						int size_y, t_data *data, int color);
-void				draw_quadrilaters_2(t_data *data);
+void				draw_quadrilaters(t_data *data);
 void				draw_player(t_data *data);
 void				dda(int x1, int x2, int y1, int y2, int color,
 						t_data *data);

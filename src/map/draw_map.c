@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/02 17:23:38 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:32:01 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	draw_background (t_data *data)
 	data->draw.size_x = data->max_x;
 	data->draw.size_y = data->max_y/2;
 	data->draw.color = data->color_c;
-	draw_quadrilaters_2(data);
+	draw_quadrilaters(data);
 	data->draw.initial_y = data->max_y/2;
 	data->draw.color = data->color_f;
-	draw_quadrilaters_2(data);
+	draw_quadrilaters(data);
 	refresh(data);
 }
 
@@ -51,7 +51,7 @@ void	draw_map(t_data *data)
 			data->draw.size_x = data->size_x - 2;
 			data->draw.size_y = data->size_y - 2;
 			data->draw.color = 0x00FF0000;
-			draw_quadrilaters_2(data);
+			draw_quadrilaters(data);
 			i_x += data->size_x;
 		}
 		else if (c == '0')
@@ -61,7 +61,7 @@ void	draw_map(t_data *data)
 			data->draw.size_x = data->size_x - 2;
 			data->draw.size_y = data->size_y - 2;
 			data->draw.color = 0x666666;
-			draw_quadrilaters_2(data);
+			draw_quadrilaters(data);
 			i_x += data->size_x;
 		}
 		else if (c == 'W' || c == 'E' || c == 'N' || c == 'S')
@@ -71,7 +71,7 @@ void	draw_map(t_data *data)
 			data->draw.size_x = data->size_x - 2;
 			data->draw.size_y = data->size_y - 2;
 			data->draw.color = 0x00000000;
-			draw_quadrilaters_2(data);
+			draw_quadrilaters(data);
 			if (data->upg == 0)
 			{
 				data->player_x = i_x + center;

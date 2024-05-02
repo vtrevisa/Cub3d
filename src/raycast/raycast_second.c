@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/02 17:30:39 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:32:01 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	drawrays3d_second(t_data *data)
 	data->draw.size_x = data->ray.ray_width + 1;
 	data->draw.size_y = (int)data->ray.lineH;
 	data->draw.color = data->ray.color;
-	draw_quadrilaters_2(data);
+	draw_quadrilaters(data);
 	refresh(data);
 	data->ray.r++;
 }
