@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/01 21:54:15 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:03:10 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	init_params(t_data *data, int argc, char **argv)
 	data->max_y = 512;
 	data->col_ok = 0;
 	data->txt_ok = 0;
+	data->hold_r = 0;
+	data->hold_l = 0;
 	return (1);
 }
 
