@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/02 17:18:34 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:23:38 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,32 @@ void	draw_map(t_data *data)
 		{i_x += data->size_x;}
 		else if (c == '1')
 		{
-			draw_quadrilaters(i_x, i_y, data->size_x - 2, data->size_y - 2, data, 0x00FF0000);
+			data->draw.initial_x = i_x;
+			data->draw.initial_y = i_y;
+			data->draw.size_x = data->size_x - 2;
+			data->draw.size_y = data->size_y - 2;
+			data->draw.color = 0x00FF0000;
+			draw_quadrilaters_2(data);
 			i_x += data->size_x;
 		}
 		else if (c == '0')
 		{
-			draw_quadrilaters(i_x, i_y, data->size_x - 2, data->size_y - 2, data, 0x666666);
+			data->draw.initial_x = i_x;
+			data->draw.initial_y = i_y;
+			data->draw.size_x = data->size_x - 2;
+			data->draw.size_y = data->size_y - 2;
+			data->draw.color = 0x666666;
+			draw_quadrilaters_2(data);
 			i_x += data->size_x;
 		}
 		else if (c == 'W' || c == 'E' || c == 'N' || c == 'S')
 		{
-			draw_quadrilaters(i_x, i_y, data->size_x - 2, data->size_y - 2, data, 0x666666);
+			data->draw.initial_x = i_x;
+			data->draw.initial_y = i_y;
+			data->draw.size_x = data->size_x - 2;
+			data->draw.size_y = data->size_y - 2;
+			data->draw.color = 0x00000000;
+			draw_quadrilaters_2(data);
 			if (data->upg == 0)
 			{
 				data->player_x = i_x + center;

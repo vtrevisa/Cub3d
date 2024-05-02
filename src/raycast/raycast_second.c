@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_second.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/01 22:03:28 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:30:39 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,12 @@ void	drawrays3d_second(t_data *data)
 	check_vertical_ray_with_walls(data);
 	check_minor_distance_v_h(data);
 	calc_ray_situation(data);
-	draw_quadrilaters(((data->ray.r) * data->ray.ray_width) \
-		, (int)data->ray.lineO,
-		data->ray.ray_width + 1, (int)data->ray.lineH,
-		data, data->ray.color);
+	data->draw.initial_x = ((data->ray.r) * data->ray.ray_width);
+	data->draw.initial_y = (int)data->ray.lineO;
+	data->draw.size_x = data->ray.ray_width + 1;
+	data->draw.size_y = (int)data->ray.lineH;
+	data->draw.color = data->ray.color;
+	draw_quadrilaters_2(data);
 	refresh(data);
 	data->ray.r++;
 }
