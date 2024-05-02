@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/04/30 15:40:31 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/01 18:08:49 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	check_direction_ray(t_data *data)
 {
 	if (data->ray.ra > PI)
 	{
+		data->N_S = 1;
 		data->ray.ry = (((data->player_y) / data->cube_size) * data->cube_size)
 			- 0.0001;
 		data->ray.rx = (data->player_y - data->ray.ry) * data->ray.aTan
@@ -48,6 +49,7 @@ static void	check_direction_ray(t_data *data)
 	}
 	if (data->ray.ra < PI)
 	{
+		data->N_S = 0;
 		data->ray.ry = (((data->player_y) / data->cube_size) * data->cube_size)
 			+ data->cube_size;
 		data->ray.rx = (data->player_y - data->ray.ry) * data->ray.aTan

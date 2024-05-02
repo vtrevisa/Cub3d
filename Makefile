@@ -3,7 +3,7 @@ CFLAGS      = -Wall -Wextra -Werror -g
 LFLAGS      = -lmlx -lXext -lX11 -lm -lz
 
 VPATH		= $(addprefix $(SRC_D)/, $(DIRS))
-MAPA 			= map_pdf.cub
+MAPA 		= map_pdf.cub
 LIB			= $(addprefix $(LPATH)/, libft.a)
 LPATH		= ./Libft
 SRC_D		= ./src
@@ -14,7 +14,7 @@ LIB_INC_D	= $(LPATH)/Include
 SRC 		= $(INI) $(MAP) $(RAY) $(SYS) $(UTI) $(MSG)
 
 INI			= init.c
-MAP			= draw_map.c player.c square.c
+MAP			= draw_map.c player.c square.c parser.c
 RAY			= raycast.c raycast_second.c r_utils.c
 SYS			= hooks.c main.c
 UTI			= utils.c map_reader.c utils_reader.c

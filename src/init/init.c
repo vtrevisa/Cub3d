@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/26 12:41:38 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/01 21:54:15 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+int	get_p_angle(char dir)
+{
+	if (dir == 'N')
+		return (3);
+	if (dir == 'S')
+		return (1);
+	if (dir == 'E')
+		return (0);
+	if (dir == 'W')
+		return (2);
+	return (0);
+}
 
 int	init_params(t_data *data, int argc, char **argv)
 {
@@ -21,6 +34,8 @@ int	init_params(t_data *data, int argc, char **argv)
 	data->upg = 0;
 	data->max_x = 1024;
 	data->max_y = 512;
+	data->col_ok = 0;
+	data->txt_ok = 0;
 	return (1);
 }
 
@@ -46,7 +61,7 @@ int	init_map(t_data *data)
 		exit (-1);
 	data->initial_x = 0;
 	data->initial_y = 0;
-	data->size_x = ((data->max_x / 2) - 10) / data->map_size[0];
+	data->size_x = ((data->max_x / 4) - 10) / data->map_size[0];
 	data->size_y = data->max_y / data->map_size[1];
 	if (data->size_x < data->size_y)
 		data->size_y = data->size_x;
@@ -56,7 +71,7 @@ int	init_map(t_data *data)
 	data->x = 0;
 	data->y = 0;
 	data->flag = 0;
-	data->p_angle = PI + P2;
+	data->p_angle = (PI/2) * get_p_angle(data->player_dir);
 	data->p_deltX = cos (data->p_angle) * 5;
 	data->p_deltY = sin (data->p_angle) * 5;
 	return (1);

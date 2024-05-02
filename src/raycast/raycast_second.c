@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_second.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/04/30 16:30:37 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/01 22:03:28 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	check_vertical_ray_is_true(t_data *data)
 {
 	if (data->ray.ra > P2 && data->ray.ra < P3)
 	{
+		data->E_W = 0;
 		data->ray.rx = (((int)data->player_x / data->cube_size)
 				* data->cube_size) - 0.0001;
 		data->ray.ry = (data->player_x - data->ray.rx) * data->ray.nTan
@@ -25,6 +26,7 @@ static void	check_vertical_ray_is_true(t_data *data)
 	}
 	if (data->ray.ra < P2 || data->ray.ra > P3)
 	{
+		data->E_W = 1;
 		data->ray.rx = (((int)data->player_x / data->cube_size)
 				* data->cube_size) + data->cube_size;
 		data->ray.ry = (data->player_x - data->ray.rx) * data->ray.nTan
@@ -71,14 +73,20 @@ static void	check_minor_distance_v_h(t_data *data)
 		data->ray.rx = data->ray.vx;
 		data->ray.ry = data->ray.vy;
 		data->ray.disT = data->ray.disV;
-		data->ray.color = 0x008000;
+		if (data->E_W == 0)
+			data->ray.color = 0x008000;
+		if (data->E_W == 1)
+			data->ray.color = 0xFF5A36;
 	}
 	else
 	{
 		data->ray.rx = data->ray.hx;
 		data->ray.ry = data->ray.hy;
 		data->ray.disT = data->ray.disH;
-		data->ray.color = 0x006400;
+		if (data->N_S == 0)
+			data->ray.color = 0x4B0082;
+		if (data->N_S == 1)
+			data->ray.color = 0x8B0000;
 	}
 }
 
@@ -99,7 +107,7 @@ static void	calc_ray_situation(t_data *data)
 	if (data->ray.lineH > 500)
 		data->ray.lineH = 500;
 	data->ray.lineO = 250 - data->ray.lineH / 2;
-	data->ray.ray_width = (data->max_x / 2) / 60;
+	data->ray.ray_width = data->max_x / 60;
 }
 
 void	drawrays3d_second(t_data *data)
@@ -108,8 +116,8 @@ void	drawrays3d_second(t_data *data)
 	check_vertical_ray_with_walls(data);
 	check_minor_distance_v_h(data);
 	calc_ray_situation(data);
-	draw_quadrilaters(((data->ray.r + 1) * data->ray.ray_width)
-		+ (data->max_x / 2) + 30, (int)data->ray.lineO,
+	draw_quadrilaters(((data->ray.r) * data->ray.ray_width) \
+		, (int)data->ray.lineO,
 		data->ray.ray_width + 1, (int)data->ray.lineH,
 		data, data->ray.color);
 	refresh(data);

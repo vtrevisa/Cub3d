@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/24 15:12:01 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/01 22:04:25 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 void	draw_background (t_data *data)
 {
 	//3d map ceiling and floor
-	draw_quadrilaters(data->max_x/2 + 38, 0, data->max_x/2, data->max_y/2, data, data->color_c);
-	draw_quadrilaters(data->max_x/2 + 38, data->max_y/2, data->max_x/2, data->max_y/2, data, data->color_f);
+	draw_quadrilaters(0, 0, data->max_x, data->max_y/2, data, data->color_c);
+	draw_quadrilaters(0, data->max_y/2, data->max_x, data->max_y/2, data, data->color_f);
 	//black background of minimap
-	draw_quadrilaters(0, 0, data->max_x/2, data->max_y, data, 0);
 	refresh(data);
 }
 
@@ -59,6 +58,7 @@ void	draw_map(t_data *data)
 				data->player_y = i_y + center;
 			}
 			i_x += data->size_x;
+			data->upg = 1;
 		}
 		else if (c == '\n')
 		{
@@ -67,6 +67,5 @@ void	draw_map(t_data *data)
 		}
 		i++;
 	}
-	data->upg = 1;
 	refresh(data);
 }

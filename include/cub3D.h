@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/01 17:32:03 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:53:11 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ typedef struct s_data
 	char			*map_name;
 	char			*map;
 	char			*map_lined;
+	char			**map_array;
+	char			*line_below;
 	int				map_size[2];
 	int				blocks_nbr;
 	int				flag;
@@ -103,6 +105,8 @@ typedef struct s_data
 	unsigned long	color_f;
 	int				col_ok;
 	int				txt_ok;
+	int				N_S;
+	int				E_W;
 	t_ray			ray;
 }					t_data;
 
@@ -153,4 +157,10 @@ int					exit_mlx(t_data *data);
 int					get_quantity_blocks(int *x, int *y, char *map_name);
 char				*cat_map(t_data *data, char **tmp, int fd, int l);
 int					config_file_loader(t_data *data);
+int					parse_config_file(t_data *data);
+int					txt_fail(void);
+int					col_fail(void);
+int					map_error_here(int index);
+void        show_map_array(char **map, int	ln);
+int         is_valid_character(char c);
 void				drawrays3d_second(t_data *data);
