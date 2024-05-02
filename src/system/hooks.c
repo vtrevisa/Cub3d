@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/25 20:09:51 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:53:15 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ static int	movement(int key, t_data *data)
 		x -= data->p_deltX;
 		y -= data->p_deltY;
 	}
-	else if (key == D)
+	else if (key == 65363)
 		if_d(data);
-	else if (key == A)
+	else if (key == 65361)
 		if_a(data);
 	else if (key == 65307)
 		exit_mlx(data);
