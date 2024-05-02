@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/02 17:33:03 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:56:30 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@
 #define PI 3.141592
 #define P2 PI / 2
 #define P3 3 * PI / 2
-#define DR 0.0174533 // 1 degree in rad
+#define DR 0.0174533
+#define W 119
+#define S 115
+#define D 100
+#define A 97
 
 typedef struct s_col
 {
