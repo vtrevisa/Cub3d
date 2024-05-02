@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/01 13:01:29 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/01 18:07:32 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ typedef struct s_data
 	unsigned long	color_f;
 	int				col_ok;
 	int				txt_ok;
+	int				N_S;
+	int				E_W;
 	t_ray			ray;
 }					t_data;
 

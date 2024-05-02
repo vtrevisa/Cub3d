@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/01 16:58:09 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/01 21:54:15 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	init_map(t_data *data)
 		exit (-1);
 	data->initial_x = 0;
 	data->initial_y = 0;
-	data->size_x = ((data->max_x / 2) - 10) / data->map_size[0];
+	data->size_x = ((data->max_x / 4) - 10) / data->map_size[0];
 	data->size_y = data->max_y / data->map_size[1];
 	if (data->size_x < data->size_y)
 		data->size_y = data->size_x;
