@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/30 16:29:57 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:32:03 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,16 @@ typedef struct s_data
 	int				txt_ok;
 	t_ray			ray;
 }					t_data;
+
+typedef struct s_draw
+{
+	int				initial_x;
+	int				initial_y;
+	int				size_x;
+	int				size_y;
+	t_data			*data;
+	int				color;
+}					t_draw;
 
 void				draw_map(t_data *data);
 void				draw_background(t_data *data);
