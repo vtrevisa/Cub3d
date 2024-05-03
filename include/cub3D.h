@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/03 22:14:17 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:57:53 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct s_data
 	double			p_deltY;
 	double			p_angle;
 	char			player_dir;
-	char			*textures[4];
+	void			*textures[4];
 	unsigned long	color_c;
 	unsigned long	color_f;
 	int				col_ok;
@@ -124,6 +124,7 @@ typedef struct s_data
 	int				E_W;
 	int				arrow_r;
 	int				arrow_l;
+	void			*texture;
 	t_ray			ray;
 	t_draw			draw;
 }					t_data;
@@ -138,7 +139,8 @@ int					init_params(t_data *data, int argc, char **argv);
 int					init_mlx(t_data *data);
 int					init_map(t_data *data);
 void				config_loaded(void);
-int					invalid_config(void);
+int					invalid_input(void);
+int					mlx_error(void);
 void				mlx_initialized(void);
 void				screen_initialized(void);
 void				img_initialized(void);
@@ -146,7 +148,7 @@ void				square_drawn(void);
 void				hook_got(int key);
 void				refreshed(void);
 void				show_dataxy(t_data *data);
-int					open_error(int fd);
+int					open_error(void);
 void				show_map(char *map);
 int					map_error(void);
 void				map_loaded(char *str);
@@ -171,3 +173,4 @@ int					map_error_here(int index);
 void				show_map_array(char **map, int ln);
 int					is_valid_character(char c);
 void				drawrays3d_second(t_data *data);
+int					wrong_file_name(void);

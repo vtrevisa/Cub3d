@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./src/maps/img/north_wall.xpm
+SO ./src/maps/img/south_wall.xpm
+WE ./src/maps/img/west_wall.xpm
+EA ./src/maps/img/east_wall.xpm
 
 F 220,100,0
 C 225,30,0
