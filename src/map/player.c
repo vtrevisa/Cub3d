@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:21:10 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/02 17:32:01 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/04 11:23:07 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,4 @@ void	draw_player(t_data *data)
 	data->draw.size_y = 2;
 	data->draw.color = 0xffff00;
 	draw_quadrilaters(data);
-	refresh(data);
 }

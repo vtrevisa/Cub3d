@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/03 20:34:19 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/03 22:32:50 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,12 @@ int	ft_strlen_spaceless(const char *s)
 
 int	exit_mlx(t_data *data)
 {		
+	mlx_do_key_autorepeaton(data->mlx);
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	free (data->mlx);
+	free(data->mlx);
+	free(data->map_array);
+	free(data->map);
 	exit(0);
+	return (0);
 }

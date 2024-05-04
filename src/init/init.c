@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/03 22:00:56 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/03 23:59:53 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	init_map(t_data *data)
 		exit (-1);
 	data->initial_x = 0;
 	data->initial_y = 0;
-	data->size_x = ((data->max_x / 4) - 10) / data->map_size[0];
-	data->size_y = data->max_y / data->map_size[1];
+	data->size_x = 10;
+	data->size_y = 10;
 	if (data->size_x < data->size_y)
 		data->size_y = data->size_x;
 	else
