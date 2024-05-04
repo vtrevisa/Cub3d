@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/02 20:03:10 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/03 22:00:56 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,15 @@ int	init_params(t_data *data, int argc, char **argv)
 	data->max_y = 512;
 	data->col_ok = 0;
 	data->txt_ok = 0;
-	data->hold_r = 0;
-	data->hold_l = 0;
+	data->arrow_r = 0;
+	data->arrow_l = 0;
 	return (1);
 }
 
 int	init_mlx(t_data *data)
 {
 	data->mlx = mlx_init();
+	mlx_do_key_autorepeatoff(data->mlx);
 	if (!data->mlx)
 		return (0);
 	data->win = mlx_new_window(data->mlx, data->max_x, data->max_y, "CUB3D");

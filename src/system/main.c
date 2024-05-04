@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/17 12:34:50 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/03 21:16:29 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		return (-1);
-	
 	ft_bzero(&data, sizeof(t_data));
 	if (!init_all(&data, argc, argv))
 		return (-1);

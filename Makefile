@@ -1,6 +1,6 @@
 NAME		= cub3D
-CFLAGS      = -Wall -Wextra -Werror -g
-LFLAGS      = -lmlx -lXext -lX11 -lm -lz
+CFLAGS      = -Wall -Wextra -Werror -g -O3
+LFLAGS      = -lmlx -lXext -lX11 -lm -lz -pthread -ldl -lpthread -lXfixes
 
 VPATH		= $(addprefix $(SRC_D)/, $(DIRS))
 MAPA 		= map_pdf.cub

@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/02 20:15:16 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/03 21:41:04 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ typedef struct s_data
 	int				txt_ok;
 	int				N_S;
 	int				E_W;
-	int				hold_r;
-	int				hold_l;
+	int				arrow_r;
+	int				arrow_l;
 	t_ray			ray;
 	t_draw			draw;
 }					t_data;
