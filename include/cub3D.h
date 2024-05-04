@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/03 21:41:04 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/03 22:14:17 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 #define S 115
 #define D 100
 #define A 97
+#define ARROW_L 65361
+#define ARROW_R 65363
 
 typedef struct s_col
 {

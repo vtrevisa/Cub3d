@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/03 22:02:37 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/04 00:13:28 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ static void	if_a(t_data *data)
 	data->p_deltY = sin(data->p_angle) * 5;
 }
 
+// int	is_moviment_possivel(t_data *data, char type)
+// {
+	
+// }
+
 static int	key_press(int key, t_data *data)
 {
 	double	x;
@@ -39,7 +44,6 @@ static int	key_press(int key, t_data *data)
 	x = 0;
 	y = 0;
 	i = -1;
-	
 	if (key == W)
 	{
 		x += data->p_deltX;
@@ -56,7 +60,7 @@ static int	key_press(int key, t_data *data)
 		if_a(data);
 	else if (key == 65307)
 		exit_mlx(data);
-	else if (key == 65363)
+	else if (key == ARROW_R)
 	{
 		if (data->arrow_r != 1)
 		{
@@ -65,7 +69,7 @@ static int	key_press(int key, t_data *data)
 				if_d(data);
 		}
 	}
-	else if (key == 65361)
+	else if (key == ARROW_L)
 	{
 		if (data->arrow_l != 1)
 		{
@@ -82,7 +86,7 @@ static int	key_press(int key, t_data *data)
 
 int	key_release(int key, t_data *data)
 {
-	int		i;
+	int	i;
 
 	i = -1;
 	if (key == 65363)
@@ -105,5 +109,5 @@ void	get_hook(t_data *data)
 {
 	mlx_hook(data->win, 2, 1L << 0, key_press, data);
 	mlx_hook(data->win, 3, 1L << 1, key_release, data);
-	mlx_hook(data->win, 17, 0, exit_mlx, data);
+	mlx_hook(data->win, 17, 0L, exit_mlx, data);
 }
