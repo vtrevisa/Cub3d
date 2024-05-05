@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msg.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/03 15:36:08 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/05 12:40:01 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	error(void)
 {
-	ft_printf(RED);
-	ft_printf("Error\n");
-	ft_printf(WHITE);
+	printf(RED);
+	printf("Error\n");
+	printf(WHITE);
 }
 
 void	error_msg(char *msg)
 {
 	error();
-	ft_printf(RED);
-	ft_printf(msg);
-	ft_printf(WHITE);
+	printf(RED);
+	printf("%s",msg);
+	printf(WHITE);
 }
 
 int	invalid_input(void)

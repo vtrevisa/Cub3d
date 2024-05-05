@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 17:33:11 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/03 17:07:03 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/05 12:39:03 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_first_line(char *line, t_data *data)
 	}
 	data->line_below[i - 1] = '1';
 	data->line_below[i] = '\0';
-	ft_printf("%s\n", data->line_below);
+	printf("%s\n", data->line_below);
 	return (1);
 }
 
