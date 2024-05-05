@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/03 15:37:06 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/05 12:08:58 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-#include <libft.h>
 
 char	**fill_map_array(t_data *data)
 {
@@ -167,6 +166,7 @@ static int	load_textures(t_data *data, char *str)
 	int	ret;
 
 	i = 2;
+	ret = 0;
 	if ((str[0] == 'N' && str[1] == 'O') || (str[0] == 'S' && str[1] == 'O') || 
 		(str[0] == 'W' && str[1] == 'E') || (str[0] == 'E' && str[1] == 'A'))
 	{
