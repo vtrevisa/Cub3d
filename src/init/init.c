@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/04 13:58:15 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/05 12:37:19 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	init_params(t_data *data, int argc, char **argv)
 	else
 		data->map_name = ft_strdup(argv[1]);
 	data->upg = 0;
-	data->max_x = 800;
-	data->max_y = 400;
+	data->max_x = 1024;
+	data->max_y = 512;
 	data->col_ok = 0;
 	data->txt_ok = 0;
 	data->arrow_r = 0;

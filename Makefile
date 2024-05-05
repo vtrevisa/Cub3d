@@ -1,6 +1,6 @@
 NAME		= cub3D
 CFLAGS      = -Wall -Wextra -Werror -g -O3
-LFLAGS      = -lmlx -lXext -lX11 -lm -lz -pthread -ldl -lpthread -lXfixes
+LFLAGS      = -L./mlx_linux -lmlx -lXext -lX11 -lm -pthread -ldl -lpthread
 
 VPATH		= $(addprefix $(SRC_D)/, $(DIRS))
 MAPA 		= map_pdf.cub
@@ -21,7 +21,7 @@ UTI			= utils.c map_reader.c
 MSG			= msg.c
 HEADERS		= ./include/cub3D.h
 
-INCLUDE		= -I $(INCLUDE_D) -I $(LIB_INC_D)
+INCLUDE		= -I $(INCLUDE_D) -I $(LIB_INC_D) -I./mlx_linux
 OBJ			= $(SRC:%.c=$(OBJ_D)/%.o)
 
 WHITE	=	\e[00m
