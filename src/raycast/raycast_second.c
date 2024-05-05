@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/02 17:32:01 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/05 16:41:10 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	check_vertical_ray_is_true(t_data *data)
 {
 	if (data->ray.ra > P2 && data->ray.ra < P3)
 	{
-		data->E_W = 0;
+		data->e_w = 0;
 		data->ray.rx = (((int)data->player_x / data->cube_size)
 				* data->cube_size) - 0.0001;
 		data->ray.ry = (data->player_x - data->ray.rx) * data->ray.nTan
@@ -26,7 +26,7 @@ static void	check_vertical_ray_is_true(t_data *data)
 	}
 	if (data->ray.ra < P2 || data->ray.ra > P3)
 	{
-		data->E_W = 1;
+		data->e_w = 1;
 		data->ray.rx = (((int)data->player_x / data->cube_size)
 				* data->cube_size) + data->cube_size;
 		data->ray.ry = (data->player_x - data->ray.rx) * data->ray.nTan
@@ -73,9 +73,9 @@ static void	check_minor_distance_v_h(t_data *data)
 		data->ray.rx = data->ray.vx;
 		data->ray.ry = data->ray.vy;
 		data->ray.disT = data->ray.disV;
-		if (data->E_W == 0)
+		if (data->e_w == 0)
 			data->ray.color = 0x008000;
-		if (data->E_W == 1)
+		if (data->e_w == 1)
 			data->ray.color = 0xFF5A36;
 	}
 	else
@@ -83,9 +83,9 @@ static void	check_minor_distance_v_h(t_data *data)
 		data->ray.rx = data->ray.hx;
 		data->ray.ry = data->ray.hy;
 		data->ray.disT = data->ray.disH;
-		if (data->N_S == 0)
+		if (data->n_s == 0)
 			data->ray.color = 0x4B0082;
-		if (data->N_S == 1)
+		if (data->n_s == 1)
 			data->ray.color = 0x8B0000;
 	}
 }
