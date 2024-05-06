@@ -19,19 +19,19 @@ int	mlx_put_image_to_window(t_xvar *xvar,t_win_list *win,t_img *img,
   GC	gc;
 
   gc = win->gc;
-  if (data->gc)
+  if (img->gc)
     {
-      gc = data->gc;
+      gc = img->gc;
       XSetClipOrigin(xvar->display, gc, x, y);
     }
-  if (data->type==MLX_TYPE_SHM)
-    XShmPutImage(xvar->display,data->pix, win->gc, data->image,0,0,0,0,
-		 data->width,data->height,False);
-  if (data->type==MLX_TYPE_XIMAGE)
-    XPutImage(xvar->display,data->pix, win->gc, data->image,0,0,0,0,
-	      data->width,data->height);
-  XCopyArea(xvar->display,data->pix,win->window, gc,
-	    0,0,data->width,data->height,x,y);
+  if (img->type==MLX_TYPE_SHM)
+    XShmPutImage(xvar->display,img->pix, win->gc, img->image,0,0,0,0,
+		 img->width,img->height,False);
+  if (img->type==MLX_TYPE_XIMAGE)
+    XPutImage(xvar->display,img->pix, win->gc, img->image,0,0,0,0,
+	      img->width,img->height);
+  XCopyArea(xvar->display,img->pix,win->window, gc,
+	    0,0,img->width,img->height,x,y);
   if (xvar->do_flush)
     XFlush(xvar->display);
 }

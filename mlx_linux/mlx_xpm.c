@@ -16,8 +16,8 @@ extern struct s_col_name mlx_col_name[];
 
 #define	RETURN	{ if (colors) free(colors); if (tab) free(tab); \
 		tab = (void *)0; if (colors_direct) free(colors_direct); \
-		if (img) {XDestroyImage(data->image); \
-				XFreePixmap(xvar->display,data->pix);free(img);} \
+		if (img) {XDestroyImage(img->image); \
+				XFreePixmap(xvar->display,img->pix);free(img);} \
 		return ((void *)0);}
 
 
@@ -122,7 +122,7 @@ int	mlx_int_xpm_set_pixel(t_img *img, char *data, int opp, int col, int x)
 	dec = opp;
   	while (dec--)
     {
-    	if (data->image->byte_order)
+    	if (img->image->byte_order)
 			*(data+x*opp+dec) = col&0xFF;
       	else
 			*(data+x*opp+opp-dec-1) = col&0xFF;
@@ -220,11 +220,11 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 
 		if (!(img = mlx_new_image(xvar,width,height)))
 				RETURN;
-		opp = data->bpp/8;
+		opp = img->bpp/8;
 
 
 		i = height;
-		data = data->data;
+		data = img->data;
 		while (i--)
 		{
 				if (!(line = f(info,&pos,info_size)))
@@ -258,7 +258,7 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 						mlx_int_xpm_set_pixel(img, data, opp, col, x);
 						++x;
 				}
-				data += data->size_line;
+				data += img->size_line;
 		}
 		/*
 		if (clip_data)
@@ -266,14 +266,14 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 				if (!(clip_pix = XCreatePixmap(xvar->display, xvar->root,
 												width, height, 1)) )
 						RETURN;
-				data->gc = XCreateGC(xvar->display, clip_pix, 0, &xgcv);
-				XPutImage(xvar->display, clip_pix, data->gc, clip_img,
+				img->gc = XCreateGC(xvar->display, clip_pix, 0, &xgcv);
+				XPutImage(xvar->display, clip_pix, img->gc, clip_img,
 								0, 0, 0, 0, width, height);
-				XFreeGC(xvar->display, data->gc);
+				XFreeGC(xvar->display, img->gc);
 				xgcv.clip_mask = clip_pix;
 				xgcv.function = GXcopy;
 				xgcv.plane_mask = AllPlanes;
-				data->gc = XCreateGC(xvar->display, xvar->root, GCClipMask|GCFunction|
+				img->gc = XCreateGC(xvar->display, xvar->root, GCClipMask|GCFunction|
 								GCPlaneMask, &xgcv);
 				XSync(xvar->display, False);
 				XDestroyImage(clip_img);
@@ -324,8 +324,8 @@ void	*mlx_xpm_file_to_image(t_xvar *xvar,char *file,int *width,int *height)
 		mlx_int_file_get_rid_comment(ptr, size);
 		if (img = mlx_int_parse_xpm(xvar,ptr,size,mlx_int_get_line))
 		{
-				*width = data->width;
-				*height = data->height;
+				*width = img->width;
+				*height = img->height;
 		}
 		munmap(ptr,size);
 		close(fd);
@@ -338,8 +338,8 @@ void	*mlx_xpm_to_image(t_xvar *xvar,char **xpm_data,int *width,int *height)
 
 		if (img = mlx_int_parse_xpm(xvar,xpm_data,0,mlx_int_static_line))
 		{
-				*width = data->width;
-				*height = data->height;
+				*width = img->width;
+				*height = img->height;
 		}
 		return (img);
 }

@@ -1,5 +1,5 @@
 /*
-** This is a generated file with rgb2c.pl and rgbdraw_quadrilaters from
+** This is a generated file with rgb2c.pl and rgb.txt from
 ** the XFree86 distribution.
 */
 
