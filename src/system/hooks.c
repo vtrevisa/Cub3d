@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/06 16:11:42 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/06 20:41:49 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	if_a(t_data *data)
 	data->p_deltY = sin(data->p_angle) * 5;
 }
 
-int	is_moviment_possivel(t_data *data, double x, double y)
+int	is_moviment_possible(t_data *data, double x, double y)
 {
 	double player_x ;
 	double player_y ;
@@ -49,7 +49,7 @@ static int	key_press(int key, t_data *data)
 	double	x;
 	double	y;
 	int		i;
-
+	
 	x = 0;
 	y = 0;
 	i = -1;
@@ -58,14 +58,14 @@ static int	key_press(int key, t_data *data)
 	{
 		x += data->p_deltX;
 		y += data->p_deltY;
-		if(!is_moviment_possivel(data, data->player_x + round(x), data->player_y + round(y)))
+		if(!is_moviment_possible(data, data->player_x + round(x), data->player_y + round(y)))
 			return (0);
 	}
 	else if (key == S)
 	{
 		x -= data->p_deltX;
 		y -= data->p_deltY;
-		if(!is_moviment_possivel(data, data->player_x + round(x), data->player_y + round(y)))
+		if(!is_moviment_possible(data, data->player_x + round(x), data->player_y + round(y)))
 			return (0);
 	}
 	else if (key == D)
@@ -92,7 +92,6 @@ static int	key_press(int key, t_data *data)
 				if_a(data);
 		}
 	}
-	
 	data->player_x += round(x);
 	data->player_y += round(y);
 	display(data);

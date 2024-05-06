@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_second.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/05 16:41:10 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/06 20:42:51 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,15 @@ static void	check_vertical_ray_with_walls(t_data *data)
 	while (data->ray.dof < data->ray.max_view)
 	{
 		data->ray.mx = (int)data->ray.rx / data->cube_size;
+		if (data->ray.mx >= data->map_size[0])
+			data->ray.mx = data->map_size[0] - 1;
+		if (data->ray.mx < 0)
+			data->ray.mx = 0;
 		data->ray.my = (int)data->ray.ry / data->cube_size;
+		if (data->ray.my >= data->map_size[1])
+			data->ray.my = data->map_size[1] - 1;
+		if (data->ray.my < 0)
+			data->ray.my = 0;
 		data->ray.mp = data->ray.my * data->map_size[0] + data->ray.mx;
 		if (data->ray.mp > 0 && data->ray.mp < data->map_size[0]
 			* data->map_size[1] && data->map_lined[data->ray.mp] == '1')
@@ -103,11 +111,11 @@ static void	calc_ray_situation(t_data *data)
 	if (data->ray.ca > 2 * PI)
 		data->ray.ca -= 2 * PI;
 	data->ray.disT *= cos(data->ray.ca);
-	data->ray.lineH = (data->cube_size * 320) / data->ray.disT;
-	if (data->ray.lineH > 500)
-		data->ray.lineH = 500;
-	data->ray.lineO = 250 - data->ray.lineH / 2;
-	data->ray.ray_width = data->max_x / 60;
+	data->ray.lineH = (data->cube_size * data->max_y) / data->ray.disT;
+	if (data->ray.lineH > data->max_y)
+		data->ray.lineH = data->max_y;
+	data->ray.lineO = (int)data->max_y/2 - data->ray.lineH / 2;
+	data->ray.ray_width = data->max_x / 66;
 }
 
 void	drawrays3d_second(t_data *data)
@@ -121,7 +129,10 @@ void	drawrays3d_second(t_data *data)
 	data->draw.size_x = data->ray.ray_width + 1;
 	data->draw.size_y = (int)data->ray.lineH;
 	data->draw.color = data->ray.color;
-	draw_quadrilaters(data);
+	if (data->draw.size_y > 85)
+		draw_quadrilaters(data);
+	draw_map(data);
+	draw_player(data);
 	refresh(data);
 	data->ray.r++;
 }

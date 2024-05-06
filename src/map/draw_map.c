@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 15:53:15 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/04 11:23:15 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/06 19:53:53 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,8 @@ void	draw_map(t_data *data)
 			data->draw.size_y = data->size_y - 2;
 			if(c == '1')
 				data->draw.color = 0x00FF0000;
-			else if(c == '0')
-				data->draw.color = 0x666666;
 			else
-				data->draw.color = 0x00000000;
+				data->draw.color = 0x666666;
 			draw_quadrilaters(data);
 			if(c == 'W' || c == 'E' || c == 'N' || c == 'S')
 			{
