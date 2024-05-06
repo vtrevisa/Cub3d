@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 17:33:11 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/06 18:13:50 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:19:24 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,24 +178,32 @@ int	parse_config_file(t_data *data)
 		data->line_below = ft_memset(data->line_below, '0', data->map_size[0]);
 		data->line_below[0] = '1';
 		if (y == 0)
+		{
 			if (check_first_line(data->map_array[0], data) < 0)
 			{
 				free (line_guide);
 				free (data->line_below);
 				return (-1);
+			}
+		}
 		if (y > 0 && y < data->map_size[1] - 1)
+		{
 			if (check_mid_lines(data->map_array[y - 1], data->map_array[y], line_guide, data) < 0)
 			{
 				free (data->line_below);
 				free (line_guide);
 				return (-1);
+			}
+		}
 		if (y == data->map_size[1] - 1)
+		{
 			if (check_last_line(data->map_array[y - 1], data->map_array[y], line_guide) < 0)
 			{
 				free (data->line_below);
 				free (line_guide);
 				return (-1);
 			}
+		}
 		y++;
 	}
 	free (line_guide);
