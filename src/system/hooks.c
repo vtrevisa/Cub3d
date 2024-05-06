@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/04 00:13:28 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:11:42 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,19 @@ static void	if_a(t_data *data)
 	data->p_deltY = sin(data->p_angle) * 5;
 }
 
-// int	is_moviment_possivel(t_data *data, char type)
-// {
+int	is_moviment_possivel(t_data *data, double x, double y)
+{
+	double player_x ;
+	double player_y ;
 	
-// }
+	player_y = ((x / 10.0 ));
+	player_x = ((y / 10.0 ));
+	if(player_x + 1.5 >= data->map_size[1] || player_y + 1.5 >= data->map_size[0])
+		return (0);	
+	if(player_x < 1.0 || player_y < 1.0)
+		return (0);	
+	return (1);
+}
 
 static int	key_press(int key, t_data *data)
 {
@@ -44,15 +53,20 @@ static int	key_press(int key, t_data *data)
 	x = 0;
 	y = 0;
 	i = -1;
+
 	if (key == W)
 	{
 		x += data->p_deltX;
 		y += data->p_deltY;
+		if(!is_moviment_possivel(data, data->player_x + round(x), data->player_y + round(y)))
+			return (0);
 	}
 	else if (key == S)
 	{
 		x -= data->p_deltX;
 		y -= data->p_deltY;
+		if(!is_moviment_possivel(data, data->player_x + round(x), data->player_y + round(y)))
+			return (0);
 	}
 	else if (key == D)
 		if_d(data);
@@ -78,8 +92,9 @@ static int	key_press(int key, t_data *data)
 				if_a(data);
 		}
 	}
-	data->player_x += (int)x;
-	data->player_y += (int)y;
+	
+	data->player_x += round(x);
+	data->player_y += round(y);
 	display(data);
 	return (0);
 }
