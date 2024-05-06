@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msg.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/05 12:40:01 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:44:43 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	error_msg(char *msg)
 	printf(WHITE);
 }
 
-int	invalid_input(void)
+int	input_error(void)
 {
 	error_msg("Passed invalid parameters\n");
 	return (-1);
@@ -51,13 +51,13 @@ int	map_error(void)
 	return (-1);
 }
 
-int	txt_fail(void)
+int	txt_error(void)
 {
 	error_msg("Texture load error\n");
 	return (-1);
 }
 
-int	col_fail(void)
+int	col_error(void)
 {
 	error_msg("Color load error\n");
 	return (-1);
@@ -66,5 +66,11 @@ int	col_fail(void)
 int	wrong_file_name(void)
 {
 	error_msg("Wrong map file name\n");
+	return (-1);
+}
+
+int	no_player_position(void)
+{
+	error_msg("No player start position\n");
 	return (-1);
 }

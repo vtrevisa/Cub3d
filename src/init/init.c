@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/05 12:37:19 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:44:12 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	get_p_angle(char dir)
 int	init_params(t_data *data, int argc, char **argv)
 {
 	if (argc != 2)
-		return (invalid_input());
+		return (input_error());
 	else
 		data->map_name = ft_strdup(argv[1]);
 	data->upg = 0;

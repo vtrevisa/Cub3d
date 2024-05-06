@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/05 12:08:58 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:45:43 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char	**fill_map_array(t_data *data)
 
 	i = 0;
 	y = -1;
-	ret = malloc (sizeof (char *) * data->map_size[1]);
-	while (++y <= data->map_size[1])
+	ret = malloc (sizeof (char *) * data->map_size[1] + 1);
+	while (++y < data->map_size[1])
 	{
 		x = -1;
 		ret[y] = malloc (data->map_size[0] + 1);
@@ -31,7 +31,7 @@ char	**fill_map_array(t_data *data)
 			ret[y][x] = data->map_lined[i];
 			i++;
 		}
-		ret[y][x] = '\0';
+		ret[y][x] = 0;
 	}
 	return (ret);
 }
@@ -132,53 +132,65 @@ int	check_texture_path(t_data *data, char *str, char face)
 	{
 		img = mlx_xpm_file_to_image(data->mlx, str, &img_width, &img_hight);
 		if (!img)
-			return (0);
+			return (-1);
 	}
 	else
-	 	return (0);
+	 	return (-1);
 	if (face == 'N' && !data->textures[0])
 	{
 		data->textures[0] = img;
+		mlx_destroy_image(data->mlx, img);
 		return (1);
 	}
 	else if (face == 'S' && !data->textures[1])
 	{
 		data->textures[1] = img;
+		mlx_destroy_image(data->mlx, img);
 		return (2);
 	}
 	else if (face == 'E' && !data->textures[2])
 	{
 		data->textures[2] = img;
+		mlx_destroy_image(data->mlx, img);
 		return (3);
 	}
 	else if (face == 'W' && !data->textures[3])
 	{
 		data->textures[3] = img;
+		mlx_destroy_image(data->mlx, img);
 		return (4);
 	}
 	else
-	 	return (0);
+	{
+		mlx_destroy_image(data->mlx, img);
+		return (-1);
+	}
 }
 
 static int	load_textures(t_data *data, char *str)
 {
-	int	i;
-	int	ret;
+	int		i;
+	int		ret;
+	char	*t;
 
 	i = 2;
-	ret = 0;
+	ret = -1;
 	if ((str[0] == 'N' && str[1] == 'O') || (str[0] == 'S' && str[1] == 'O') || 
 		(str[0] == 'W' && str[1] == 'E') || (str[0] == 'E' && str[1] == 'A'))
 	{
 		while(str[i] == ' ')
 			i++;
 		if (str[i] == '.')
-			ret = check_texture_path(data, ft_strtrim(str + i, "\n"), str[0]);
+		{
+			t = ft_strtrim(str + i, "\n");
+			ret = check_texture_path(data, t, str[0]);
+			free (t);
+		}
 		else
 		 	return (0);
 	}
-	if (!data->textures[ret - 1])
-		return (0);
+	if (ret < 0)
+		return (-1);
 	data->txt_ok += 1;
 	return (1);
 }
@@ -187,22 +199,37 @@ static int	load_color_cf(t_data *data, char *str, char place)
 {
 	t_col	c;
 	int		i;
+	int		f;
+	char	*co;
 
 	i = 0;
-	c.col = malloc (sizeof (char *) * 4);
-	while(str[i])
+	f = 0;
+	if (!str && !*str)
+		return (-1);
+	else
 	{
 		while (str[i] == 'F' || str[i] == 'C' || str[i] == ' ')
 			i++;
 		if (str[i] >= '0' && str[i] <= '9')
-			c.col = ft_split(str + i, ',');
+			f = 1;
 		else
 			return (-1);
-		break ;
 	}
+	c.col = ft_split(str + i, ',');
+	i = -1;
+	while (++i < 3)
+		if (!c.col[i])
+		{
+			while (--i >= 0)
+				free(c.col[i]);
+			free (c.col);
+			return (0);
+		}
 	c.r = ft_atoi(c.col[0]);
 	c.g = ft_atoi(c.col[1]);
-	c.b = ft_atoi(c.col[2]);
+	co = ft_strtrim(c.col[2], "\n");
+	c.b = ft_atoi(co);
+	free (co);
 	if (place == 'C')
 		data->color_c = ft_rgb_to_hex(c.r, c.g, c.b);
 	else if (place == 'F')
@@ -212,6 +239,9 @@ static int	load_color_cf(t_data *data, char *str, char place)
 	if (data->color_f == 0)
 		data->color_f = 1;
 	data->col_ok += 1;
+	while (f++ < 4)
+		free (c.col[f - 2]);
+	free (c.col);
 	return (1);
 }
 
@@ -241,15 +271,14 @@ int	config_loader(t_data *data, int *fd, char **map)
 		free(tmp);
 		tmp = get_next_line(*fd);
 	}
+	free (tmp);
 	return (1);
 }
 
 static void	map_loader(t_data *data, int *fd, char **map)
 {
 	char	*tmp;
-	int		s_tmp;
 	char	*tmp2;
-	int		s_tmp2;
 
 	tmp = ft_strdup(*map);
 	data->map = NULL;
@@ -261,10 +290,8 @@ static void	map_loader(t_data *data, int *fd, char **map)
 		{
 			tmp2 = ft_strdup(data->map);
 			free(data->map);
-			s_tmp = ft_strlen(tmp);
-			s_tmp2 = ft_strlen(tmp2);
-			data->map = malloc(sizeof (char) * (s_tmp + s_tmp2) + 1);
 			data->map = ft_strjoin(tmp2, tmp);
+			free(tmp2);
 		}
 		free(tmp);
 		tmp = get_next_line(*fd);
@@ -292,6 +319,10 @@ int	config_file_loader(t_data *data)
 	data->map_lined = remove_lnbrk(data, data->map);
 	data->map_array = fill_map_array(data);
 	if (parse_config_file(data) < 0)
+	{
+		free (map);
 		return (-1);
+	}
+	free (map);
 	return (1);
 }

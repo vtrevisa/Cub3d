@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 17:33:11 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/05 12:39:03 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:44:32 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_first_line(char *line, t_data *data)
 		if (c != '1' && c != ' ')
 			is_closed = 0;
 		if (c != '1' && c != ' ')
-			return (-1);
+			return (map_error());
 		if (c == ' ')
 		{
 			if (line [i + 1] != ' ' && line[i + 1] != '1')
@@ -50,7 +50,6 @@ int	check_first_line(char *line, t_data *data)
 	}
 	data->line_below[i - 1] = '1';
 	data->line_below[i] = '\0';
-	printf("%s\n", data->line_below);
 	return (1);
 }
 
@@ -163,35 +162,50 @@ int	parse_config_file(t_data *data)
 	char	*line_guide;
 
 	y = 0;
-	data->line_below = malloc (data->map_size[0]);
 	if (data->txt_ok != 4)
-		return (txt_fail());
+		return (txt_error());
 	if (data->col_ok != 2)
-		return (col_fail());
-	line_guide = malloc (data->map_size[0]);
+		return (col_error());
+	data->line_below = malloc (data->map_size[0] + 1);
+	ft_bzero(data->line_below, data->map_size[0] + 1);
+	line_guide = malloc (data->map_size[0] + 1);
 	while (y <= data->map_size[1])
 	{
-		if (line_guide && *line_guide)
+		if (line_guide)
 			free(line_guide);
-		if (data->line_below && data->line_below)
+		if (data->line_below)
 			line_guide = ft_strdup(data->line_below);
 		data->line_below = ft_memset(data->line_below, '0', data->map_size[0]);
 		data->line_below[0] = '1';
 		//CHECK FIRST LINE
 		if (y == 0)
 			if (check_first_line(data->map_array[0], data) < 0)
+			{
+				free (line_guide);
+				free (data->line_below);
 				return (-1);
+			}
 		//CHECK MID LINES
 		if (y > 0 && y < data->map_size[1] - 1)
 			if (check_mid_lines(data->map_array[y - 1], data->map_array[y], line_guide, data) < 0)
+			{
+				free (data->line_below);
+				free (line_guide);
 				return (-1);
+			}
 		//CHECK LAST LINE
 		if (y == data->map_size[1] - 1)
 			if (check_last_line(data->map_array[y - 1], data->map_array[y], line_guide) < 0)
+			{
+				free (data->line_below);
+				free (line_guide);
 				return (-1);
+			}
 		y++;
 	}
+	free (line_guide);
+	free (data->line_below);
 	if (!data->flag)
-		return (0);
+		return (no_player_position());
 	return (1);
 }

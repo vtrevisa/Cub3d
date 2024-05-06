@@ -1,6 +1,6 @@
 NAME		= cub3D
-CFLAGS      = -Wall -Wextra -Werror -g -O3
-LFLAGS      = -L./mlx_linux -lmlx -lXext -lX11 -lm -pthread -ldl -lpthread
+CFLAGS      = -Wall -Wextra -Werror -g
+LFLAGS      = -lmlx -lXext -lX11 -lm -lz -pthread -ldl -lpthread -lXfixes
 
 VPATH		= $(addprefix $(SRC_D)/, $(DIRS))
 MAPA 		= map_pdf.cub
@@ -39,7 +39,7 @@ r: $(NAME)
 	./$(NAME) $(MAPA)
 
 v: $(NAME)
-	valgrind --track-origins=yes ./$(NAME) $(MAPA)
+	valgrind -s --track-origins=yes --leak-check=full --show-leak-kinds=all ./$(NAME) $(MAPA)
 
 $(NAME): $(LIB) $(OBJ) $(OBJ_D) $(HEADERS)
 	@echo "$(BLUE)Compiling $(WHITE)$(NAME)"

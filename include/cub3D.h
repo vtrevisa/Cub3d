@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/04 13:57:53 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:31:04 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int					init_params(t_data *data, int argc, char **argv);
 int					init_mlx(t_data *data);
 int					init_map(t_data *data);
 void				config_loaded(void);
-int					invalid_input(void);
+int					input_error(void);
 int					mlx_error(void);
 void				mlx_initialized(void);
 void				screen_initialized(void);
@@ -167,10 +167,11 @@ int					get_quantity_blocks(int *x, int *y, char *map_name);
 char				*cat_map(t_data *data, char **tmp, int fd, int l);
 int					config_file_loader(t_data *data);
 int					parse_config_file(t_data *data);
-int					txt_fail(void);
-int					col_fail(void);
+int					txt_error(void);
+int					col_error(void);
 int					map_error_here(int index);
 void				show_map_array(char **map, int ln);
 int					is_valid_character(char c);
 void				drawrays3d_second(t_data *data);
 int					wrong_file_name(void);
+int					no_player_position(void);

@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/04 13:59:25 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:44:09 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	display(t_data *data)
 static int	init_all(t_data *data, int argc, char **argv)
 {
 	if (init_params(data, argc, argv) < 0)
-		return (-1);
+		return (-2);
 	else if (init_mlx(data) < 0)
 		return (-1);
 	else if (init_map(data) < 0)
@@ -35,10 +35,19 @@ static int	init_all(t_data *data, int argc, char **argv)
 int	main(int argc, char *argv[])
 {
 	t_data	data;
+	int		error;
 
+	error = 0;
 	ft_bzero(&data, sizeof(t_data));
-	if (init_all(&data, argc, argv) < 0)
+	error = init_all(&data, argc, argv);
+	if (error < 0)
+	{
+		if (error == -1)
+			exit_mlx(&data);
+		if (error == -2)
+			return (0);
 		return (0);
+	}
 	display(&data);
 	get_hook(&data);
 	mlx_loop(data.mlx);
