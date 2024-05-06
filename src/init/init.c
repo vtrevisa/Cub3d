@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/06 16:44:12 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:12:56 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,13 @@ int	init_map(t_data *data)
 		data->size_y = data->size_x;
 	else
 		data->size_x = data->size_y;
+	// ver se cube esta caculando certo
 	data->cube_size = data->size_x;
 	data->x = 0;
 	data->y = 0;
 	data->flag = 0;
 	data->p_angle = (PI/2) * get_p_angle(data->player_dir);
-	data->p_deltX = cos (data->p_angle) * 5;
-	data->p_deltY = sin (data->p_angle) * 5;
+	data->p_deltX = cos (data->p_angle);
+	data->p_deltY = sin (data->p_angle);
 	return (1);
 }

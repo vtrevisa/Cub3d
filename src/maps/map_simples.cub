@@ -1,0 +1,13 @@
+NO ./src/maps/img/north_wall.xpm
+SO ./src/maps/img/south_wall.xpm
+WE ./src/maps/img/west_wall.xpm
+EA ./src/maps/img/east_wall.xpm
+
+F 220,100,0
+C 225,30,0
+
+111111111
+1S0000001
+101100001
+100100001
+111111111

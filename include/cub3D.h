@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/06 16:31:04 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:12:31 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ typedef struct s_data
 	unsigned long	color_f;
 	int				col_ok;
 	int				txt_ok;
-	int				N_S;
-	int				E_W;
+	int				n_s;
+	int				e_w;
 	int				arrow_r;
 	int				arrow_l;
 	void			*texture;
