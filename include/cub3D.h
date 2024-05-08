@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/06 20:43:16 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:51:44 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct s_data
 	double			p_deltY;
 	double			p_angle;
 	char			player_dir;
-	void			*textures[4];
+	char			*textures[4];
 	unsigned long	color_c;
 	unsigned long	color_f;
 	int				col_ok;
@@ -124,7 +124,6 @@ typedef struct s_data
 	int				e_w;
 	int				arrow_r;
 	int				arrow_l;
-	void			*texture;
 	t_ray			ray;
 	t_draw			draw;
 }					t_data;

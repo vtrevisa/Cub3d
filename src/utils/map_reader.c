@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/06 16:45:43 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/07 21:49:09 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,50 +121,29 @@ static unsigned long	ft_rgb_to_hex(int r, int g, int b)
 
 int	check_texture_path(t_data *data, char *str, char face)
 {
-	void	*img;
-	int		i;
-	int		img_width;
-	int		img_hight;
-
-	i = ft_strlen(str);
-
-	if (!ft_strncmp(str + (i - 4), ".xpm", 4))
-	{
-		img = mlx_xpm_file_to_image(data->mlx, str, &img_width, &img_hight);
-		if (!img)
-			return (-1);
-	}
-	else
-	 	return (-1);
+	(void)data;
 	if (face == 'N' && !data->textures[0])
 	{
-		data->textures[0] = img;
-		mlx_destroy_image(data->mlx, img);
+		data->textures[0] = ft_strdup(str);
 		return (1);
 	}
 	else if (face == 'S' && !data->textures[1])
 	{
-		data->textures[1] = img;
-		mlx_destroy_image(data->mlx, img);
+		data->textures[1] = ft_strdup(str);
 		return (2);
 	}
 	else if (face == 'E' && !data->textures[2])
 	{
-		data->textures[2] = img;
-		mlx_destroy_image(data->mlx, img);
+		data->textures[2] = ft_strdup(str);
 		return (3);
 	}
 	else if (face == 'W' && !data->textures[3])
 	{
-		data->textures[3] = img;
-		mlx_destroy_image(data->mlx, img);
+		data->textures[3] = ft_strdup(str);
 		return (4);
 	}
 	else
-	{
-		mlx_destroy_image(data->mlx, img);
 		return (-1);
-	}
 }
 
 static int	load_textures(t_data *data, char *str)
@@ -180,14 +159,9 @@ static int	load_textures(t_data *data, char *str)
 	{
 		while(str[i] == ' ')
 			i++;
-		if (str[i] == '.')
-		{
-			t = ft_strtrim(str + i, "\n");
-			ret = check_texture_path(data, t, str[0]);
-			free (t);
-		}
-		else
-		 	return (0);
+		t = ft_strtrim(str + i, "\n");
+		ret = check_texture_path(data, t, str[0]);
+		free (t);
 	}
 	if (ret < 0)
 		return (-1);
@@ -245,7 +219,7 @@ static int	load_color_cf(t_data *data, char *str, char place)
 	return (1);
 }
 
-int	config_loader(t_data *data, int *fd, char **map)
+void	config_loader(t_data *data, int *fd, char **map)
 {
 	char	*tmp;
 	int		i;
@@ -266,13 +240,12 @@ int	config_loader(t_data *data, int *fd, char **map)
 		{
 			*map = ft_strdup(tmp);
 			free (tmp);
-			return (1);
+			return ;
 		}
 		free(tmp);
 		tmp = get_next_line(*fd);
 	}
 	free (tmp);
-	return (1);
 }
 
 static void	map_loader(t_data *data, int *fd, char **map)

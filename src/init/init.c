@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/06 18:12:56 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/07 21:48:54 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	init_params(t_data *data, int argc, char **argv)
 		data->map_name = ft_strdup(argv[1]);
 	data->upg = 0;
 	data->max_x = 1024;
-	data->max_y = 512;
+	data->max_y = 768;
 	data->col_ok = 0;
 	data->txt_ok = 0;
 	data->arrow_r = 0;
@@ -58,9 +58,24 @@ int	init_mlx(t_data *data)
 	return (1);
 }
 
+int	validate_textures(t_data *data)
+{
+	int i;
+
+	i = -1;
+
+	while(i++, i < 4)
+	{
+// fazer  logica
+	}
+	return (1);
+}
+
 int	init_map(t_data *data)
 {
 	if (config_file_loader(data) < 0)
+		return (-1);
+	if(validate_textures(data) < 0)
 		return (-1);
 	data->initial_x = 0;
 	data->initial_y = 0;
@@ -70,7 +85,6 @@ int	init_map(t_data *data)
 		data->size_y = data->size_x;
 	else
 		data->size_x = data->size_y;
-	// ver se cube esta caculando certo
 	data->cube_size = data->size_x;
 	data->x = 0;
 	data->y = 0;
