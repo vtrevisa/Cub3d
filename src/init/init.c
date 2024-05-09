@@ -6,24 +6,11 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/08 17:39:39 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/08 21:17:16 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-
-int	get_p_angle(char dir)
-{
-	if (dir == 'N')
-		return (3);
-	if (dir == 'S')
-		return (1);
-	if (dir == 'E')
-		return (0);
-	if (dir == 'W')
-		return (2);
-	return (0);
-}
 
 int	init_params(t_data *data, int argc, char **argv)
 {

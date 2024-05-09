@@ -13,7 +13,7 @@ INCLUDE_D	= ./include
 LIB_INC_D	= $(LPATH)/Include
 SRC 		= $(INI) $(MAP) $(RAY) $(SYS) $(UTI) $(MSG)
 
-INI			= init.c
+INI			= init.c i_utils.c
 MAP			= draw_map.c player.c square.c parser.c p_utils.c
 RAY			= raycast.c raycast_second.c r_utils.c
 SYS			= hooks.c main.c

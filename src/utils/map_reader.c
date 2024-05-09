@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/07 21:49:09 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/08 20:58:51 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ char	**fill_map_array(t_data *data)
 
 	i = 0;
 	y = -1;
-	ret = malloc (sizeof (char *) * data->map_size[1] + 1);
+	ret = malloc(sizeof(char *) * data->map_size[1] + 1);
 	while (++y < data->map_size[1])
 	{
 		x = -1;
-		ret[y] = malloc (data->map_size[0] + 1);
+		ret[y] = malloc(data->map_size[0] + 1);
 		while (++x < data->map_size[0])
 		{
 			ret[y][x] = data->map_lined[i];
@@ -36,82 +36,69 @@ char	**fill_map_array(t_data *data)
 	return (ret);
 }
 
-char	*remove_lnbrk(t_data *data, char *str)
+char	*removeLineBreaks(t_data *data, char *str)
 {
-	char	*ret;
-	int		i;
-	int		j;
-	int		si;
+	char	*cleanedString;
+	int		sourceIndex;
+	int		targetIndex;
+	int		lineCharIndex;
 
-	i = 0;
-	j = 0;
-	si = 0;
-	ret = malloc (sizeof (char) * data->max_x);
-	while (str[i])
+	sourceIndex = (targetIndex = (lineCharIndex = 0));
+	cleanedString = (char *)malloc(sizeof(char) * data->max_x);
+	while (str[sourceIndex])
 	{
-		if (str[i] != '\n')
+		if (str[sourceIndex] != '\n')
 		{
-			ret[j] = str[i];
-			j++;
-			i++;
-			si++;
+			cleanedString[targetIndex++] = str[sourceIndex++];
+			lineCharIndex++;
 		}
-		if (str[i] == '\n')
+		else
 		{
-			while (si < data->map_size[0])
-			{
-				ret[j] = ' ';
-				j++;
-				si++;
-			}
-			i++;
-			si = 0;
+			while (lineCharIndex < data->map_size[0])
+				cleanedString[targetIndex++] = ' ', lineCharIndex++;
+			sourceIndex++, lineCharIndex = 0;
 		}
 	}
-	return (ret);
+	return (cleanedString);
 }
-
 int	is_valid_character(char c)
 {
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+	if ((c == 'N' || c == 'S' || c == 'W' || c == 'E') ||
+		(c == '1' || c == '0') ||
+		(c == ' '))
 		return (1);
-	else if (c == '1' || c == '0')
-		return (1);
-	else if (c == ' ')
-		return (1);
-	else
-		return (0);
+	return (0);
 }
 
-static int	get_qtt_blk(int *x, int *y, char *map)
+static int	get_total_blocks_map(int *max_width, int *max_height, char *map)
 {
-	int	i;
-	int	l_x;
-	int	l_y;
-	int	sum;
+	int	index;
+	int	current_line_width;
+	int	total_lines;
+	int	total_blocks;
 
-	i = 0;
-	l_x = 0;
-	l_y = 0;
-	sum = 0;
-	while (map[i])
+	index = 0;
+	current_line_width = 0;
+	total_lines = 0;
+	total_blocks = 0;
+	while (map[index])
 	{
-		if (is_valid_character(map[i]))
+		if (is_valid_character(map[index]))
 		{
-			l_x++;
-			sum++;
+			current_line_width++;
+			total_blocks++;
 		}
-		else if(map[i] == '\n')
+		else if (map[index] == '\n')
 		{
-			if (l_x > *x)
-				*x = l_x;
-			l_x = 0;
-			l_y++;
+			if (current_line_width > *max_width)
+				*max_width = current_line_width;
+			current_line_width = 0;
+			total_lines++;
 		}
-		i++;
+		index++;
 	}
-	*y = l_y;
-	return (sum);
+	*max_height = total_lines;
+	return (total_blocks);
 }
 
 static unsigned long	ft_rgb_to_hex(int r, int g, int b)
@@ -121,153 +108,159 @@ static unsigned long	ft_rgb_to_hex(int r, int g, int b)
 
 int	check_texture_path(t_data *data, char *str, char face)
 {
-	(void)data;
 	if (face == 'N' && !data->textures[0])
-	{
-		data->textures[0] = ft_strdup(str);
-		return (1);
-	}
-	else if (face == 'S' && !data->textures[1])
-	{
-		data->textures[1] = ft_strdup(str);
-		return (2);
-	}
-	else if (face == 'E' && !data->textures[2])
-	{
-		data->textures[2] = ft_strdup(str);
-		return (3);
-	}
-	else if (face == 'W' && !data->textures[3])
-	{
-		data->textures[3] = ft_strdup(str);
-		return (4);
-	}
-	else
-		return (-1);
+		return ((data->textures[0] = ft_strdup(str)), 1);
+	if (face == 'S' && !data->textures[1])
+		return ((data->textures[1] = ft_strdup(str)), 2);
+	if (face == 'E' && !data->textures[2])
+		return ((data->textures[2] = ft_strdup(str)), 3);
+	if (face == 'W' && !data->textures[3])
+		return ((data->textures[3] = ft_strdup(str)), 4);
+	return (-1);
 }
 
 static int	load_textures(t_data *data, char *str)
 {
-	int		i;
-	int		ret;
-	char	*t;
+	int		index;
+	int		result;
+	char	*trimmed;
 
-	i = 2;
-	ret = -1;
-	if ((str[0] == 'N' && str[1] == 'O') || (str[0] == 'S' && str[1] == 'O') || 
+	index = 2;
+	result = -1;
+	if ((str[0] == 'N' && str[1] == 'O') || (str[0] == 'S' && str[1] == 'O') ||
 		(str[0] == 'W' && str[1] == 'E') || (str[0] == 'E' && str[1] == 'A'))
 	{
-		while(str[i] == ' ')
-			i++;
-		t = ft_strtrim(str + i, "\n");
-		ret = check_texture_path(data, t, str[0]);
-		free (t);
+		while (str[index] == ' ')
+			index++;
+		trimmed = ft_strtrim(str + index, "\n");
+		result = check_texture_path(data, trimmed, str[0]);
+		free(trimmed);
 	}
-	if (ret < 0)
+	if (result < 0)
 		return (-1);
 	data->txt_ok += 1;
 	return (1);
 }
 
-static int	load_color_cf(t_data *data, char *str, char place)
+static int	is_valid_color_string(const char *str)
 {
-	t_col	c;
+	int	i;
+
+	if (!str || !*str)
+		return (0);
+	i = 0;
+	while (str[i] == 'F' || str[i] == 'C' || str[i] == ' ')
+		i++;
+	if (str[i] >= '0' && str[i] <= '9')
+		return (1);
+	else
+		return (0);
+}
+
+static int	extract_color_values(const char *str, int *rgb)
+{
 	int		i;
-	int		f;
-	char	*co;
+	char	**col;
 
 	i = 0;
-	f = 0;
-	if (!str && !*str)
-		return (-1);
-	else
+	while (str[i] == 'F' || str[i] == 'C' || str[i] == ' ')
+		i++;
+	col = ft_split(str + i, ',');
+	if (!col)
+		return (0);
+	for (i = 0; i < 3; ++i)
 	{
-		while (str[i] == 'F' || str[i] == 'C' || str[i] == ' ')
-			i++;
-		if (str[i] >= '0' && str[i] <= '9')
-			f = 1;
-		else
-			return (-1);
-	}
-	c.col = ft_split(str + i, ',');
-	i = -1;
-	while (++i < 3)
-		if (!c.col[i])
+		if (!col[i])
 		{
 			while (--i >= 0)
-				free(c.col[i]);
-			free (c.col);
+				free(col[i]);
+			free(col);
 			return (0);
 		}
-	c.r = ft_atoi(c.col[0]);
-	c.g = ft_atoi(c.col[1]);
-	co = ft_strtrim(c.col[2], "\n");
-	c.b = ft_atoi(co);
-	free (co);
+		rgb[i] = ft_atoi(col[i]);
+		free(col[i]);
+	}
+	free(col);
+	return (1);
+}
+
+static int	load_color_cf(t_data *data, char *str, char place)
+{
+	int	rgb[3];
+
+	if (!is_valid_color_string(str))
+		return (-1);
+	if (!extract_color_values(str, rgb))
+		return (0);
 	if (place == 'C')
-		data->color_c = ft_rgb_to_hex(c.r, c.g, c.b);
+		data->color_c = ft_rgb_to_hex(rgb[0], rgb[1], rgb[2]);
 	else if (place == 'F')
-		data->color_f = ft_rgb_to_hex(c.r, c.g, c.b);
+		data->color_f = ft_rgb_to_hex(rgb[0], rgb[1], rgb[2]);
 	if (data->color_c == 0)
 		data->color_c = 1;
 	if (data->color_f == 0)
 		data->color_f = 1;
-	data->col_ok += 1;
-	while (f++ < 4)
-		free (c.col[f - 2]);
-	free (c.col);
+	data->col_ok++;
+	return (1);
+}
+
+int	line_equal_to_nl(char *line, int index, t_data *data, char **map)
+{
+	if (line[index] == 'N' || line[index] == 'S' || line[index] == 'W'
+		|| line[index] == 'E')
+		load_textures(data, line);
+	else if (line[index] == 'F' || line[index] == 'C')
+		load_color_cf(data, line, line[index]);
+	else
+	{
+		*map = ft_strdup(line);
+		free(line);
+		return (0) ;
+	}
 	return (1);
 }
 
 void	config_loader(t_data *data, int *fd, char **map)
 {
-	char	*tmp;
-	int		i;
+	char	*line;
+	int		index;
 
-	tmp = get_next_line(*fd);
-	while (tmp)
+	line = get_next_line(*fd);
+	while (line)
 	{
-		i = 0;
-		while (tmp[i] == ' ')
-			i++;
-		if (tmp[i] == '\n')
-		{}
-		else if ((tmp[i] == 'N' || tmp[i] == 'S' || tmp[i] == 'W' || tmp[i] == 'E'))
-			load_textures(data, tmp);
-		else if ((tmp[i] == 'F' || tmp[i] == 'C'))
-			load_color_cf(data, tmp, tmp[i]);
-		else
+		index = 0;
+		while (line[index] == ' ')
+			index++;
+		if (line[index] != '\n')
 		{
-			*map = ft_strdup(tmp);
-			free (tmp);
-			return ;
+			if (!line_equal_to_nl(line, index, data, map))
+				return ;
 		}
-		free(tmp);
-		tmp = get_next_line(*fd);
+		free(line);
+		line = get_next_line(*fd);
 	}
-	free (tmp);
+	free(line);
 }
 
 static void	map_loader(t_data *data, int *fd, char **map)
 {
-	char	*tmp;
-	char	*tmp2;
+	char	*line;
+	char	*newMapContent;
 
-	tmp = ft_strdup(*map);
+	line = ft_strdup(*map);
 	data->map = NULL;
-	while (tmp)
+	while (line)
 	{
 		if (!data->map)
-			data->map = ft_strdup(tmp);
+			data->map = ft_strdup(line);
 		else
 		{
-			tmp2 = ft_strdup(data->map);
+			newMapContent = ft_strjoin(data->map, line);
 			free(data->map);
-			data->map = ft_strjoin(tmp2, tmp);
-			free(tmp2);
+			data->map = newMapContent;
 		}
-		free(tmp);
-		tmp = get_next_line(*fd);
+		free(line);
+		line = get_next_line(*fd);
 	}
 }
 
@@ -278,24 +271,24 @@ int	config_file_loader(t_data *data)
 	char	*map;
 	int		ret;
 
-	ret = ft_strncmp(data->map_name + (ft_strlen(data->map_name) - 4), ".cub", 4);
+	ret = ft_strncmp(data->map_name + (ft_strlen(data->map_name) - 4), ".cub",
+			4);
 	if (ret)
 		return (wrong_file_name());
 	map_name = ft_strjoin("./src/maps/", data->map_name);
-	fd = open (map_name, O_RDONLY);
-	free (map_name);
+	fd = open(map_name, O_RDONLY);
+	free(map_name);
 	if (fd < 0)
 		return (open_error());
 	config_loader(data, &fd, &map);
 	map_loader(data, &fd, &map);
-	data->blocks_nbr = get_qtt_blk(&data->map_size[0], &data->map_size[1], data->map);
-	data->map_lined = remove_lnbrk(data, data->map);
+	data->blocks_nbr = get_total_blocks_map(&data->map_size[0],
+											&data->map_size[1],
+											data->map);
+	data->map_lined = removeLineBreaks(data, data->map);
 	data->map_array = fill_map_array(data);
 	if (parse_config_file(data) < 0)
-	{
-		free (map);
-		return (-1);
-	}
-	free (map);
+		return (free(map), -1);
+	free(map);
 	return (1);
 }
