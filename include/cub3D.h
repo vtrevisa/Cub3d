@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/07 18:51:44 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:39:13 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,3 +174,4 @@ int					is_valid_character(char c);
 void				drawrays3d_second(t_data *data);
 int					wrong_file_name(void);
 int					no_player_position(void);
+int					compare_strings(char *str1, char *str2);
