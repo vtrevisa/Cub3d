@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_second.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/06 20:42:51 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:53:42 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,18 @@ static void	check_vertical_ray_with_walls(t_data *data)
 	}
 }
 
+int	get_color(char *texture)
+{
+	if (compare_strings(texture, "texture_1") == 0)
+		return (0x008000);
+	else if (compare_strings(texture, "texture_2") == 0)
+		return (0xFF5A36);
+	else if (compare_strings(texture, "texture_3") == 0)
+		return (0x4B0082);
+	else
+		return (0x8B0000);	
+}
+
 static void	check_minor_distance_v_h(t_data *data)
 {
 	if (data->ray.disV < data->ray.disH)
@@ -82,9 +94,9 @@ static void	check_minor_distance_v_h(t_data *data)
 		data->ray.ry = data->ray.vy;
 		data->ray.disT = data->ray.disV;
 		if (data->e_w == 0)
-			data->ray.color = 0x008000;
+			data->ray.color = get_color(data->textures[0]);
 		if (data->e_w == 1)
-			data->ray.color = 0xFF5A36;
+			data->ray.color = get_color(data->textures[1]);
 	}
 	else
 	{
@@ -92,9 +104,9 @@ static void	check_minor_distance_v_h(t_data *data)
 		data->ray.ry = data->ray.hy;
 		data->ray.disT = data->ray.disH;
 		if (data->n_s == 0)
-			data->ray.color = 0x4B0082;
+			data->ray.color = get_color(data->textures[2]);
 		if (data->n_s == 1)
-			data->ray.color = 0x8B0000;
+			data->ray.color = get_color(data->textures[3]);
 	}
 }
 

@@ -1,7 +1,7 @@
-NO ./src/maps/img/north_wall.xpm
-SO ./src/maps/img/south_wall.xpm
-WE ./src/maps/img/west_wall.xpm
-EA ./src/maps/img/east_wall.xpm
+NO texture_2
+SO texture_1
+WE texture_4
+EA texture_3
 
 F 220,100,0
 C 225,30,0

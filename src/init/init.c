@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/07 21:48:54 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:39:39 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,30 +53,61 @@ int	init_mlx(t_data *data)
 	data->img = mlx_new_image(data->mlx, data->max_x, data->max_y);
 	if (!data->img)
 		return (mlx_error());
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
-		&data->line_lenght, &data->endian);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+			&data->line_lenght, &data->endian);
 	return (1);
 }
 
 int	validate_textures(t_data *data)
 {
-	int i;
-
-	i = -1;
-
-	while(i++, i < 4)
+	int		count;
+	int		count_inter;
+	int		texture_detected;
+	const char	*texture[4] = {"texture_1", "texture_2", "texture_3", "texture_4"};
+	count = -1;
+	while (count++, count < 4)
 	{
-// fazer  logica
+		texture_detected = 0;
+		count_inter = -1;
+		while (count_inter++, count_inter < 4)
+		{
+			if (!compare_strings(data->textures[count], (char *)texture[count_inter]))
+			{
+				texture_detected = 1;
+				break ;
+			}
+		}
+		if (!texture_detected)
+			return (-1);
 	}
 	return (1);
+}
+
+int check_duplicates(t_data *data) 
+{
+	int count = 0;
+	while (count < 4)
+	{
+		int count_intern = count + 1;
+		while (count_intern < 4)
+		{
+			if (compare_strings(data->textures[count], data->textures[count_intern]) == 0)
+				return -1;
+			count_intern++;
+		}
+		count++;
+	}
+	return 0;
 }
 
 int	init_map(t_data *data)
 {
 	if (config_file_loader(data) < 0)
 		return (-1);
-	if(validate_textures(data) < 0)
-		return (-1);
+	if (validate_textures(data) < 0)
+		return (input_error());
+	if (check_duplicates(data) < 0)
+		return (input_error());
 	data->initial_x = 0;
 	data->initial_y = 0;
 	data->size_x = 10;
@@ -89,8 +120,8 @@ int	init_map(t_data *data)
 	data->x = 0;
 	data->y = 0;
 	data->flag = 0;
-	data->p_angle = (PI/2) * get_p_angle(data->player_dir);
-	data->p_deltX = cos (data->p_angle);
-	data->p_deltY = sin (data->p_angle);
+	data->p_angle = (PI / 2) * get_p_angle(data->player_dir);
+	data->p_deltX = cos(data->p_angle);
+	data->p_deltY = sin(data->p_angle);
 	return (1);
 }
