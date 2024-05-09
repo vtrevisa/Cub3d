@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 23:14:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/04/26 12:13:48 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/08 20:30:56 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdarg.h>
 # define MAX_FD_SIZE 1024
 
-/* ------PART 1------ */
 int			ft_atoi(const char *str);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t nmemb, size_t size);
@@ -42,8 +41,6 @@ char		*ft_strnstr(const char *big, const char *little, size_t len);
 char		*ft_strrchr(const char *s, int c);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
-
-/* ------part 2------ */
 char		*ft_itoa(int n);
 void		ft_putchar_fd(char c, int fd);
 void		ft_putendl_fd(char *s, int fd);
@@ -56,7 +53,6 @@ char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 
-/* ------BONUS PART------*/
 typedef struct s_list
 {
 	void			*content;
@@ -72,15 +68,10 @@ void		ft_lstdelone(t_list *lst, void (*del)(void*));
 void		ft_lstclear(t_list **lst, void (*del)(void*));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-
-/* ------GNL------ */
 char		*get_next_line(int fd);
 size_t		gn_strlen(const char *s);
 char		*gn_strjoin(char *s1, char *s2);
 char		*gn_strchr(char *s, int c);
-
-/* ------printf------ */
-/*====FILES====*/
 int			ft_printf(const char *str, ...);
 int			handlechar(va_list ap, int fd);
 int			handlestr(va_list ap, int fd);
@@ -89,33 +80,10 @@ int			handleints(va_list ap, int fd);
 int			handleunsigned(va_list ap, int fd);
 int			handlehex(va_list ap, int fd, int flag);
 void		printpointer_fd(unsigned long int lli, int fd, int flag);
-
-/*====UTILS====*/
 int			countdigit(int n);
 int			countudigit(unsigned int n);
 void		ft_putunbr_fd(unsigned int n, int fd);
-
-/*====PRINTPOINTER_FD====*/
 int			hexlen(unsigned long int lli);
 char		*htoa(unsigned long int lli, int flag);
 
-/* ------FRACT-OL------ */
-typedef struct s_lst
-{
-	double	ret;
-	int		p_vir;
-	int		i;
-	int		temp;
-	int		sig;
-}	t_lst;
-double		ft_atof(const char *str);
-
-/* ------PUSH_SWAP------ */
-long int	ft_atoli(const char *str);
-
-/* ------PRINTF_FD------ */
-int			ft_printf_fd(int fd, const char *str, ...);
-
-int			is_all_num(char *str);
-int			is_all_alph(char *str);
 #endif
