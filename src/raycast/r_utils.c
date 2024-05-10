@@ -3,14 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   r_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 16:47:34 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/09 23:59:16 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:16:36 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+#include <X11/X.h>
+
+void	draw_texture_walls(t_data *data)
+{
+	int	img_x;
+	int	img_y;
+	int	save_color;
+
+	img_x = data->draw.initial_x;
+	img_y = data->draw.initial_y;
+	save_color = data->draw.color;
+	while (data->draw.initial_y <= data->draw.size_y + img_y)
+	{
+		
+		if (data->draw.initial_y >= 3 * (data->draw.size_y / 4)+ img_y)
+			data->draw.color = save_color + 0x003000;
+		else
+		 	data->draw.color = save_color;
+		data->draw.initial_x = img_x;
+		while (data->draw.initial_x <= data->draw.size_x + img_x)
+		{
+			my_mlx_pixel_put(data, data->draw.initial_x, data->draw.initial_y,
+					data->draw.color);
+			data->draw.initial_x++;
+		}
+		data->draw.initial_y++;
+	}
+}
 
 double	dist(t_data *data, double bx, double by)
 {

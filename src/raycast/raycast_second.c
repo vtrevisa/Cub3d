@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_second.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/10 00:00:58 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/10 10:58:13 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,7 @@ void	drawrays3d_second(t_data *data)
 	data->draw.size_x = data->ray.ray_width + 1;
 	data->draw.size_y = (int)data->ray.lineH;
 	data->draw.color = data->ray.color;
-	if (data->draw.size_y > 85)
-		draw_quadrilaters(data);
+	draw_texture_walls(data);
 	draw_map(data);
 	draw_player(data);
 	refresh(data);

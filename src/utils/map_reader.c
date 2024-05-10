@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/08 20:58:51 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:49:17 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,32 @@ char	**fill_map_array(t_data *data)
 	return (ret);
 }
 
-char	*removeLineBreaks(t_data *data, char *str)
+char	*remove_line_breaks(t_data *data, char *str)
 {
-	char	*cleanedString;
-	int		sourceIndex;
-	int		targetIndex;
-	int		lineCharIndex;
+	char	*cleaned_string;
+	int		source_index;
+	int		target_index;
+	int		line_char_index;
 
-	sourceIndex = (targetIndex = (lineCharIndex = 0));
-	cleanedString = (char *)malloc(sizeof(char) * data->max_x);
-	while (str[sourceIndex])
+	source_index = 0;
+	target_index = 0;
+	line_char_index = 0;
+	cleaned_string = (char *)malloc(sizeof(char) * data->max_x);
+	while (str[source_index])
 	{
-		if (str[sourceIndex] != '\n')
+		if (str[source_index] != '\n')
 		{
-			cleanedString[targetIndex++] = str[sourceIndex++];
-			lineCharIndex++;
+			cleaned_string[target_index++] = str[source_index++];
+			line_char_index++;
 		}
 		else
 		{
-			while (lineCharIndex < data->map_size[0])
-				cleanedString[targetIndex++] = ' ', lineCharIndex++;
-			sourceIndex++, lineCharIndex = 0;
+			while (line_char_index < data->map_size[0])
+				cleaned_string[target_index++] = ' ', line_char_index++;
+			source_index++, line_char_index = 0;
 		}
 	}
-	return (cleanedString);
+	return (cleaned_string);
 }
 int	is_valid_character(char c)
 {
@@ -97,7 +99,10 @@ static int	get_total_blocks_map(int *max_width, int *max_height, char *map)
 		}
 		index++;
 	}
+	if (map[index] == '\0' && map[index - 1] != '\n')
+	total_lines += 1;
 	*max_height = total_lines;
+	ft_printf("Lines: %d\n", total_lines);
 	return (total_blocks);
 }
 
@@ -285,7 +290,7 @@ int	config_file_loader(t_data *data)
 	data->blocks_nbr = get_total_blocks_map(&data->map_size[0],
 											&data->map_size[1],
 											data->map);
-	data->map_lined = removeLineBreaks(data, data->map);
+	data->map_lined = remove_line_breaks(data, data->map);
 	data->map_array = fill_map_array(data);
 	if (parse_config_file(data) < 0)
 		return (free(map), -1);
