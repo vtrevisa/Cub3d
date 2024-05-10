@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/09 23:21:31 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/10 00:00:58 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,55 +14,58 @@
 
 static void	check_vertical_ray_is_true(t_data *data)
 {
-    if (data->ray.ra == 0 || data->ray.ra == PI)
-    {
-        data->ray.rx = data->player_x;
-        data->ray.ry = data->player_y;
-        data->ray.dof = data->ray.max_view;
-    }
-    else
-    {
-        if (data->ray.ra > P2 && data->ray.ra < P3)
-        {
-            data->e_w = 0;
-            data->ray.rx = ((int)(data->player_x / data->cube_size) * data->cube_size) - 0.0001;
-            data->ray.xo = -data->cube_size;
-        }
-        else
-        {
-            data->e_w = 1;
-            data->ray.rx = ((int)(data->player_x / data->cube_size) * data->cube_size) + data->cube_size;
-            data->ray.xo = data->cube_size;
-        }
-        data->ray.ry = (data->player_x - data->ray.rx) * data->ray.nTan + data->player_y;
-        data->ray.yo = -data->ray.xo * data->ray.nTan;
-    }
+	if (data->ray.ra == 0 || data->ray.ra == PI)
+	{
+		data->ray.rx = data->player_x;
+		data->ray.ry = data->player_y;
+		data->ray.dof = data->ray.max_view;
+	}
+	else
+	{
+		if (data->ray.ra > P2 && data->ray.ra < P3)
+		{
+			data->e_w = 0;
+			data->ray.rx = ((int)(data->player_x / data->cube_size)
+					* data->cube_size) - 0.0001;
+			data->ray.xo = -data->cube_size;
+		}
+		else
+		{
+			data->e_w = 1;
+			data->ray.rx = ((int)(data->player_x / data->cube_size)
+					* data->cube_size) + data->cube_size;
+			data->ray.xo = data->cube_size;
+		}
+		data->ray.ry = (data->player_x - data->ray.rx) * data->ray.nTan
+			+ data->player_y;
+		data->ray.yo = -data->ray.xo * data->ray.nTan;
+	}
 }
 
-static void check_vertical_ray_with_walls(t_data *data)
+static void	check_vertical_ray_with_walls(t_data *data)
 {
-    while (data->ray.dof < data->ray.max_view)
-    {
-        data->ray.mx = (int)data->ray.rx / data->cube_size;
-        data->ray.mx = clamp(data->ray.mx, 0, data->map_size[0] - 1);
-        data->ray.my = (int)data->ray.ry / data->cube_size;
-        data->ray.my = clamp(data->ray.my, 0, data->map_size[1] - 1);
-
-        data->ray.mp = data->ray.my * data->map_size[0] + data->ray.mx;
-        if (data->ray.mp > 0 && data->ray.mp < data->map_size[0] * data->map_size[1] && data->map_lined[data->ray.mp] == '1')
-        {
-            data->ray.vx = data->ray.rx;
-            data->ray.vy = data->ray.ry;
-            data->ray.disV = dist(data, data->ray.vx, data->ray.vy);
-            data->ray.dof = data->ray.max_view;
-        }
-        else
-        {
-            data->ray.rx += data->ray.xo;
-            data->ray.ry += data->ray.yo;
-            data->ray.dof++;
-        }
-    }
+	while (data->ray.dof < data->ray.max_view)
+	{
+		data->ray.mx = (int)data->ray.rx / data->cube_size;
+		data->ray.mx = clamp(data->ray.mx, 0, data->map_size[0] - 1);
+		data->ray.my = (int)data->ray.ry / data->cube_size;
+		data->ray.my = clamp(data->ray.my, 0, data->map_size[1] - 1);
+		data->ray.mp = data->ray.my * data->map_size[0] + data->ray.mx;
+		if (data->ray.mp > 0 && data->ray.mp < data->map_size[0]
+			* data->map_size[1] && data->map_lined[data->ray.mp] == '1')
+		{
+			data->ray.vx = data->ray.rx;
+			data->ray.vy = data->ray.ry;
+			data->ray.disV = dist(data, data->ray.vx, data->ray.vy);
+			data->ray.dof = data->ray.max_view;
+		}
+		else
+		{
+			data->ray.rx += data->ray.xo;
+			data->ray.ry += data->ray.yo;
+			data->ray.dof++;
+		}
+	}
 }
 
 static void	check_minor_distance_v_h(t_data *data)
@@ -105,7 +108,7 @@ static void	calc_ray_situation(t_data *data)
 	data->ray.lineH = (data->cube_size * data->max_y) / data->ray.disT;
 	if (data->ray.lineH > data->max_y)
 		data->ray.lineH = data->max_y;
-	data->ray.lineO = (int)data->max_y/2 - data->ray.lineH / 2;
+	data->ray.lineO = (int)(data->max_y / 2) - data->ray.lineH / 2;
 	data->ray.ray_width = data->max_x / 66;
 }
 
