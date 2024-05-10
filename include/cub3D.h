@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/08 21:13:38 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/09 23:31:55 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,3 +176,10 @@ int					wrong_file_name(void);
 int					no_player_position(void);
 int					compare_strings(char *str1, char *str2);
 int					get_p_angle(char dir);
+int					check_first_line(char *line, t_data *data);
+int					check_mid_lines(char *line_above, char *line,
+						char *line_guide, t_data *data);
+int					clamp(int value, int min, int max);
+int					get_color(char *texture);
+void				reset_ray(t_data *data);
+void				reset_ray_2(t_data *data);
