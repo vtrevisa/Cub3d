@@ -14,7 +14,7 @@ LIB_INC_D	= $(LPATH)/Include
 SRC 		= $(INI) $(MAP) $(RAY) $(SYS) $(UTI) $(MSG)
 
 INI			= init.c i_utils.c
-MAP			= draw_map.c player.c square.c parser.c p_utils.c
+MAP			= draw_map.c parser.c p_others.c check_first_line.c check_mid_lines.c
 RAY			= raycast.c raycast_second.c r_utils.c
 SYS			= hooks.c main.c
 UTI			= utils.c map_reader.c
