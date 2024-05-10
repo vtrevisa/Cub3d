@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:43:21 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/09 23:04:35 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/10 16:03:33 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	draw_quadrilaters(t_data *data)
 		while (data->draw.initial_x <= data->draw.size_x + img_x)
 		{
 			my_mlx_pixel_put(data, data->draw.initial_x, data->draw.initial_y,
-					data->draw.color);
+				data->draw.color);
 			data->draw.initial_x++;
 		}
 		data->draw.initial_y++;

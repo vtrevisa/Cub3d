@@ -3,7 +3,7 @@ CFLAGS      = -Wall -Wextra -Werror -g
 LFLAGS      = -L./mlx_linux -lmlx -lXext -lX11 -lm -pthread -ldl -lpthread
 
 VPATH		= $(addprefix $(SRC_D)/, $(DIRS))
-MAPA 		= map_pdf.cub
+MAPA 		= map_pdf_2.cub
 LIB			= $(addprefix $(LPATH)/, libft.a)
 LPATH		= ./Libft
 SRC_D		= ./src
