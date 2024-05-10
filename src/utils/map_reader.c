@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/10 12:49:17 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/10 20:08:13 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,3 +297,38 @@ int	config_file_loader(t_data *data)
 	free(map);
 	return (1);
 }
+
+/* char	*remove_line_breaks(t_data *data, char *str)
+{
+	char	*cleaned_string;
+	int		source_index;
+	int		target_index;
+	int		line_char_index;
+
+	source_index = 0;
+	target_index = 0;
+	line_char_index = 1;
+	cleaned_string = (char *)malloc(sizeof(char) * ((data->map_size[0] * 4) * data->map_size[1]));
+	cleaned_string[target_index++] = ' ';
+	while (str[source_index])
+	{
+		if (str[source_index] != '\n')
+		{
+			cleaned_string[target_index++] = str[source_index++];
+			line_char_index++;
+		}
+		else
+		{
+			while (line_char_index < data->map_size[0] + 1)
+			{
+				cleaned_string[target_index++] = ' ';
+				line_char_index++;
+			}
+			source_index++;
+			line_char_index = 0;
+		}
+	}
+	cleaned_string[target_index] = '\0';
+	data->map_size[0] += 2;
+	return (cleaned_string);
+} */
