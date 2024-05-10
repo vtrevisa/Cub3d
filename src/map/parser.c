@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 17:33:11 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/09 23:13:42 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:33:17 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	process_lines(t_data *data, char *line_guide)
 	y = 0;
 	while (y <= data->map_size[1])
 	{
-		if (line_guide)
+		if (*line_guide)
 			free(line_guide);
 		line_guide = ft_strdup(data->line_below);
 		ft_memset(data->line_below, '0', data->map_size[0]);
@@ -100,9 +100,10 @@ int	parse_config_file(t_data *data)
 		return (txt_error());
 	if (data->col_ok != 2)
 		return (col_error());
-	data->line_below = (char *)malloc(data->map_size[0] + 1);
+	data->line_below = malloc(data->map_size[0] + 1);
 	ft_bzero(data->line_below, data->map_size[0] + 1);
-	line_guide = (char *)malloc(data->map_size[0] + 1);
+	line_guide = malloc(data->map_size[0] + 1);
+	ft_bzero(line_guide, data->map_size[0] + 1);
 	if (!process_lines(data, line_guide))
 	{
 		free(data->line_below);

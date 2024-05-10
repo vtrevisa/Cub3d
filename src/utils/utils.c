@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/06 18:14:19 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:29:48 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ static int	exit_map(t_data *data)
 	free(data->map);
 	free(data->map_name);
 	free (data->map_lined);
+	i = -1;
+	while (++i < 4)
+		free (data->textures[i]);
 	return (0);
 }
 
