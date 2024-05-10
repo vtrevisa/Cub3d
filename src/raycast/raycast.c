@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/09 23:33:34 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/09 23:55:10 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	check_horizontal_ray_with_walls(t_data *data)
 			data->ray.dof += 1;
 		}
 	}
-	reset_ray(data);
+	reset_ray(data, 0);
 }
 
 void	drawrays3d(t_data *data)
@@ -78,7 +78,7 @@ void	drawrays3d(t_data *data)
 	set_params_ray(data);
 	while (data->ray.r < 66)
 	{
-		reset_ray_2(data);
+		reset_ray(data, 1);
 		check_direction_ray(data);
 		check_horizontal_ray_with_walls(data);
 		drawrays3d_second(data);
