@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/10 10:58:01 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:01:19 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_data
 	int				e_w;
 	int				arrow_r;
 	int				arrow_l;
+	int				max_dist;
 	t_ray			ray;
 	t_draw			draw;
 }					t_data;
