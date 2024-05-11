@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 12:22:53 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/11 17:29:59 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ typedef struct s_col
 	char			**col;
 	char			tmp;
 }					t_col;
+
+typedef struct s_remove_line
+{
+	char			*cleaned_string;
+	int				source_index;
+	int				target_index;
+	int				line_char_index;
+}					t_remove_line;
 
 typedef struct s_ray //2 screen
 {
@@ -127,6 +135,7 @@ typedef struct s_data
 	int				max_dist;
 	t_ray			ray;
 	t_draw			draw;
+	t_remove_line	remove_l;
 }					t_data;
 
 void				draw_map(t_data *data);

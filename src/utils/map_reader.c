@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 15:34:11 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/11 17:28:40 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,44 @@ char	**fill_map_array(t_data *data)
 	return (ret);
 }
 
-char	*remove_line_breaks(t_data *data, char *str)
+char	*create_clean_string(int size)
 {
 	char	*cleaned_string;
-	int		source_index;
-	int		target_index;
-	int		line_char_index;
 
-	source_index = 0;
-	target_index = 0;
-	line_char_index = 0;
-	cleaned_string = (char *)malloc(sizeof(char) * data->max_x);
-	while (str[source_index])
+	cleaned_string = (char *)malloc(sizeof(char) * size);
+	return ((char *)cleaned_string);
+}
+
+char	*remove_line_breaks(t_data *data, char *str)
+{
+	data->remove_l.cleaned_string = create_clean_string(data->max_x);
+	if (!data->remove_l.cleaned_string)
+		return ((char *) NULL);
+	while (str[data->remove_l.source_index] != '\0')
 	{
-		if (str[source_index] != '\n')
+		if (str[data->remove_l.source_index] != '\n')
 		{
-			cleaned_string[target_index++] = str[source_index++];
-			line_char_index++;
+			data->remove_l.cleaned_string[data->remove_l.target_index] =
+				str[data->remove_l.source_index];
+			data->remove_l.target_index++;
+			data->remove_l.source_index++;
+			data->remove_l.line_char_index++;
 		}
 		else
 		{
-			while (line_char_index < data->map_size[0])
-				cleaned_string[target_index++] = ' ', line_char_index++;
-			source_index++, line_char_index = 0;
+			while (data->remove_l.line_char_index < data->map_size[0])
+			{
+				data->remove_l.cleaned_string[data->remove_l.target_index] = ' ';
+				data->remove_l.target_index++;
+				data->remove_l.line_char_index++;
+			}
+			data->remove_l.source_index++;
+			data->remove_l.line_char_index = 0;
 		}
 	}
-	return (cleaned_string);
+	return ((char *)data->remove_l.cleaned_string);
 }
+
 static int	is_valid_character(char c)
 {
 	if ((c == 'N' || c == 'S' || c == 'W' || c == 'E') ||
@@ -100,7 +111,7 @@ static int	get_total_blocks_map(int *max_width, int *max_height, char *map)
 		index++;
 	}
 	if (map[index] == '\0' && map[index - 1] != '\n')
-		total_lines += 1;
+			total_lines += 1;
 	*max_height = total_lines;
 	return (total_blocks);
 }
@@ -219,7 +230,7 @@ int	line_equal_to_nl(char *line, int index, t_data *data, char **map)
 	{
 		*map = ft_strdup(line);
 		free(line);
-		return (0) ;
+		return (0);
 	}
 	return (1);
 }
@@ -249,7 +260,7 @@ void	config_loader(t_data *data, int *fd, char **map)
 static void	map_loader(t_data *data, int *fd, char **map)
 {
 	char	*line;
-	char	*newMapContent;
+	char	*new_map_content;
 
 	line = ft_strdup(*map);
 	data->map = NULL;
@@ -259,9 +270,9 @@ static void	map_loader(t_data *data, int *fd, char **map)
 			data->map = ft_strdup(line);
 		else
 		{
-			newMapContent = ft_strjoin(data->map, line);
+			new_map_content = ft_strjoin(data->map, line);
 			free(data->map);
-			data->map = newMapContent;
+			data->map = new_map_content;
 		}
 		free(line);
 		line = get_next_line(*fd);
@@ -287,8 +298,8 @@ int	config_file_loader(t_data *data)
 	config_loader(data, &fd, &map);
 	map_loader(data, &fd, &map);
 	data->blocks_nbr = get_total_blocks_map(&data->map_size[0],
-											&data->map_size[1],
-											data->map);
+			&data->map_size[1],
+			data->map);
 	data->map_lined = remove_line_breaks(data, data->map);
 	data->map_array = fill_map_array(data);
 	if (parse_config_file(data) < 0)
@@ -296,38 +307,3 @@ int	config_file_loader(t_data *data)
 	free(map);
 	return (1);
 }
-
-/* char	*remove_line_breaks(t_data *data, char *str)
-{
-	char	*cleaned_string;
-	int		source_index;
-	int		target_index;
-	int		line_char_index;
-
-	source_index = 0;
-	target_index = 0;
-	line_char_index = 1;
-	cleaned_string = (char *)malloc(sizeof(char) * ((data->map_size[0] * 4) * data->map_size[1]));
-	cleaned_string[target_index++] = ' ';
-	while (str[source_index])
-	{
-		if (str[source_index] != '\n')
-		{
-			cleaned_string[target_index++] = str[source_index++];
-			line_char_index++;
-		}
-		else
-		{
-			while (line_char_index < data->map_size[0] + 1)
-			{
-				cleaned_string[target_index++] = ' ';
-				line_char_index++;
-			}
-			source_index++;
-			line_char_index = 0;
-		}
-	}
-	cleaned_string[target_index] = '\0';
-	data->map_size[0] += 2;
-	return (cleaned_string);
-} */
