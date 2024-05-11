@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 12:22:37 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/11 14:05:19 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	init_params(t_data *data, int argc, char **argv)
 	else
 		data->map_name = ft_strdup(argv[1]);
 	data->upg = 0;
-	data->max_x = 1024;
+	data->max_x = 1056;
 	data->max_y = 768;
 	data->col_ok = 0;
 	data->txt_ok = 0;
@@ -97,13 +97,7 @@ int	init_map(t_data *data)
 		return (input_error());
 	data->initial_x = 0;
 	data->initial_y = 0;
-	data->size_x = 10;
-	data->size_y = 10;
-	if (data->size_x < data->size_y)
-		data->size_y = data->size_x;
-	else
-		data->size_x = data->size_y;
-	data->cube_size = data->size_x;
+	data->cube_size = 10;
 	data->x = 0;
 	data->y = 0;
 	data->flag = 0;

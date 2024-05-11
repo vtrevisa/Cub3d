@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 10:07:25 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:34:11 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,8 @@ static int	get_total_blocks_map(int *max_width, int *max_height, char *map)
 		index++;
 	}
 	if (map[index] == '\0' && map[index - 1] != '\n')
-	total_lines += 1;
+		total_lines += 1;
 	*max_height = total_lines;
-	ft_printf("Lines: %d\n", total_lines);
 	return (total_blocks);
 }
 

@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/06 15:44:09 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:07:39 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,14 @@ void	display(t_data *data)
 	draw_background(data);
 	draw_map(data);
 	draw_player(data);
+	data->player_x += (data->cube_size * 2);
+	data->player_y += (data->cube_size);
 	drawrays3d(data);
+	data->player_x -= (data->cube_size * 2);
+	data->player_y -= (data->cube_size);
+	draw_map(data);
+	draw_player(data);
+	refresh(data);
 }
 
 static int	init_all(t_data *data, int argc, char **argv)

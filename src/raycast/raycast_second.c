@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/11 12:23:19 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:25:31 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,13 +123,10 @@ void	drawrays3d_second(t_data *data)
 	calc_ray_situation(data);
 	data->draw.initial_x = ((data->ray.r) * data->ray.ray_width);
 	data->draw.initial_y = (int)data->ray.lineO;
-	data->draw.size_x = data->ray.ray_width + 1;
+	data->draw.size_x = data->ray.ray_width;
 	data->draw.size_y = (int)data->ray.lineH;
 	data->draw.color = data->ray.color;
 	if (data->ray.lineH > 0)
 		draw_texture_walls(data);
-	draw_map(data);
-	draw_player(data);
-	refresh(data);
 	data->ray.r++;
 }
