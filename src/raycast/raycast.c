@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/09 23:57:40 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:49:28 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,25 @@ static void	set_params_ray(t_data *data)
 		data->ray.ra -= 2 * PI;
 }
 
+static void	set_ray_direction(t_data *data)
+{
+	double	base_ry;
+
+	base_ry = ((int)(data->player_y / data->cube_size) * data->cube_size);
+	if (data->ray.ra > PI)
+	{
+		data->n_s = 1;
+		data->ray.ry = base_ry - 0.0001;
+		data->ray.yo = -data->cube_size;
+	}
+	else
+	{
+		data->n_s = 0;
+		data->ray.ry = base_ry + data->cube_size;
+		data->ray.yo = data->cube_size;
+	}
+}
+
 static void	check_direction_ray(t_data *data)
 {
 	if (data->ray.ra == 0 || data->ray.ra == PI)
@@ -36,12 +55,9 @@ static void	check_direction_ray(t_data *data)
 	}
 	else
 	{
-		data->n_s = (data->ray.ra > PI);
-		data->ray.ry = ((int)(data->player_y / data->cube_size)
-				* data->cube_size) + (data->n_s ? -0.0001 : data->cube_size);
+		set_ray_direction(data);
 		data->ray.rx = (data->player_y - data->ray.ry) * data->ray.aTan
 			+ data->player_x;
-		data->ray.yo = (data->n_s ? -data->cube_size : data->cube_size);
 		data->ray.xo = -data->ray.yo * data->ray.aTan;
 	}
 }
@@ -81,6 +97,14 @@ void	drawrays3d(t_data *data)
 		check_direction_ray(data);
 		check_horizontal_ray_with_walls(data);
 		reset_ray(data, 0);
+		if (data->ray.ra == 0 || data->ray.ra == PI)
+		{
+			data->ray.rx = data->player_x;
+			data->ray.ry = data->player_y;
+			data->ray.dof = data->ray.max_view;
+		}
+		else
+			check_vertical_ray_is_true(data);
 		drawrays3d_second(data);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 18:59:58 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:13:26 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,3 +198,4 @@ int					get_total_blocks_map(int *max_width, int *max_height,
 void				if_a(t_data *data);
 void				if_d(t_data *data);
 void				error_msg(char *msg);
+void				check_vertical_ray_is_true(t_data *data);

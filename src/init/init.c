@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 17:59:42 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:19:03 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ int	init_mlx(t_data *data)
 
 int	validate_textures(t_data *data)
 {
-	int		count;
-	int		count_inter;
-	int		texture_detected;
-	const char	*texture[4] = {"texture_1", "texture_2", "texture_3", "texture_4"};
+	int			count;
+	int			count_inter;
+	int			texture_detected;
+	const char	*texture[4] = {"texture_1", "texture_2", "texture_3",
+		"texture_4"};
+
 	count = -1;
 	while (count++, count < 4)
 	{
@@ -61,7 +63,8 @@ int	validate_textures(t_data *data)
 		count_inter = -1;
 		while (count_inter++, count_inter < 4)
 		{
-			if (!compare_strings(data->textures[count], (char *)texture[count_inter]))
+			if (!compare_strings(data->textures[count],
+					(char *)texture[count_inter]))
 			{
 				texture_detected = 1;
 				break ;
@@ -73,21 +76,25 @@ int	validate_textures(t_data *data)
 	return (1);
 }
 
-int check_duplicates(t_data *data) 
+int	check_duplicates(t_data *data)
 {
-	int count = 0;
+	int	count;
+	int	count_intern;
+
+	count = 0;
 	while (count < 4)
 	{
-		int count_intern = count + 1;
+		count_intern = count + 1;
 		while (count_intern < 4)
 		{
-			if (compare_strings(data->textures[count], data->textures[count_intern]) == 0)
-				return -1;
+			if (compare_strings(data->textures[count],
+					data->textures[count_intern]) == 0)
+				return (-1);
 			count_intern++;
 		}
 		count++;
 	}
-	return 0;
+	return (0);
 }
 
 int	init_map(t_data *data)

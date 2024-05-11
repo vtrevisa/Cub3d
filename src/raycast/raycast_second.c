@@ -3,43 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_second.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/11 15:25:31 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:13:16 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static void	check_vertical_ray_is_true(t_data *data)
+void	check_vertical_ray_is_true(t_data *data)
 {
-	if (data->ray.ra == 0 || data->ray.ra == PI)
+	if (data->ray.ra > P2 && data->ray.ra < P3)
 	{
-		data->ray.rx = data->player_x;
-		data->ray.ry = data->player_y;
-		data->ray.dof = data->ray.max_view;
+		data->e_w = 0;
+		data->ray.rx = (int)(data->player_x / data->cube_size) * data->cube_size
+			- 0.0001;
+		data->ray.xo = -data->cube_size;
 	}
 	else
 	{
-		if (data->ray.ra > P2 && data->ray.ra < P3)
-		{
-			data->e_w = 0;
-			data->ray.rx = ((int)(data->player_x / data->cube_size)
-					* data->cube_size) - 0.0001;
-			data->ray.xo = -data->cube_size;
-		}
-		else
-		{
-			data->e_w = 1;
-			data->ray.rx = ((int)(data->player_x / data->cube_size)
-					* data->cube_size) + data->cube_size;
-			data->ray.xo = data->cube_size;
-		}
-		data->ray.ry = (data->player_x - data->ray.rx) * data->ray.nTan
-			+ data->player_y;
-		data->ray.yo = -data->ray.xo * data->ray.nTan;
+		data->e_w = 1;
+		data->ray.rx = (int)(data->player_x / data->cube_size) * data->cube_size
+			+ data->cube_size;
+		data->ray.xo = data->cube_size;
 	}
+	data->ray.ry = (data->player_x - data->ray.rx) * data->ray.nTan
+		+ data->player_y;
+	data->ray.yo = -data->ray.xo * data->ray.nTan;
 }
 
 static void	check_vertical_ray_with_walls(t_data *data)
@@ -105,7 +96,6 @@ static void	calc_ray_situation(t_data *data)
 	if (data->ray.ca > 2 * PI)
 		data->ray.ca -= 2 * PI;
 	data->ray.disT *= cos(data->ray.ca);
-	//printf("Ray %d disT: %f\n", data->ray.r, data->ray.disT);
 	data->ray.lineH = (data->cube_size * data->max_y) / data->ray.disT;
 	if (data->ray.lineH > data->max_y)
 		data->ray.lineH = data->max_y;
