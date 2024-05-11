@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 17:29:59 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 18:59:58 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ typedef struct s_col
 
 typedef struct s_remove_line
 {
-	char			*cleaned_string;
+	char			*cleaned_str;
 	int				source_index;
 	int				target_index;
-	int				line_char_index;
+	int				line_c_index;
 }					t_remove_line;
 
 typedef struct s_ray //2 screen
@@ -94,11 +94,9 @@ typedef struct s_data
 {
 	int				initial_x;
 	int				initial_y;
-	int				size_x;
-	int				size_y;
 	int				cube_size;
-	int				x;
-	int				y;
+	double			x;
+	double			y;
 	void			*img;
 	char			*addr;
 	int				bits_per_pixel;
@@ -132,7 +130,6 @@ typedef struct s_data
 	int				e_w;
 	int				arrow_r;
 	int				arrow_l;
-	int				max_dist;
 	t_ray			ray;
 	t_draw			draw;
 	t_remove_line	remove_l;
@@ -193,3 +190,11 @@ int					get_color(char *texture);
 void				reset_ray(t_data *data, int horizontal);
 void				draw_texture_walls(t_data *data);
 void				fix_map(t_data *data);
+unsigned long		ft_rgb_to_hex(int r, int g, int b);
+int					load_textures(t_data *data, char *str);
+void				config_loader(t_data *data, int *fd, char **map);
+int					get_total_blocks_map(int *max_width, int *max_height,
+						char *map);
+void				if_a(t_data *data);
+void				if_d(t_data *data);
+void				error_msg(char *msg);

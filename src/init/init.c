@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 17:29:27 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 17:59:42 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	init_params(t_data *data, int argc, char **argv)
 	data->arrow_l = 0;
 	data->remove_l.source_index = 0;
 	data->remove_l.target_index = 0;
-	data->remove_l.line_char_index = 0;
+	data->remove_l.line_c_index = 0;
 	return (1);
 }
 

@@ -12,13 +12,13 @@ OBJ_D		= ./objects
 INCLUDE_D	= ./include
 LIB_INC_D	= $(LPATH)/Include
 SRC 		= $(INI) $(MAP) $(RAY) $(SYS) $(UTI) $(MSG)
-
 INI			= init.c i_utils.c
-MAP			= draw_map.c parser.c p_others.c check_first_line.c check_mid_lines.c
+
+MAP			= draw_map.c parser.c p_others.c check_first_line.c check_mid_lines.c if_ad.c
 RAY			= raycast.c raycast_second.c r_utils.c
 SYS			= hooks.c main.c
-UTI			= utils.c map_reader.c
-MSG			= msg.c
+UTI			= utils.c map_reader.c config_loader.c config_loader_p2.c get_total_blocks.c
+MSG			= msg.c msg_p2.c
 HEADERS		= ./include/cub3D.h
 
 INCLUDE		= -I $(INCLUDE_D) -I $(LIB_INC_D) -I./mlx_linux

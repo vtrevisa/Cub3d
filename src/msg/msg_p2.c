@@ -1,43 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msg.c                                              :+:      :+:    :+:   */
+/*   msg_p2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 19:00:10 by r-afonso         ###   ########.fr       */
+/*   Created: 2024/05/11 18:56:56 by r-afonso          #+#    #+#             */
+/*   Updated: 2024/05/11 19:00:56 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-int	map_error(void)
+void	error_msg(char *msg)
 {
-	error_msg("Wrong map configuration\n");
+	printf(RED);
+	printf("Error\n");
+	printf(WHITE);
+	printf(RED);
+	printf("%s", msg);
+	printf(WHITE);
+}
+
+int	input_error(void)
+{
+	error_msg("Passed invalid parameters\n");
 	return (-1);
 }
 
-int	txt_error(void)
+int	mlx_error(void)
 {
-	error_msg("Texture load error\n");
+	error_msg("Mlx error\n");
 	return (-1);
 }
 
-int	col_error(void)
+int	open_error(void)
 {
-	error_msg("Color load error\n");
-	return (-1);
-}
-
-int	wrong_file_name(void)
-{
-	error_msg("Wrong map file name\n");
-	return (-1);
-}
-
-int	no_player_position(void)
-{
-	error_msg("No player start position\n");
+	error_msg("Couldn't open the config file\n");
 	return (-1);
 }

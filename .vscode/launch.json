@@ -6,7 +6,7 @@
             "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/cub3D",
-            "args": ["map_pdf.cub"],
+            "args": ["map_pdf_2.cub"],
             "preLaunchTask": "clang build",
             "cwd": "${workspaceFolder}"
         }
