@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 23:11:52 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/11 09:56:43 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:28:04 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	check_mid_lines(char *line_above, char *line, char *line_guide,
 	is_closed = 0;
 	while (line[i])
 	{
+		c = line[i];
 		if (check_letters_and_part_one(data, &c, &is_closed) < 0
 			|| check_one(line, line_guide, i, &c) < 0)
 			return (map_error());
