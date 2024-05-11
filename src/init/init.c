@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 20:19:03 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:56:51 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ int	init_map(t_data *data)
 	if (config_file_loader(data) < 0)
 		return (-1);
 	if (validate_textures(data) < 0)
-		return (input_error());
+		return (txt_error());
 	if (check_duplicates(data) < 0)
-		return (input_error());
+		return (txt_error());
 	data->initial_x = 0;
 	data->initial_y = 0;
 	data->cube_size = 10;

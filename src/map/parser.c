@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 17:33:11 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 10:39:00 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:25:48 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	process_lines(t_data *data, char *line_guide)
 	y = 0;
 	while (y <= data->map_size[1])
 	{
-		if (*line_guide)
+		if (line_guide)
 			free(line_guide);
 		line_guide = ft_strdup(data->line_below);
 		ft_memset(data->line_below, '0', data->map_size[0]);
@@ -102,9 +102,13 @@ int	process_lines(t_data *data, char *line_guide)
 			result = check_last_line(data->map_array[y - 1], data->map_array[y],
 					line_guide);
 		if (result < 0)
+		{
+			free (line_guide);
 			return (0);
+		}
 		y++;
 	}
+	free (line_guide);
 	return (1);
 }
 
@@ -116,17 +120,15 @@ int	parse_config_file(t_data *data)
 		return (txt_error());
 	if (data->col_ok != 2)
 		return (col_error());
-	data->line_below = malloc(data->map_size[0] + 1);
-	ft_bzero(data->line_below, data->map_size[0] + 1);
-	line_guide = malloc(data->map_size[0] + 1);
-	ft_bzero(line_guide, data->map_size[0] + 1);
+	data->line_below = malloc(data->map_size[0] + 2);
+	ft_bzero(data->line_below, data->map_size[0] + 2);
+	line_guide = malloc(data->map_size[0] + 2);
+	ft_bzero(line_guide, data->map_size[0] + 2);
 	if (!process_lines(data, line_guide))
 	{
 		free(data->line_below);
-		free(line_guide);
 		return (-1);
 	}
-	free(line_guide);
 	free(data->line_below);
 	if (data->flag)
 		return (1);

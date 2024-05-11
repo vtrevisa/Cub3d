@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   i_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 21:13:20 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/11 19:53:29 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:56:12 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	fix_map(t_data *data)
 
 	x_source = 0;
 	x_dest = data->map_size[0] + 2;
-	tmp = malloc(10000);
-	ft_memset((tmp), ' ', data->map_size[0] + 2);
+	tmp = malloc (10000);
+	ft_memset(tmp, ' ', data->map_size[0] + 2);
 	while (data->map_lined[x_source])
 	{
 		x = -1;
@@ -49,7 +49,10 @@ void	fix_map(t_data *data)
 	x_dest -= 1;
 	while (++x < data->map_size[0] + 2)
 		tmp[x_dest++] = ' ';
-	data->map_lined = tmp;
+	tmp[x_dest] = 0;
+	free (data->map_lined);
+	data->map_lined = ft_strdup(tmp);
+	free (tmp);
 	data->map_size[0] += 2;
 	data->map_size[1] += 2;
 }
