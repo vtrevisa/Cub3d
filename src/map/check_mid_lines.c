@@ -6,35 +6,11 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 23:11:52 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/09 23:12:54 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 09:56:43 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-
-int	check_numbers_letters(char *line, char *line_guide, t_data *data, int i,
-		int *is_closed, char *c)
-{
-	if (line_guide[i] == '1')
-	{
-		if (line[i] != ' ' && line[i] != '1')
-			return (-1);
-	}
-	*c = line[i];
-	if (*c == '1')
-		*is_closed = 1;
-	if (*c != '1' && *c != ' ')
-		*is_closed = 0;
-	if (*c == 'W' || *c == 'E' || *c == 'N' || *c == 'S')
-	{
-		data->player_dir = *c;
-		if (data->flag)
-			return (-1);
-		else
-			data->flag = 1;
-	}
-	return (1);
-}
 
 int	count_mid_lines(char *line, char *line_above, t_data *data, int i)
 {
@@ -57,6 +33,34 @@ int	count_mid_lines(char *line, char *line_above, t_data *data, int i)
 	return (1);
 }
 
+int	check_one(char *line, char *line_guide, int i, char *c)
+{
+	if (line_guide[i] == '1')
+	{
+		if (line[i] != ' ' && line[i] != '1')
+			return (-1);
+	}
+	*c = line[i];
+	return (1);
+}
+
+int	check_letters_and_part_one(t_data *data, char *c, int *is_closed)
+{
+	if (*c == 'W' || *c == 'E' || *c == 'N' || *c == 'S')
+	{
+		data->player_dir = *c;
+		if (data->flag)
+			return (-1);
+		else
+			data->flag = 1;
+	}
+	if (*c == '1')
+		*is_closed = 1;
+	if (*c != '1' && *c != ' ')
+		*is_closed = 0;
+	return (1);
+}
+
 int	check_mid_lines(char *line_above, char *line, char *line_guide,
 		t_data *data)
 {
@@ -68,8 +72,8 @@ int	check_mid_lines(char *line_above, char *line, char *line_guide,
 	is_closed = 0;
 	while (line[i])
 	{
-		if (check_numbers_letters(line, line_guide, data, i, &is_closed,
-				&c) < 0)
+		if (check_letters_and_part_one(data, &c, &is_closed) < 0
+			|| check_one(line, line_guide, i, &c) < 0)
 			return (map_error());
 		if (c == ' ')
 		{

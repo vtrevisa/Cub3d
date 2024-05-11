@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/10 15:01:19 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/11 10:08:34 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,6 @@ int					txt_error(void);
 int					col_error(void);
 int					map_error_here(int index);
 void				show_map_array(char **map, int ln);
-int					is_valid_character(char c);
 void				drawrays3d_second(t_data *data);
 int					wrong_file_name(void);
 int					no_player_position(void);

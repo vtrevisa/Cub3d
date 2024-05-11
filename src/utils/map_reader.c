@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/10 20:08:13 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/11 10:07:25 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*remove_line_breaks(t_data *data, char *str)
 	}
 	return (cleaned_string);
 }
-int	is_valid_character(char c)
+static int	is_valid_character(char c)
 {
 	if ((c == 'N' || c == 'S' || c == 'W' || c == 'E') ||
 		(c == '1' || c == '0') ||
