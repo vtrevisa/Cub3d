@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:17:54 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/10 15:07:59 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/11 12:23:19 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static void	calc_ray_situation(t_data *data)
 	if (data->ray.ca > 2 * PI)
 		data->ray.ca -= 2 * PI;
 	data->ray.disT *= cos(data->ray.ca);
-	printf("Ray %d disT: %f\n", data->ray.r, data->ray.disT);
+	//printf("Ray %d disT: %f\n", data->ray.r, data->ray.disT);
 	data->ray.lineH = (data->cube_size * data->max_y) / data->ray.disT;
 	if (data->ray.lineH > data->max_y)
 		data->ray.lineH = data->max_y;

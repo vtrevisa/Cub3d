@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 10:08:34 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 12:22:53 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,4 +182,5 @@ int					check_mid_lines(char *line_above, char *line,
 int					clamp(int value, int min, int max);
 int					get_color(char *texture);
 void				reset_ray(t_data *data, int horizontal);
-void	draw_texture_walls(t_data *data);
+void				draw_texture_walls(t_data *data);
+void				fix_map(t_data *data);

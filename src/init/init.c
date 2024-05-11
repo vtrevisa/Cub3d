@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/08 21:17:16 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 12:22:37 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ int	init_map(t_data *data)
 	data->p_angle = (PI / 2) * get_p_angle(data->player_dir);
 	data->p_deltX = cos(data->p_angle);
 	data->p_deltY = sin(data->p_angle);
+	fix_map(data);
 	return (1);
 }
