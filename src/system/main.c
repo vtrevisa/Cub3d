@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 15:07:39 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/12 00:12:19 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	display(&data);
+	key_press(A, &data);
+	key_press(D, &data);
 	get_hook(&data);
 	mlx_loop(data.mlx);
 	return (0);

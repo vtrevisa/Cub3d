@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 21:43:20 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/12 00:11:53 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	handle_da_arrow(int key, t_data *data, int *i)
 	}
 }
 
-static int	key_press(int key, t_data *data)
+int	key_press(int key, t_data *data)
 {
 	int	i;
 

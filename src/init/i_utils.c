@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 21:13:20 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/12 00:00:54 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/12 00:19:55 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ int	get_p_angle(char dir)
 	return (0);
 }
 
+void	free_tmp(char **tmp, t_data *data)
+{
+	free(data->map_lined);
+	data->map_lined = ft_strdup(*tmp);
+	free (*tmp);
+}
+
 int	fix_map(t_data *data, int x_source)
 {
 	char	*tmp;
@@ -33,7 +40,6 @@ int	fix_map(t_data *data, int x_source)
 
 	if (!data->map_lined)
 		return (-1);
-	x_source = 0;
 	x_dest = data->map_size[0] + 2;
 	tmp = malloc(10000);
 	ft_memset(tmp, ' ', data->map_size[0] + 2);
@@ -51,8 +57,6 @@ int	fix_map(t_data *data, int x_source)
 	while (++x < data->map_size[0] + 2)
 		tmp[x_dest++] = ' ';
 	tmp[x_dest] = 0;
-	free(data->map_lined);
-	data->map_lined = ft_strdup(tmp);
-	free (tmp);
+	free_tmp(&tmp, data);
 	return (1);
 }
