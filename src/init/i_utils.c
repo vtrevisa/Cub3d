@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   i_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 21:13:20 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/11 20:56:12 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:35:33 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,14 @@ int	get_p_angle(char dir)
 	return (0);
 }
 
-void	fix_map(t_data *data)
+void	fix_map(t_data *data, int x_source)
 {
 	char	*tmp;
-	int		x_source;
 	int		x_dest;
 	int		x;
 
-	x_source = 0;
 	x_dest = data->map_size[0] + 2;
-	tmp = malloc (10000);
+	tmp = malloc(10000);
 	ft_memset(tmp, ' ', data->map_size[0] + 2);
 	while (data->map_lined[x_source])
 	{
@@ -50,9 +48,7 @@ void	fix_map(t_data *data)
 	while (++x < data->map_size[0] + 2)
 		tmp[x_dest++] = ' ';
 	tmp[x_dest] = 0;
-	free (data->map_lined);
+	free(data->map_lined);
 	data->map_lined = ft_strdup(tmp);
-	free (tmp);
-	data->map_size[0] += 2;
-	data->map_size[1] += 2;
+	free(tmp);
 }

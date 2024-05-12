@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 20:23:26 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:36:34 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	exit_map(t_data *data)
 	int	i;
 
 	i = -1;
-	while (i++, data->map_array[i] && i< data->map_size[1])
+	while (i++, data->map_array[i] && i < data->map_size[1])
 		free (data->map_array[i]);
 	free (data->map_array);
 	free(data->map);

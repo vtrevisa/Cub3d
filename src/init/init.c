@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 20:56:51 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:37:37 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ int	check_duplicates(t_data *data)
 
 int	init_map(t_data *data)
 {
+	int	x_source;
+
 	if (config_file_loader(data) < 0)
 		return (-1);
 	if (validate_textures(data) < 0)
@@ -114,6 +116,9 @@ int	init_map(t_data *data)
 	data->p_angle = (PI / 2) * get_p_angle(data->player_dir);
 	data->p_deltX = cos(data->p_angle);
 	data->p_deltY = sin(data->p_angle);
-	fix_map(data);
+	x_source = 0;
+	fix_map(data, x_source);
+	data->map_size[0] += 2;
+	data->map_size[1] += 2;
 	return (1);
 }
