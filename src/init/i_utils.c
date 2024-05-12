@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 21:13:20 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/11 23:50:15 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/11 23:56:59 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_p_angle(char dir)
 	return (0);
 }
 
-int	fix_map(t_data *data)
+int	fix_map(t_data *data, int x_source)
 {
 	char	*tmp;
 	int		x_dest;
