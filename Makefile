@@ -58,6 +58,8 @@ $(OBJ_D)/%.o: %.c Makefile | $(OBJ_D)
 $(OBJ_D):
 	@mkdir -p $@
 
+bonus: all
+
 clean:
 	@echo "$(BLUE)Removing $(WHITE)Cub3D objects"
 	@rm -rf $(OBJ_D)
@@ -69,3 +71,5 @@ fclean: clean
 	@$(MAKE)	fclean -C $(LPATH) --no-print-directory
 
 re: fclean all
+
+.PHONY: all bonus clean fclean re
