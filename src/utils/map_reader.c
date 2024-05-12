@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 22:28:49 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/12 00:55:56 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ static void	map_loader(t_data *data, int *fd, char **map)
 		free(line);
 		line = get_next_line(*fd);
 	}
+	new_map_content = ft_strjoin(data->map, "\n\0");
+	free(data->map);
+	data->map = new_map_content;
 }
 
 int	config_file_loader(t_data *data)

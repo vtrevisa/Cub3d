@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 23:57:26 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/12 00:27:59 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,3 +200,4 @@ void				if_a(t_data *data);
 void				if_d(t_data *data);
 void				error_msg(char *msg);
 void				check_vertical_ray_is_true(t_data *data);
+int					key_press(int key, t_data *data);
