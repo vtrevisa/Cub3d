@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_others.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:43:21 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/12 00:09:42 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/12 01:21:40 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	compare_strings(char *str1, char *str2)
 {
+	if (!str1 || !str2)
+		return (1);
 	if (ft_strlen(str1) != ft_strlen(str2))
 		return (1);
 	if (ft_strncmp(str1, str2, ft_strlen(str1)) == 0)
