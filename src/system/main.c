@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:18:48 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/12 00:12:19 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/12 01:15:35 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	display(t_data *data)
 	draw_background(data);
 	draw_map(data);
 	draw_player(data);
-	data->player_x += (data->cube_size * 2);
+	data->player_x += (int)(data->cube_size * 1.2);
 	data->player_y += (data->cube_size);
 	drawrays3d(data);
-	data->player_x -= (data->cube_size * 2);
+	data->player_x -= (int)(data->cube_size * 1.2);
 	data->player_y -= (data->cube_size);
 	draw_map(data);
 	draw_player(data);
