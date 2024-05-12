@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 20:29:02 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 18:29:45 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:43:20 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	handle_da_arrow(int key, t_data *data, int *i)
 		if (data->arrow_r != 1)
 		{
 			data->arrow_r = 1;
-			while (i++, *i < 32)
+			while ((*i)++, *i < 32)
 				if_d(data);
 		}
 	}
@@ -49,7 +49,7 @@ void	handle_da_arrow(int key, t_data *data, int *i)
 		if (data->arrow_l != 1)
 		{
 			data->arrow_l = 1;
-			while (i++, *i < 32)
+			while ((*i)++, *i < 32)
 				if_a(data);
 		}
 	}
