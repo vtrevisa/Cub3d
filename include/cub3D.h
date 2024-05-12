@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:40:53 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 21:35:26 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 23:49:32 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct s_data
 	int				e_w;
 	int				arrow_r;
 	int				arrow_l;
+	int				mp_sz_p2;
 	t_ray			ray;
 	t_draw			draw;
 	t_remove_line	remove_l;
@@ -189,7 +190,7 @@ int					clamp(int value, int min, int max);
 int					get_color(char *texture);
 void				reset_ray(t_data *data, int horizontal);
 void				draw_texture_walls(t_data *data);
-void				fix_map(t_data *data, int x_source);
+int					fix_map(t_data *data);
 unsigned long		ft_rgb_to_hex(int r, int g, int b);
 int					load_textures(t_data *data, char *str);
 void				config_loader(t_data *data, int *fd, char **map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 10:43:27 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 18:52:24 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 22:28:49 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	*create_clean_string(int size)
 	char	*cleaned_string;
 
 	cleaned_string = (char *)malloc(sizeof(char) * size);
+	ft_bzero(cleaned_string, size);
 	return ((char *)cleaned_string);
 }
 

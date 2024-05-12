@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   i_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 21:13:20 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/11 21:35:33 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 23:50:15 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,15 @@ int	get_p_angle(char dir)
 	return (0);
 }
 
-void	fix_map(t_data *data, int x_source)
+int	fix_map(t_data *data)
 {
 	char	*tmp;
 	int		x_dest;
 	int		x;
 
+	if (!data->map_lined)
+		return (-1);
+	x_source = 0;
 	x_dest = data->map_size[0] + 2;
 	tmp = malloc(10000);
 	ft_memset(tmp, ' ', data->map_size[0] + 2);
@@ -50,5 +53,9 @@ void	fix_map(t_data *data, int x_source)
 	tmp[x_dest] = 0;
 	free(data->map_lined);
 	data->map_lined = ft_strdup(tmp);
-	free(tmp);
+	free (tmp);
+	data->map_size[0] += 2;
+	data->map_size[1] += 2;
+	data->mp_sz_p2 = 1;
+	return (1);
 }

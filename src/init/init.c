@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 21:37:37 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 23:53:43 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int	init_map(t_data *data)
 {
 	int	x_source;
 
+	data->mp_sz_p2 = 0;
 	if (config_file_loader(data) < 0)
 		return (-1);
 	if (validate_textures(data) < 0)
@@ -117,7 +118,8 @@ int	init_map(t_data *data)
 	data->p_deltX = cos(data->p_angle);
 	data->p_deltY = sin(data->p_angle);
 	x_source = 0;
-	fix_map(data, x_source);
+	if (fix_map(data, x_source) < 0)
+		return (-1);
 	data->map_size[0] += 2;
 	data->map_size[1] += 2;
 	return (1);

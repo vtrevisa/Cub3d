@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:22:13 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 21:36:34 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 23:54:37 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,18 @@ int	ft_strlen_spaceless(const char *s)
 static int	exit_map(t_data *data)
 {
 	int	i;
+	int	size;
 
 	i = -1;
-	while (i++, data->map_array[i] && i < data->map_size[1])
-		free (data->map_array[i]);
-	free (data->map_array);
+	size = 2;
+	if (data->mp_sz_p2 == 0)
+		size = 0;
+	if (data->map_array)
+	{
+		while (++i, i < data->map_size[1] - size && data->map_array[i])
+			free (data->map_array[i]);
+		free (data->map_array);
+	}
 	free(data->map);
 	free(data->map_name);
 	free (data->map_lined);

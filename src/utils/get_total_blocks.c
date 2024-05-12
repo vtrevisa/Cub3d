@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_total_blocks.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:12:02 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/11 18:52:14 by r-afonso         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:12:19 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	get_total_blocks_map(int *max_width, int *max_height, char *map)
 	current_line_width = 0;
 	total_lines = 0;
 	total_blocks = 0;
-	while (index++, map[index])
+	while (++index, map[index])
 	{
 		if (is_valid_character(map[index]) && current_line_width++)
 			total_blocks++;
