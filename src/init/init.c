@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:28:07 by vtrevisa          #+#    #+#             */
-/*   Updated: 2024/05/11 23:53:43 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/12 00:01:08 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,6 @@ int	init_map(t_data *data)
 		return (-1);
 	data->map_size[0] += 2;
 	data->map_size[1] += 2;
+	data->mp_sz_p2 = 1;
 	return (1);
 }

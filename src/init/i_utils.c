@@ -6,7 +6,7 @@
 /*   By: vtrevisa <vtrevisa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 21:13:20 by r-afonso          #+#    #+#             */
-/*   Updated: 2024/05/11 23:56:59 by vtrevisa         ###   ########.fr       */
+/*   Updated: 2024/05/12 00:00:54 by vtrevisa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,5 @@ int	fix_map(t_data *data, int x_source)
 	free(data->map_lined);
 	data->map_lined = ft_strdup(tmp);
 	free (tmp);
-	data->map_size[0] += 2;
-	data->map_size[1] += 2;
-	data->mp_sz_p2 = 1;
 	return (1);
 }
